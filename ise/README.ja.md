@@ -14,6 +14,7 @@ ISEは、筆者が本稿群で提唱する呼称であり、既存の標準化�
 2. [ドキュメント・ドリフトとソフトウェア考古学：現場を苦しめてきた情報のモザイク](02_document_drift_and_software_archaeology.ja.md)
 3. [AIの登場とVibe Coding、SDD/IDDの限界](03_ai_paradigm_and_sdd_limits.ja.md)
 4. [Intent-Synchronized Engineering：意図の同期を中心に置くエンジニアリング](04_intent_synchronized_engineering.ja.md)
+5. [工学的フィードバックとしてのレビュー：主観的点検から多面的評価系へ](05_feedback_systems_and_assessment_engineering.ja.md)
 
 補論として、次の文書を置く。
 
@@ -56,6 +57,12 @@ Vibe Coding、SDD、IDD、Harness Engineering、AI-DLC / AI-SDLC などを扱う
 ISEは、IntentとRealityを、複数の成果物を通じて継続的に同期するための実装側フレームワークとして定義される。
 
 ここでは、SSoTを絶対真理ではなく交渉の決着として扱うこと、順方向だけでなく逆方向の同期を扱うこと、作成主体を人間かAIかで固定しないこと、認知負荷の管理、Intent Recovery、AIを補装具として使うこと、IGE/ODFが必要になる理由を整理する。
+
+### 05: 工学的フィードバックとしてのレビュー
+
+`05_feedback_systems_and_assessment_engineering.ja.md` は、ISEにおける評価系（Assessment）とフィードバック制御を扱う。
+
+レビューを人の主観的点検や承認ゲートから、制御工学における「フィードバック制御系」として再定義する。Fagan Inspection、Perspective-Based Reading（PBR）、IEEE 1028、Microsoftの実証研究などの知見に基づき、レビューの目的と手段を直交化（Defect / Validity / Complexity）すること、AI時代における代替と人間の役割分担、閉ループ制御としてのエンジニアリングの成立を論じる。
 
 ### foundations: 理論的背景
 

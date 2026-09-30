@@ -14,6 +14,7 @@ The documents are intended to be read in the following order:
 2. [Document Drift and Software Archaeology: A Mosaic of Information That Has Plagued the Field](02_document_drift_and_software_archaeology.md)
 3. [The Advent of AI, Vibe Coding, and the Limits of SDD/IDD](03_ai_paradigm_and_sdd_limits.md)
 4. [Intent-Synchronized Engineering: Engineering Centered on Synchronization of Intent](04_intent_synchronized_engineering.md)
+5. [Review as Engineering Feedback: From Subjective Inspection to Multi-Perspective Assessment Systems](05_feedback_systems_and_assessment_engineering.md)
 
 As a supplementary discussion:
 
@@ -56,6 +57,12 @@ Here, we show that the problem in the AI era is shifting from "code generation" 
 ISE is defined as an implementation-side framework for continuously synchronizing Intent and Reality through multiple artifacts.
 
 Here, we organize the handling of SSoT as a settlement of negotiation rather than absolute truth, handling not only forward but also backward synchronization, not fixing the main creator as either human or AI, management of cognitive load, Intent Recovery, and the reason why IGE/ODF is necessary.
+
+### 05: Review as Engineering Feedback
+
+`05_feedback_systems_and_assessment_engineering.md` covers the assessment system and feedback control in ISE.
+
+It redefines review from subjective human inspection or gatekeeping into an "engineering feedback control system." Drawing upon foundational research—Fagan Inspection, Perspective-Based Reading (PBR), IEEE 1028, and empirical studies at Microsoft—it discusses the orthogonal separation of evaluation objectives and mechanisms (Defect / Validity / Complexity), the division of labor between AI and humans, and the realization of engineering as a closed-loop discipline.
 
 ### foundations: Theoretical Background
 
