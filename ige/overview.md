@@ -16,8 +16,8 @@ Just as ISE is "engineering to assist developers with AI," IGE is **"engineering
 
 ```text
   [ Intent Residing Inside the PM's Mind ]
-  - Why build this? (Business objectives, user pain points)
-  - What should be built? (Solution hypotheses, value proposition)
+  - Why build this? (Environmental challenges, user pain points, business goals, etc.)
+  - What should be built? (Solution hypotheses, value proposition, experiment concept)
                │
                ▼
   +--------------------------------------------------------------+
@@ -29,6 +29,7 @@ Just as ISE is "engineering to assist developers with AI," IGE is **"engineering
   |     - Goal-oriented breakdown (Why -> What), user stories    |
   |  3. Specification & Task Decomposition                       |
   |     - Acceptance criteria (Given-When-Then), functional/NFR  |
+  |     - Experimental scope design & explicit metric requirements|
   |     - Decomposing scope into tasks actionable by developers  |
   +--------------------------------------------------------------+
                │

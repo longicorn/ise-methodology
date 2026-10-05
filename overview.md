@@ -5,7 +5,7 @@
 The universe surrounding software development is fundamentally categorized into three tiers:
 
 ```text
- [ Environment ]     Markets, customers, business, the real world. In constant flux.
+ [ Environment ]     The external world / reality. In constant flux. (Business/market is one application instance.)
         ▲
         │  (Drift occurs continuously)
         ▼
@@ -17,11 +17,11 @@ The universe surrounding software development is fundamentally categorized into 
 ```
 
 1. **Environment:**
-   - The reality external to the software system: market trends, customer pain points, business demands, and competitive dynamics.
+   - The entire reality external to the software system. While commercial markets and business demands are prominent examples, Environment encompasses all external contexts—such as open-source community dynamics, academic research/computational environments, internal operational workflows, external systems, or developer usage in personal projects.
    - A non-deterministic world characterized by high uncertainty and constant change.
 2. **Intent:**
    - **"Exists only inside the human mind."**
-   - Mental models, hypotheses, and architectural concepts for solving problems. Externalized documents, tickets, and specifications are merely downstream projections of the Intent residing in the mind.
+   - Mental models, hypotheses, problem awareness, and architectural concepts for solving problems in the Environment. Externalized documents, tickets, and specifications are merely downstream projections of the Intent residing in the mind.
 3. **Reality:**
    - The software itself: runnable source code, test suites, compiled binaries, and live production deployments.
    - The deterministic, logical world of engineering.
@@ -38,11 +38,11 @@ A vital principle of this methodology is that **drift continuously and inevitabl
 To combat these drifts, one-way execution is insufficient; **bi-directional synchronization (Forward / Reverse Sync)** is essential.
 
 ```text
- [ Environment ] (Business / Market)
+ [ Environment ] (External world / Operational context / Markets)
         ▲
-        │  Forward: Discovering business problems / Setting hypotheses
+        │  Forward: Discovering environmental problems / Setting hypotheses
         │  Reverse: Learning from telemetry & BML metrics to update/prune hypotheses
-        │  【Governed by: ODF (Lean BML Loop) & IGE (Requirements Engineering)】
+        │  【Governed by: ODF (Discovery Mediation & Lean BML Loop) & IGE (Requirements Engineering & Experiment Design)】
         ▼
     [ Intent ]    (Intent residing only in the human mind)
         ▲
@@ -95,7 +95,21 @@ Between the uncertain external Environment and human Intent, ODF mediates eviden
 ```text
   [ Environment ] ──(BML Loop)──> [ ODF ] ──> [ Intent ] ──(Requirements Eng.)──> [ Document ]
 ```
-- **Revising Environmental Understanding:** Whether a feature succeeds is fundamentally uncertain. ODF ingests measurement data collected by ISE to **revise the organization's understanding of the Environment, and update, pivot, or prune the Intent (Learn)**.
+
+Whether an initiative or feature will have its intended effect in the external environment cannot be known in advance. ODF, IGE, and ISE coordinate the discovery loop:
+
+- **ODF (Environmental Understanding & Discovery Mediation):** Interprets environmental changes and measurement results to deepen understanding of the Environment and frame discovery questions.
+- **IGE (Intent, Experiment & Measurement Requirements):** Translates ODF's environmental understanding into verifiable Intent, experiment designs, and measurement requirements.
+- **ISE (Realization in Reality):** Implements the agreed Intent and experiments in specifications, code, tests, and operations, including the required observation points.
+
+Depending on the scope and decision context, ODF or IGE may lead decisions to revise or prune Intent or retire a feature. ISE carries out the resulting changes to implementation artifacts and code in Reality.
+
+##### Goodhart's Law and "Metric as Sensor"
+One useful perspective when considering this discovery loop is **Goodhart's Law**: *"When a measure becomes a target, it ceases to be a good measure."*
+
+Measurement requirements specify what to observe for an experiment; they do not make a metric a target. Equating a metric with a goal or absolute truth can make improving the number an end in itself, potentially undermining the original intent and broader system. This applies to commercial metrics (e.g., CVR, revenue) and software metrics (e.g., test coverage, commit volume, isolated latency benchmarks).
+
+Metrics can be viewed as **sensors for environmental shifts and systemic conditions**. When interpreting them, considering other evidence and the broader system context alongside an individual number can help inform environmental understanding and Intent revision.
 
 ---
 
