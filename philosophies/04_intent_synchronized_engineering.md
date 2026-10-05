@@ -128,7 +128,7 @@ Without Drift Detection and Entropy Control, continuous development—especially
 
 However, this does not mean "the order does not matter at all." Intent evaporates and transforms with time. Particularly, intent in the human head is most easily lost. Therefore, it becomes important to externalize intent while it is vivid and connect it to artifacts.
 
-This background is organized in the supplementary paper "[Document Drift and Intent Decay](foundations/01_document_drift_and_intent_decay.md)" from the perspectives of cognitive load, reconstruction of memory, common ground, and decay of intent retention.
+This background is organized in the supplementary paper "[Document Drift and Intent Decay](../ise/foundations/01_document_drift_and_intent_decay.md)" from the perspectives of cognitive load, reconstruction of memory, common ground, and decay of intent retention.
 
 AI greatly reduces this synchronization cost.
 
