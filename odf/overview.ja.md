@@ -2,20 +2,20 @@
 
 ## 1. はじめに
 
-ODF（Orthogonal Dual-Framework：直交二重フレームワーク）は、ソフトウェア開発ライフサイクル（SDLC）において、明確に異なる2つの独立した仕事を担うフレームワークです。
+ODF（Orthogonal Dual-Framework：直交二重フレームワーク）は、ソフトウェア開発ライフサイクル（SDLC）における二つの直交する境界に、同じProxyの原理を適用するフレームワークです。
 
-この2つを1つの図や文脈で同時に説明しようとすると混乱を招くため、ODFでは「仕事1：Proxy」と「仕事2：Environment ⇄ Intent の Lean Loop」に明確に切り分けて定義します。
+二つの軸は調停する境界が異なりますが、独立した仕事ではありません。どちらの軸でも、ODFは片側から得た情報を解釈し、判断を媒介して、フィードバックを境界の反対側へ伝えます。
 
-- **仕事 1：IGE ⇄ ODF ⇄ ISE（Proxyとしての仕事）**  
-  PMの世界（IGE）と開発者の世界（ISE）の間に立ち、タスク量や開発速度を調停して現場の健全性を保ちます。
-- **仕事 2：Environment ⇄ ODF ⇄ Intent（探索ループとしての仕事）**  
-  現実世界（Environment）と頭の中の意図（Intent）を結び、意図をどう実現して価値を検証していくかというLean BML Loopを担当します。
+- **Proxy軸 1：IGE ⇄ ODF ⇄ ISE（開発運用の調停）**
+  PM（IGE）と開発者（ISE）の間で、要求、タスク量、開発能力、工学的制約を調停します。
+- **Proxy軸 2：Environment ⇄ ODF ⇄ Intent（Lean Loopによる探索の調停）**
+  外部のEnvironmentと人のIntentの間で、証拠と仮説をLean BML Loopを通じて媒介し、現実に照らして意図を検証・更新します。
 
 ---
 
-## 2. 仕事 1：IGE ⇄ ODF ⇄ ISE（Proxyとしての仕事）
+## 2. Proxy軸 1：IGE ⇄ ODF ⇄ ISE（開発運用の調停）
 
-第1の仕事は、PM（IGE）と開発者（ISE）の間を取り持つProxy（代理人・緩衝材）です。
+この軸では、ODFはPM（IGE）と開発者（ISE）の間を取り持つProxy（代理人・緩衝材）として働きます。
 
 ```text
   【 PMの世界 】                                   【 開発者の世界 】
@@ -46,9 +46,9 @@ ODFはこの間に立ち、タスク量が開発側の消化速度（ベロシ�
 
 ---
 
-## 3. 仕事 2：Environment ⇄ ODF ⇄ Intent（Lean Loopとしての仕事）
+## 3. Proxy軸 2：Environment ⇄ ODF ⇄ Intent（Lean Loopによる探索の調停）
 
-第2の仕事は、不確実な現実世界（Environment）と頭の中の意図（Intent）を結び、意図をどう実現して価値を検証していくかという探索ループ（Lean Loop）を回すことです。
+この軸では、ODFが不確実なEnvironmentと人のIntentの間に立ち、Lean Loopを通じて証拠と仮説を往復させ、意図の実現方法と価値を検証します。
 
 ```text
                [ Environment (市場・顧客・ビジネスの現実) ]
@@ -91,9 +91,9 @@ ISEが計測した結果を受けて、環境に対する理解そのものを�
 
 ## 4. まとめ
 
-ODFは、次の2つの独立した仕事の統合です。
+ODFは、同じProxyの原理を次の二つの直交する軸に適用します。
 
-1. **Proxy軸（IGE ⇄ ODF ⇄ ISE）**  
-   PMと開発者の間に立ち、タスク量や開発速度を調停して現場の崩壊を防ぎます。
-2. **Lean Loop軸（Environment ⇄ ODF ⇄ Intent）**  
-   要求工学によってドキュメント化されたIntentを、どう実現して価値を確かめるかというBML大ループを統制し、計測データから環境認識を改め続けます。
+1. **開発運用の調停（IGE ⇄ ODF ⇄ ISE）**
+   PMと開発者の間で要求、タスク量、開発能力、工学的制約を調停します。
+2. **探索の調停（Environment ⇄ ODF ⇄ Intent）**
+   Lean Loopを通じて証拠と仮説を媒介し、Intentを現実に照らして検証・更新します。

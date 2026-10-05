@@ -2,20 +2,20 @@
 
 ## 1. Introduction
 
-ODF (Orthogonal Dual-Framework) is a framework within the Software Development Life Cycle (SDLC) that governs **two completely distinct, independent jobs**.
+ODF (Orthogonal Dual-Framework) applies one Proxy principle across **two orthogonal boundaries** in the Software Development Life Cycle (SDLC).
 
-Attempting to explain these two roles within a single tangled narrative or diagram creates confusion. Therefore, ODF strictly defines them as **"Job 1: Proxy"** and **"Job 2: The Environment ⇄ Intent Lean Loop"**.
+The axes are distinct in the boundaries they mediate, but they are not independent jobs. In both, ODF interprets information from one side, mediates decisions, and carries feedback across the boundary.
 
-- **Job 1: `IGE ⇄ ODF ⇄ ISE` (The Operational Proxy)**  
-  Sits between the PM's world (IGE) and the Developer's world (ISE) to balance task volume, velocity, and engineering sustainability.
-- **Job 2: `Environment ⇄ ODF ⇄ Intent` (The Macro Lean Loop)**  
-  Connects the external world (Environment) with mental hypotheses (Intent), driving the overarching **Lean (BML) Loop** to realize intent and empirically validate business value.
+- **Proxy Axis 1: `IGE ⇄ ODF ⇄ ISE` (Operational Mediation)**
+  Mediates requirements, task volume, engineering capacity, and technical constraints between PMs (IGE) and developers (ISE).
+- **Proxy Axis 2: `Environment ⇄ ODF ⇄ Intent` (Discovery Mediation through the Lean Loop)**
+  Mediates evidence and hypotheses between the external Environment and human Intent through the **Lean (BML) Loop**, guiding how intent is tested and revised against reality.
 
 ---
 
-## 2. Job 1: `IGE ⇄ ODF ⇄ ISE` (The Operational Proxy)
+## 2. Proxy Axis 1: `IGE ⇄ ODF ⇄ ISE` (Operational Mediation)
 
-The first responsibility is acting as an active **Proxy (buffer and mediator) between PMs (IGE) and developers (ISE)**.
+On this axis, ODF acts as an active **Proxy (buffer and mediator) between PMs (IGE) and developers (ISE)**.
 
 ```text
       【 The PM's World 】                             【 The Developer's World 】
@@ -49,9 +49,9 @@ This Proxy role manifests in practice through **GitHub Issues, Pull Requests, sp
 
 ---
 
-## 3. Job 2: `Environment ⇄ ODF ⇄ Intent` (The Lean Loop)
+## 3. Proxy Axis 2: `Environment ⇄ ODF ⇄ Intent` (Discovery Mediation through the Lean Loop)
 
-The second responsibility is **governing the macro discovery cycle (Lean Loop) that links the uncertain external Environment with the mental Intent, testing how intent is realized and validated**.
+On this axis, ODF mediates between the uncertain external Environment and human Intent through the Lean Loop, carrying evidence and hypotheses back and forth as teams test how intent is realized and validated.
 
 ```text
                [ Environment (Market, Customers, Real World) ]
@@ -94,9 +94,9 @@ The scopes of Requirements Engineering (RE) and Lean are clearly separated:
 
 ## 4. Summary
 
-ODF represents the synthesis of two independent axes:
+ODF applies its Proxy principle across two orthogonal axes:
 
-1. **Proxy Axis (`IGE ⇄ ODF ⇄ ISE`):**
+1. **Operational Mediation (`IGE ⇄ ODF ⇄ ISE`):**
    - Buffers and arbitrates task volumes and velocity between PMs and developers to protect engineering health.
-2. **Lean Loop Axis (`Environment ⇄ ODF ⇄ Intent`):**
+2. **Discovery Mediation (`Environment ⇄ ODF ⇄ Intent`):**
    - Governs the macro BML loop that takes requirements externalized by Requirements Engineering, drives their empirical realization, and continuously updates environmental understanding based on telemetry.

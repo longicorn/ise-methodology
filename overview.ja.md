@@ -70,11 +70,11 @@ IGEはIntentからDocumentへの具体化と要求工学を担当します。人
 
 ゴール指向で「なぜ作るのか（Why）」を「何を作るべきか（What）」へ構造化し、受け入れ基準の策定や非機能要件の定義を行います。
 
-### 3. ODF（Orthogonal Dual-Framework）：2つの独立した仕事
-ODFは、性格の異なる2つの独立した仕事を担います。
+### 3. ODF（Orthogonal Dual-Framework）：二つの境界におけるProxy
+ODFは、二つの直交する境界に同じProxyの原理を適用します。これは独立した仕事ではなく、異なる二つの調停軸です。どちらの軸でも、ODFは片側から得た情報を解釈し、判断を媒介して、フィードバックを境界の反対側へ伝えます。
 
-#### 仕事 1：IGE ⇄ ODF ⇄ ISE（Proxyとしての仕事）
-PM（IGE）と開発者（ISE）の間に立ち、現場の健全性を保つ緩衝材として機能します。
+#### Proxy軸 1：IGE ⇄ ODF ⇄ ISE（開発運用の調停）
+PM（IGE）と開発者（ISE）の間で、要求、タスク量、開発能力、工学的制約を調停し、現場の健全性を保ちます。
 
 ```text
   【 PM (IGE) 】 ──> [ ODF (Proxy) ] <── 【 開発者 (ISE) 】
@@ -85,8 +85,8 @@ PM（IGE）と開発者（ISE）の間に立ち、現場の健全性を保つ緩
 
 タスク量の流量を制御し、開発速度（ベロシティ）を保護するとともに、現場からの工学的制約をPMへフィードバックします。GitHubのIssueやプルリクエスト、スプリントバックログ、RFCレビューなどがこの機能の具現化に当たります。
 
-#### 仕事 2：Environment ⇄ ODF ⇄ Intent（Lean Loopとしての仕事）
-不確実な環境と頭の中のIntentを結び、意図をどう実現して価値を検証していくかという大きなLean BML Loopを統制します。
+#### Proxy軸 2：Environment ⇄ ODF ⇄ Intent（Lean Loopによる探索の調停）
+不確実なEnvironmentと人のIntentの間で、証拠と仮説をLean BML Loopを通じて媒介し、現実に照らして意図を検証・更新します。
 
 ```text
   [ Environment ] ──(BML Loop)──> [ ODF ] ──> [ Intent ] ──(要求工学)──> [ Document ]

@@ -71,12 +71,12 @@ To operationalize this dual synchronization across the Software Development Life
 - **Objective:** Takes the ambiguous Intent residing in the human mind, formulates requirement documents, designs features, and breaks them into tasks ready for engineering communication.
 - **Applying Requirements Engineering (RE):** Goal-oriented requirements analysis (Why -> What), acceptance criteria formulation, and non-functional constraints.
 
-### 3. ODF (Orthogonal Dual-Framework): Two Distinct Jobs
+### 3. ODF (Orthogonal Dual-Framework): Proxy Mediation Across Two Boundaries
 
-To avoid conceptual confusion, ODF is strictly separated into **two independent jobs**:
+ODF applies the same Proxy principle at two orthogonal boundaries. These are distinct axes of mediation, not independent jobs: in both, ODF interprets information from one side, mediates decisions, and carries feedback across the boundary.
 
-#### Job 1: `IGE ⇄ ODF ⇄ ISE` (The Operational Proxy)
-Sits between the PM (IGE) and developers (ISE) as an active buffer and mediator to preserve engineering health.
+#### Proxy Axis 1: `IGE ⇄ ODF ⇄ ISE` (Operational Mediation)
+Between PMs (IGE) and developers (ISE), ODF mediates requirements, task volume, engineering capacity, and technical constraints to preserve engineering health.
 ```text
   【 PM (IGE) 】 ──> [ ODF (Proxy) ] <── 【 Developers (ISE) 】
                             │
@@ -86,8 +86,8 @@ Sits between the PM (IGE) and developers (ISE) as an active buffer and mediator 
 - **Arbitration Focus:** Rate-limiting task intake, protecting sustainable development velocity, and channeling engineering constraints back to PMs.
 - **Embodiments:** GitHub Issues, Pull Requests, sprint backlogs, and RFC reviews.
 
-#### Job 2: `Environment ⇄ ODF ⇄ Intent` (The Lean Loop)
-Connects the uncertain external Environment with the mental Intent, governing the overarching **Lean BML Loop** to test how intent is realized and validated in the real world.
+#### Proxy Axis 2: `Environment ⇄ ODF ⇄ Intent` (Discovery Mediation through the Lean Loop)
+Between the uncertain external Environment and human Intent, ODF mediates evidence and hypotheses through the **Lean BML Loop**, guiding how intent is tested and revised against reality.
 ```text
   [ Environment ] ──(BML Loop)──> [ ODF ] ──> [ Intent ] ──(Requirements Eng.)──> [ Document ]
 ```
