@@ -57,7 +57,11 @@ To combat these drifts, one-way execution is insufficient; **bi-directional sync
 
 ## 3. The Three Abstract Frameworks in the SDLC (ODF / IGE / ISE)
 
-To operationalize this dual synchronization across the Software Development Life Cycle (SDLC), the methodology provides three frameworks corresponding directly to organizational roles:
+To operationalize this dual synchronization across the Software Development Life Cycle (SDLC), the methodology provides three frameworks corresponding directly to organizational roles.
+
+However, the boundaries between the three frameworks are not fixed. Where responsibility lies is decided through agreement among ODF, IGE, and ISE. When circumstances change or a mistake is found, they may agree again.
+
+Although the boundaries can blur, there is a tendency for the role of judging whether an intent was wrong, based on the results of a local initiative, to lean toward IGE, and for the governance of the whole Lean BML Loop to lean toward ODF.
 
 ### 1. ISE (Intent Synchronized Engineering): Engineering for Developers
 - **Scope:** `Intent ⇄ Reality`

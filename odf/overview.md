@@ -92,6 +92,8 @@ The scopes of Requirements Engineering (RE) and Lean are clearly separated:
 - **Measuring (Measure) is ISE's Role:** Deploying instrumentation in production (Reality) to log and measure empirical telemetry belongs to the engineering side (ISE).
 - **Learning (Learn) and Revising Understanding is ODF's Role:** Ingesting those measurement results to **revise the organization's understanding of the Environment, and update, pivot, or prune the Intent** is ODF's responsibility. If a feature fails to deliver value, ODF invalidates the hypothesis, removing the feature from the Living Spec and triggering its clean deletion from the codebase.
 
+Note that this division describes ODF from the standpoint of governing the whole Lean BML Loop. The role of judging whether an intent was wrong, based on the results of a local initiative, tends to lean toward IGE. The boundaries are not fixed and are decided through agreement among ODF, IGE, and ISE. For details, see section 3 of the [Overview](../overview.md).
+
 ---
 
 ## 4. Summary
