@@ -56,7 +56,7 @@ This Proxy role manifests in practice through **GitHub Issues, Pull Requests, sp
 On this axis, ODF mediates between the uncertain external Environment and human Intent through the Lean Loop, carrying evidence and hypotheses back and forth as teams test how intent is realized and validated.
 
 ```text
-               [ Environment (Market, Customers, Real World) ]
+               [ Environment (External World, Operational Context, Market) ]
                                      ▲
                                      │
                              BML Loop (Lean)
@@ -71,28 +71,36 @@ On this axis, ODF mediates between the uncertain external Environment and human 
                                      ▼
                  [ Intent (Exists ONLY in the Human Mind) ]
                                      ▲
-                                     │ Requirements Engineering (RE)
-                                     │ (Externalizing mental intent into docs)
+                                     │ Requirements Engineering (RE) & Experiment Design
+                                     │ (Externalizing mental intent into docs & test plans)
                                      ▼
                         [ Document (Requirements / Specs) ]
 ```
 
-### 1. Why the Lean Loop Is Essential
-Whether a feature or initiative will truly succeed in the market is fundamentally impossible to predict in advance. Building capabilities that no one ends up using is an everyday reality.
-Therefore, rather than building massive specifications all at once, teams must operate a Lean BML Loop: **Build small, Measure outcomes, and Learn to revise understanding of the Environment**.
+### 1. Why This Document Uses the Lean Loop
+Whether a new capability or initiative will truly achieve its intended outcome in the external environment is impossible to guarantee in advance. Creating features that end up unused or introduce unexpected friction is an everyday occurrence across all domains of software development, not merely in commercial business.
+To explain this process, this document uses the Lean BML Loop as one straightforward approach: **Build small, Measure outcomes, and Learn to update understanding of the Environment**. Lean is not the only way to do this, and the responsibilities of ODF and IGE are not limited to Lean. A more suitable approach may replace or complement it in the future.
 
-### 2. Division of Labor: Requirements Engineering vs. Lean
-The scopes of Requirements Engineering (RE) and Lean are clearly separated:
-- **Requirements Engineering Scope (`Intent ⇄ Document`):**
-  - Externalizing ambiguous Intent residing inside the human mind into formal requirement documents, acceptance criteria, and feature designs (primarily executed by IGE).
-- **Lean Scope (`Environment ⇄ ODF ⇄ Intent` Macro Loop):**
-  - Orchestrating the overarching cycle of how externalized Intent is realized against Reality, tested in the market, and validated.
+### 2. Division of Labor in the Discovery Cycle (ODF, IGE, and ISE)
+The discovery cycle is driven by the orthogonal collaboration of the three frameworks:
 
-### 3. Measuring Telemetry vs. Revising Environmental Understanding
-- **Measuring (Measure) is ISE's Role:** Deploying instrumentation in production (Reality) to log and measure empirical telemetry belongs to the engineering side (ISE).
-- **Learning (Learn) and Revising Understanding is ODF's Role:** Ingesting those measurement results to **revise the organization's understanding of the Environment, and update, pivot, or prune the Intent** is ODF's responsibility. If a feature fails to deliver value, ODF invalidates the hypothesis, removing the feature from the Living Spec and triggering its clean deletion from the codebase.
+- **ODF (Environmental Understanding & Discovery Mediation: `Environment ⇄ ODF ⇄ Intent`):**
+  - Interprets environmental changes and measurement results to deepen understanding of the Environment and frame discovery questions.
+- **IGE (Intent, Experiment & Measurement Requirements: `Intent ⇄ Document`):**
+  - Translates ODF's environmental understanding into verifiable Intent, experiment designs, and measurement requirements.
+- **ISE (Realization in Reality: `Intent ⇄ Reality`):**
+  - Implements the agreed Intent and experiments in specifications, code, tests, and operations, including the required observation points.
 
-Note that this division describes ODF from the standpoint of governing the whole Lean BML Loop. The role of judging whether an intent was wrong, based on the results of a local initiative, tends to lean toward IGE. The boundaries are not fixed and are decided through agreement among ODF, IGE, and ISE. For details, see section 3 of the [Overview](../overview.md).
+Depending on the scope and decision context, ODF or IGE may lead decisions to revise or prune Intent or retire a feature. ISE carries out the resulting changes to implementation artifacts and code in Reality.
+
+### 3. Goodhart's Law and "Metric as Sensor"
+One useful perspective when considering this discovery cycle is **Goodhart's Law**: *"When a measure becomes a target, it ceases to be a good measure."*
+
+Measurement requirements specify what to observe for an experiment; they do not make a metric a target. Equating a metric with a goal or absolute truth can make improving the number an end in itself, potentially undermining the original intent and broader system (e.g., aggressive conversion-rate optimization or meaningless tests written to inflate coverage).
+
+Metrics can be viewed as **sensors for environmental shifts and systemic conditions**. When interpreting them, considering other evidence and the broader system context alongside an individual number can help inform environmental understanding and Intent revision.
+
+This division describes ODF from the standpoint of mediating the whole Lean BML Loop. Decisions to revise or prune Intent may be led by ODF when they concern overall environmental understanding, or by IGE when they concern a local hypothesis or experiment. ISE changes artifacts in Reality based on that decision. See section 3 of the [Overview](../overview.md) for details.
 
 ---
 
