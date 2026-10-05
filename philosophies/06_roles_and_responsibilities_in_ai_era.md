@@ -82,7 +82,7 @@ Real-world development features countless nuanced operating styles depending on 
 
 ## 5. Redesigning Product Management (PM): A Spectrum from Discovery to Architecture
 
-The same evolution applies to PMs. While "mere ticket-pushers and status-checkers" will disappear, PM accountability bifurcates into a rich spectrum:
+The same evolution applies to PMs. While work focused solely on relaying specifications is likely to diminish, PM responsibilities are spreading across a spectrum:
 
 ```text
   [ Business / Discovery Lean ] <──────────────────> [ Product Architect Lean ]
