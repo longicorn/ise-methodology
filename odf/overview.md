@@ -6,6 +6,8 @@ ODF (Orthogonal Dual-Framework) applies one Proxy principle across **two orthogo
 
 The axes are distinct in the boundaries they mediate, but they are not independent jobs. In both, ODF interprets information from one side, mediates decisions, and carries feedback across the boundary.
 
+ODF is not merely a buffer. It mediates the two boundaries from a position that covers the whole product outside ISE and IGE, an area close to architects and executives. For this reason, its responsibilities are heavier than those of the other frameworks.
+
 - **Proxy Axis 1: `IGE ⇄ ODF ⇄ ISE` (Operational Mediation)**
   Mediates requirements, task volume, engineering capacity, and technical constraints between PMs (IGE) and developers (ISE).
 - **Proxy Axis 2: `Environment ⇄ ODF ⇄ Intent` (Discovery Mediation through the Lean Loop)**

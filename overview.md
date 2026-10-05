@@ -64,7 +64,7 @@ To operationalize this dual synchronization across the Software Development Life
 - **Objective:** Augment software developers using AI. **It does not eliminate developers; it empowers them**.
 - **Forward Sync:** Externalizing intent through documents and other artifacts, then deterministically implementing the adopted intent in code and tests. Because artifacts and implementation can drift, ISE continuously checks and resynchronizes them.
 - **Reverse Sync:** Reading code, tests, runtime behavior, and history back into artifacts and intent. This supports legacy analysis, drift detection, and intent reconstruction when documents are missing or outdated.
-- **Telemetry Collection (Measure):** Instrumenting and collecting logs/telemetry from running production software belongs to ISE.
+- **Instrumentation for Measurement:** Implementing logging and telemetry in the software (code) belongs to ISE. This differs from "Measure" in the Lean BML Loop, which is about evaluating results and making judgments. Checking logs for bug investigation and similar work belongs to operations.
 
 ### 2. IGE (Intent Guidance Engineering): Engineering for Product Managers (PMs)
 - **Scope:** `Intent ⇄ Document (Specification & Requirements Engineering)`
@@ -105,7 +105,7 @@ In the AI era, **code implementation throughput has accelerated exponentially**.
 3. **Subtle AI hallucinations and undocumented alterations (C) outpace human cognitive review, instantly turning fresh code into legacy debt.**
 
 Therefore, rather than relying on intuitive rituals:
-- **ISE:** Assists developers with AI to support legacy recovery and drift detection (Reverse), deterministic implementation of adopted intent through artifacts (Forward), and telemetry measurement (Measure), with ongoing synchronization across them.
+- **ISE:** Assists developers with AI to support legacy recovery and drift detection (Reverse), deterministic implementation of adopted intent through artifacts (Forward), and the implementation of telemetry instrumentation for measurement, with ongoing synchronization across them.
 - **IGE:** Empowers PMs to externalize mental Intent into crisp, structured Documents (requirements, tasks) via Requirements Engineering.
 - **ODF:**
   - Acts as the `IGE ⇄ ODF ⇄ ISE` Proxy to balance task volume and velocity,
