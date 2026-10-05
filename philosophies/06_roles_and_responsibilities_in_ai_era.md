@@ -132,7 +132,7 @@ ODF, IGE, and ISE do not exist to constrain humans into rigid molds. **They prov
 
 - **ISE:**
   - Provides the Craft Specialist with deep codebase comprehension (Reverse Sync) and safe refactoring tools.
-  - Provides the Architect with deterministic guarantees that Reality matches Intent.
+  - Helps the Architect implement adopted Intent deterministically through documents and other artifacts, then detect and resynchronize drift between those artifacts and Reality.
 - **IGE:**
   - Empowers Solution PMs (or technical spec-designers) with formal Requirements Engineering tools to externalize mental Intent into unambiguous criteria.
 - **ODF:**

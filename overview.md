@@ -46,8 +46,8 @@ To combat these drifts, one-way execution is insufficient; **bi-directional sync
         ▼
     [ Intent ]    (Intent residing only in the human mind)
         ▲
-        │  Forward: Implementing code & tests from intent (traditional workflow)
-        │  Reverse: Reconstructing intent from code / Legacy analysis / Deep understanding
+        │  Forward: Externalizing intent into documents, then implementing it in code & tests
+        │  Reverse: Reading code, tests & runtime back into artifacts and intent
         │  【Governed by: ISE (Developer Enablement & Nagi)】
         ▼
    [ Reality ]   (Software itself / Source code)
@@ -62,8 +62,8 @@ To operationalize this dual synchronization across the Software Development Life
 ### 1. ISE (Intent Synchronized Engineering): Engineering for Developers
 - **Scope:** `Intent ⇄ Reality`
 - **Objective:** Augment software developers using AI. **It does not eliminate developers; it empowers them**.
-- **Forward Sync:** Deterministically translating mental intent into verified code and tests.
-- **Reverse Sync:** **The definitive answer to legacy software:** "Code exists, but documents do not, and nobody knows the original specifications." AST extraction, dependency mapping, intent reconstruction.
+- **Forward Sync:** Externalizing intent through documents and other artifacts, then deterministically implementing the adopted intent in code and tests. Because artifacts and implementation can drift, ISE continuously checks and resynchronizes them.
+- **Reverse Sync:** Reading code, tests, runtime behavior, and history back into artifacts and intent. This supports legacy analysis, drift detection, and intent reconstruction when documents are missing or outdated.
 - **Telemetry Collection (Measure):** Instrumenting and collecting logs/telemetry from running production software belongs to ISE.
 
 ### 2. IGE (Intent Guidance Engineering): Engineering for Product Managers (PMs)
@@ -105,7 +105,7 @@ In the AI era, **code implementation throughput has accelerated exponentially**.
 3. **Subtle AI hallucinations and undocumented alterations (C) outpace human cognitive review, instantly turning fresh code into legacy debt.**
 
 Therefore, rather than relying on intuitive rituals:
-- **ISE:** Assists developers with AI to guarantee legacy recovery (Reverse), deterministic implementation (Forward), and telemetry measurement (Measure).
+- **ISE:** Assists developers with AI to support legacy recovery and drift detection (Reverse), deterministic implementation of adopted intent through artifacts (Forward), and telemetry measurement (Measure), with ongoing synchronization across them.
 - **IGE:** Empowers PMs to externalize mental Intent into crisp, structured Documents (requirements, tasks) via Requirements Engineering.
 - **ODF:**
   - Acts as the `IGE ⇄ ODF ⇄ ISE` Proxy to balance task volume and velocity,
