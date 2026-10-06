@@ -84,7 +84,17 @@ A directed connection between nodes, representing the **active lane (transformat
 - Example: A `Code → Observation / Fact` edge represents the lane of "extracting facts and AST structures using analysis tools."
 - Each lane has an origin, a destination, and an explicit direction.
 
-### 3.4 Route (Path)
+### 3.4 Gate (Passage and Decision Point)
+A Gate is a passage or decision point placed along a Lane or at a connection between Nodes. It handles decisions such as allowing passage, holding, or sending work back, based on the result of a Lane's transformation or the connection to the next Node. Gate is a general concept in the Lane Model and does not refer to a particular tool or evaluation method.
+
+- A Gate is not always mandatory and can be bypassed depending on the situation.
+- Reviewing information and making decisions at a Gate may involve selecting, omitting, or reinterpreting information. A Gate can therefore affect what is carried between Nodes as well as control the connection.
+- Gates are not limited to explicit mechanisms in tools. When a person expresses Intent in a Document, they also make decisions about which aspects of the intent to select, how to put them into words, and how to convey them to a reader. These decisions can produce differences between the thoughts in their mind and the document's expression.
+- Nodes change over time. Even the same person can be viewed as distinct Nodes at different points in time: yesterday's self and today's self. When a Document written yesterday feels different on rereading today, that difference may reflect both the states of the Nodes at those times and changes in interpretation or information during the process of connecting them.
+
+Gates can be placed both at boundaries between frameworks and within each framework. Their placement, the decisions they handle, and whether bypass is allowed are determined by the purpose of the connection.
+
+### 3.5 Route (Path)
 A sequence of nodes and lanes selected to achieve a specific development objective.  
 Developers define the necessary intermediate waypoints (nodes) appropriate for their objective and traverse the route connecting them.
 
