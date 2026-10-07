@@ -87,6 +87,33 @@ In this state, developers do not just read information. They must classify infor
 
 In other words, the mosaic of information requires additional cognitive work from developers.
 
+### 3.1 Conflation of High-Context and Low-Context
+
+Originally, specification documents and mosaic information serve different roles.
+
+- **Documents (Low-Context)**: Self-contained descriptions of current truth and specifications that can be understood on their own.
+- **Mosaic Information (High-Context)**: Deliberation history, background context, and organizational atmosphere accumulated in personal tools (work logs, AI memory) or shared tools (Slack, Notion).
+
+When specifications are properly documented, mosaic information functions healthily as high-context that explains *why* decisions were made.
+
+The pathology arises when specification documents are absent. Without standalone specifications, the current truth remains buried only within discussion threads and chat logs. As a result, the specifications (Low-Context) and the conversational context (High-Context) remain conflated and undifferentiated. Developers are then forced into an deciphering puzzle: piecing together scattered fragments not to complement context, but to guess the current specification itself.
+
+### 3.2 Flattening of the Timeline and Loss of History
+
+There is an asymmetry in how documents and mosaic information are updated.
+
+Documents are overwritten to maintain the latest snapshot of truth. Conversely, mosaic information in Slack, Notion, or vector search databases accumulates additively as a flat log.
+
+When developers query this accumulated log via keyword search or AI vector retrieval, the timeline is flattened and fragments are retrieved solely by relevance score. A discussion from three years ago and an agreement made last week appear side-by-side. The causal chain and historical evolution become obscured. Losing this history leads to anti-patterns such as proposing designs that were deliberately discarded in the past or violating delicate, unwritten premises.
+
+### 3.3 Asymmetry Between Git and Mosaic
+
+In modern software development, code and documentation have gained point-in-time reproducibility through Git. By checking out a specific commit, one can strictly recreate the state of the codebase at that moment.
+
+However, mosaic information lacks any mechanism to isolate a point-in-time boundary. Because tools are fragmented, rolling back code and documents to six months ago does not allow one to synchronously summon the organization's high-context premises and atmosphere from that same point in time.
+
+Documents preserve state transitions but discard historical conversational context, while mosaic stores conversational context but cannot delineate points in time. This asymmetry makes reconstructing past intent extraordinarily difficult.
+
 ## 4. Vibe Management: Ambiguous Intent Flows into the Field
 
 The mosaic of information is a problem regarding the past and present of existing systems. On the other hand, ambiguous information flows into development fields from upstream as well.
