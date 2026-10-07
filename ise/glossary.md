@@ -190,6 +190,8 @@ A unique designation by the author to explain problems observed in the field.
 
 A state where information with different reliability, tense, intent, and provenance coexist in one information space, making it difficult for an outsider to determine which is the current truth.
 
+Originally, specification documents (self-contained Low-Context) and deliberations/background (High-Context) should be distinct. However, document absence or drift causes them to conflate. Furthermore, while documents are overwritten with current snapshots, mosaic information accumulates additively, causing the timeline and causal history to flatten upon search. This problem is further aggravated by the asymmetry that mosaic information lacks the point-in-time reproducibility provided by Git for code and documents.
+
 ## Software Archaeology
 
 The work of excavating the meaning, intent, constraints, and current truth of an existing system from code, tests, documents, issues, PRs, commit logs, operational records, and human memory.
