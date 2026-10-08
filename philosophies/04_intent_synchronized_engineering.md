@@ -144,7 +144,7 @@ As Winston W. Royce pointed out in 1970 in "Managing the Development of Large So
 
 Artifacts change and decay over time, and as information passes between different artifacts, omission and misunderstanding (drift) inevitably arise. In past software engineering practices, the cost of closing these gaps was prohibitively high; thus, teams were forced to rely on formalistic, unidirectional processes despite knowing the intrinsic necessity of iteration.
 
-What ISE does is not reinventing the wheel. **It reinterprets the classic challenges that past software engineering addressed as iteration and feedback through the structural lens of artifact decay over time and drift between artifacts, redefining them as "continuous synchronization in short cycles to prevent the loss and distortion of information."**
+What ISE does is not reinventing the wheel. **It reinterprets the classic challenges that past software engineering addressed as iteration and feedback through the structural lens of artifact decay over time and drift between artifacts, redefining them as "continuous synchronization in short cycles to detect and correct information loss and semantic shift early."**
 
 ## 5. Not Fixing the Main Creator
 

@@ -1,6 +1,6 @@
 # Transformation and Information Change in Lanes
 
-> This document develops a principle underlying the Lane Model: every lane transforms information, and a transformation can select, omit, reinterpret, or add meaning. It complements [Lane Model: Concepts and Fundamental Structure](01_philosophy_and_concepts.md).
+> This document develops a principle underlying the Lane Model: every lane transforms information, and traversing gates along a lane can also select, omit, reinterpret, or add meaning. It complements [Lane Model: Concepts and Fundamental Structure](01_philosophy_and_concepts.md).
 
 ## 1. Every lane transforms its input
 
@@ -9,6 +9,15 @@ A lane connects two nodes by transforming one representation or state into anoth
 These transformations do not simply move an unchanged object between nodes. They select what matters for the destination, express it in a different form, and sometimes resolve ambiguity or introduce an interpretation. Some information may be omitted; other information may be inferred or added. The result can therefore differ from its source in both content and meaning.
 
 This applies to both Forward and Reverse work. Forward work does not transfer an entire intent unchanged into a specification or implementation. It makes choices about scope, constraints, and behavior. Reverse work can recover observable behavior from code, but the code alone may not reveal the original rationale, rejected alternatives, or unstated assumptions. The two directions have different purposes and are not inverse operations.
+
+### 1.1 Passage through Gates and Information Selection and Omission
+
+Along a Lane (Edge), there are **Gates (passage and decision points)** that govern connections and transitions to the subsequent Node. A Gate is not merely a pass/fail checkpoint; it represents the very process of deciding what to verify and what to carry forward. Consequently, passing through a Gate inevitably involves selecting, omitting, and reinterpreting information.
+
+Gates are not limited to explicit tools or review rituals. They exist naturally in everyday human communication and writing.
+For instance, consider communicating an intent from Person A's mind (Node A) to Person B's mind (Node B). This journey traverses multiple intermediate Nodes and Gates: Person A's decision on how to verbalize and record that intent into an intermediate Node (speech or document), followed by Person B's decision on how to map what they perceive into their own mental model. People cannot verbalize every nuance of their thought; formulating ideas requires summarization and omission. Likewise, the recipient interprets what they encounter through their own context and assumptions. Even for the same individual, rereading a document written by "yesterday's self (Node A)" as "today's self (Node B)" can feel discordant. This reflects not only state changes in the person over time, but also the mediation of Gates during the acts of writing and re-reading.
+
+When a Gate is explicitly designed into a process or tool, it can be bypassed intentionally. However, Gates that naturally emerge in human cognition and communication cannot be bypassed in principle. One cannot transmit thoughts directly into another person's brain without passing through the natural Gates of verbalization and interpretation, which inevitably reshape the information. Bypassing an explicit Gate does not remove this natural transformation or information loss; rather, it allows unexamined divergences to pass unchecked into the subsequent Node, accumulating as implicit drift downstream.
 
 ## 2. Loss depends on the purpose of the transformation
 
@@ -34,7 +43,10 @@ The goal is not to eliminate every difference between nodes. Different nodes ser
 
 ## 4. Time, divergence, and reconstruction
 
-Nodes do not remain still between transformations. Intent, specifications, code, tests, and operational reality can each change independently. As they do, the relationships among them become harder to infer. A mismatch discovered soon after a change may still be explained by the people involved and the evidence they used. Much later, the same mismatch may have several plausible explanations: an undocumented decision, an implementation deviation, an outdated specification, or a change in the surrounding environment.
+Nodes do not remain still between transformations; they change over time. This applies not only to objective artifacts like code or specifications, but also to human beings, who are continuously evolving Nodes themselves.
+When someone writes a document and rereads it after a period of time, feeling that "something is off" or wondering "why did I write it this way?", it is because while the document Node remained static, the human Node's knowledge, assumptions, and interests shifted over time. Furthermore, the act of re-reading forces the information to pass once again through the human Node's internal Gates. The original unspoken context and implicit premises of the past have already been lost, and reinterpretation occurs through the current state of the Node and its Gate. Consequently, divergences emerge even between one's past and present self.
+
+Intent, specifications, code, tests, and operational reality can each change independently. As they do, the relationships among them become harder to infer. A mismatch discovered soon after a change may still be explained by the people involved and the evidence they used. Much later, the same mismatch may have several plausible explanations: an undocumented decision, an implementation deviation, an outdated specification, fading human memory, or changes in unspoken assumptions.
 
 Time alone does not determine how difficult reconstruction becomes. The number of transformations, independent changes, and missing records also matter. But as context and provenance disappear, reconstruction becomes less like reading a source and more like choosing among competing hypotheses. Code without its design rationale may support several plausible accounts of the intent that produced it.
 
@@ -76,7 +88,7 @@ Research on bidirectional transformations, including lenses, formalizes pairs of
 
 The Lane Model can state the principle as follows:
 
-> **Every lane is a transformation of information and meaning. A transformation may select, omit, reinterpret, or add information. Synchronization makes these changes understandable and revisable so that relevant intent and reality remain aligned over time.**
+> **Every lane and gate is a transformation of information and meaning. Traversing them may select, omit, reinterpret, or add information. Synchronization makes these changes understandable and revisable so that relevant intent and reality remain aligned over time.**
 
 This principle does not assign the same loss profile to every lane. Each lane has its own purpose and preservation obligations. It gives the model a common way to describe their effects and to make important changes traceable.
 
