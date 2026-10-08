@@ -136,6 +136,16 @@ If a developer explains the intent to AI immediately after implementation, AI ca
 
 By AI, it has become realistic to synchronize intent before it is lost.
 
+### Redefining a Classic Challenge of Software Engineering
+
+The assertion that synchronizing intent and artifacts and maintaining bidirectional feedback are vital is by no means entirely novel.
+
+As Winston W. Royce pointed out in 1970 in "Managing the Development of Large Software Systems," the importance of iteration between design and implementation, early prototyping and verification, and feedback loops has been recognized since the dawn of software engineering. The fundamental issue that existing software engineering has grappled with under the names of "iterative development," "feedback control," and "change/configuration management" has always been precisely how to keep intent and reality aligned without letting them drift apart.
+
+Artifacts change and decay over time, and as information passes between different artifacts, omission and misunderstanding (drift) inevitably arise. In past software engineering practices, the cost of closing these gaps was prohibitively high; thus, teams were forced to rely on formalistic, unidirectional processes despite knowing the intrinsic necessity of iteration.
+
+What ISE does is not reinventing the wheel. **It reinterprets the classic challenges that past software engineering addressed as iteration and feedback through the structural lens of artifact decay over time and drift between artifacts, redefining them as "continuous synchronization in short cycles to prevent the loss and distortion of information."**
+
 ## 5. Not Fixing the Main Creator
 
 In ISE, correctness is not judged only by who made the artifact.
@@ -153,6 +163,19 @@ What truly should be asked:
   Does it not contradict other artifacts?
   Are reasons for judgment and constraints not lost?
 ```
+
+### The Accountable Subject Is Fixed to Humans (Prohibition of Shifting Burden to the Receiver)
+
+Not fixing the creator **does not mean that accountability for the artifacts can be blurred, nor does it mean that the burden can be shifted to the receiving side.**
+
+With the rise of AI, the cost of generating artifacts such as code and documentation has become extremely low. However, what frequently occurs as a result is that **creators submit undigested artifacts without verifying or adequately understanding them, unilaterally imposing the immense cognitive load of reading, behavioral verification, and quality assurance onto the receiving side (reviewers and team members).** This is neither collaboration nor synchronization; it is merely shifting the burden.
+
+A human who submits or adopts an artifact must fulfill the following responsibilities before passing it to the receiver:
+
+1. **Complete Verification**: Thoroughly test behavior, consider edge cases, and personally guarantee quality.
+2. **Detailed Accountability**: Be able to clearly explain and justify in the submitter's own words "why the implementation/diff is structured this way" and "what trade-offs were considered."
+
+Artifacts submitted with an attitude like "I don't know the details because AI wrote it" or "It seems to work, so please take a look" are treated in ISE not as "artifacts synchronized with intent," but rather as **"undigested noise."** Regardless of who the creator is, the discipline of the submitter fully assuming verification and accountability without improperly depleting the receiver's cognitive bandwidth is essential.
 
 By this thinking, the boundary of development main creator becomes flexible.
 
