@@ -98,6 +98,15 @@ Gates can be placed both at boundaries between frameworks and within each framew
 A sequence of nodes and lanes selected to achieve a specific development objective.  
 Developers define the necessary intermediate waypoints (nodes) appropriate for their objective and traverse the route connecting them.
 
+### 3.6 Burden Arising from Relationships in a Node/Edge Structure
+The Node/Edge structure can describe not only states and transformations, but also provide a way to consider the burden involved in understanding and coordinating relationships between Nodes.
+
+The expression `n(n−1)/2`, commonly associated with Brooks's discussion of communication overhead, gives the number of edges when all n elements are pairwise connected (Fred Brooks, *The Mythical Man-Month*, §2.3). In team communication, each person can be treated as a Node and each communication link as an Edge. This expression gives the maximum number of edges in a complete graph. It does not mean that everyone on an actual team communicates with everyone else at the same frequency or about the same things, or that coordination burden is determined by edge count alone.
+
+The same Node/Edge perspective may also extend to how people understand software. For example, system components or pieces of knowledge can be represented as Nodes, their dependencies or interactions as Edges, and the person seeking to understand them as a Node as well. This makes it possible to model the relationships involved when a person understands a system's structure or assesses the impact of a change. From this, we can hypothesize that the relationships a person must trace and interpret affect the burden of understanding. In this case, the meaning of an Edge and the kind of cost it represents differ between communication among people and system comprehension.
+
+Real graphs are sparse, and Edge weights and importance vary. People also do not always need to understand an entire system at once; abstraction can group several Nodes into a single unit. Therefore, `n(n−1)/2` is not a formula for calculating comprehension burden. It is a starting point for considering how relationships between Nodes may contribute to that burden. This extension is a hypothesis derived from the Lane Model's abstraction, not an empirically established law.
+
 ---
 
 ## 4. Operational Awareness in Practice (Mapping to Implementation)
