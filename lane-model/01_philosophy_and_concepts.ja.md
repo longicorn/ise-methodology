@@ -2,9 +2,9 @@
 
 > 本文書は、Intent Synchronized Engineering（ISE）における中核概念である **Lane Model（レーンモデル）** の定義、設計思想、および基本構造を整理した文書である。  
 > 関連するISEの基礎概念については、以下を参照のこと。
-> - [ISEの歴史と未完の課題](../01_history_and_unending_challenges.ja.md)
-> - [ドキュメントドリフトとソフトウェア考古学](../02_document_drift_and_software_archaeology.ja.md)
-> - [Intent Synchronized Engineering (ISE) 概論](../04_intent_synchronized_engineering.ja.md)
+> - [ISEの歴史と未完の課題](philosophies/01_history_and_unending_challenges.ja.md)
+> - [ドキュメントドリフトとソフトウェア考古学](philosophies/02_document_drift_and_software_archaeology.ja.md)
+> - [Intent Synchronized Engineering (ISE) 概論](philosophies/04_intent_synchronized_engineering.ja.md)
 
 ---
 

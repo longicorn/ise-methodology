@@ -63,7 +63,7 @@ For IGE, ODF, and the lane-model, see the following documents.
 - [Overview of the three frameworks (Environment ⇄ Intent ⇄ Reality)](../overview.md)
 - [IGE overview](../ige/overview.md)
 - [ODF overview](../odf/overview.md)
-- [Philosophy and concepts of the lane-model](lane-model/01_philosophy_and_concepts.md)
+- [Philosophy and concepts of the lane-model](../lane-model/01_philosophy_and_concepts.md)
 
 ## Future Plans
 

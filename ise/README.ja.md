@@ -63,7 +63,7 @@ IGE、ODF、lane-modelについては、次の文書がある。
 - [3つのフレームワークの全体像（Environment ⇄ Intent ⇄ Reality）](../overview.ja.md)
 - [IGE概要](../ige/overview.ja.md)
 - [ODF概要](../odf/overview.ja.md)
-- [lane-modelの思想と概念](lane-model/01_philosophy_and_concepts.ja.md)
+- [lane-modelの思想と概念](../lane-model/01_philosophy_and_concepts.ja.md)
 
 ## 今後の予定
 
