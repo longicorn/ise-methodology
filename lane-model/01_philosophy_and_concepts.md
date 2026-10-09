@@ -2,9 +2,9 @@
 
 > This document defines the philosophy, design concepts, and fundamental structure of the **Lane Model**, a core concept in Intent Synchronized Engineering (ISE).  
 > For related foundational concepts in ISE, please refer to:
-> - [History and Unending Challenges of ISE](../01_history_and_unending_challenges.md)
-> - [Document Drift and Software Archaeology](../02_document_drift_and_software_archaeology.md)
-> - [Introduction to Intent Synchronized Engineering (ISE)](../04_intent_synchronized_engineering.md)
+> - [History and Unending Challenges of ISE](philosophies/01_history_and_unending_challenges.md)
+> - [Document Drift and Software Archaeology](philosophies/02_document_drift_and_software_archaeology.md)
+> - [Introduction to Intent Synchronized Engineering (ISE)](philosophies/04_intent_synchronized_engineering.md)
 
 ---
 
