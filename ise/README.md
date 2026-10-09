@@ -58,7 +58,7 @@ ODF:
 
 ## Related Documents
 
-For IGE, ODF, and the lane-model, see the following documents.
+For IGE and ODF, which constitute the overall framework (Environment ⇄ Intent ⇄ Reality), as well as the lane-model—a common conceptual model that captures the flow of synchronization and transformation as a directed graph both between and within ODF, IGE, and ISE—see the following documents.
 
 - [Overview of the three frameworks (Environment ⇄ Intent ⇄ Reality)](../overview.md)
 - [IGE overview](../ige/overview.md)
