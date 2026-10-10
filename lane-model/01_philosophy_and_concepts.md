@@ -149,5 +149,5 @@ Rather than pursuing a static truth, synchronization is treated as a dynamic pro
 - **`Reverse` Synchronization**  
   Captures observed facts from Reality (code and runtime environments) or the external Environment, structures them into knowledge, preliminary specifications (Pre-Spec), or updated hypotheses, and feeds them back to synchronize toward higher levels.
 
-All development activities ultimately converge toward advancing the state of synchronization across environment, intent, and reality.  
+All development activities contribute to improving alignment across environment, intent, and reality, thereby advancing the state of synchronization.  
 The Lane Model provides the foundational framework that allows humans (and AI) to clearly understand this dynamic process and deliberately advance consistency across the system.
