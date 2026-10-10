@@ -283,6 +283,6 @@ AI-DLCやAI-SDLCは、AIエージェントをライフサイクル全体で統�
 
 [9] AI-SDLC. "Govern AI Agents Across Your Entire SDLC". https://ai-sdlc.io/
 
-[10] Gokul Swamy, et al. "Meta-Harness: End-to-End Optimization of Model Harnesses". arXiv:2603.28052. https://arxiv.org/abs/2603.28052
+[10] Yoonho Lee, et al. "Meta-Harness: End-to-End Optimization of Model Harnesses". arXiv:2603.28052. https://arxiv.org/abs/2603.28052
 
-[11] Anirudh Goyal, et al. "Natural-Language Agent Harnesses". arXiv:2603.25723. https://arxiv.org/abs/2603.25723
+[11] Linyue Pan, et al. "Natural-Language Agent Harnesses". arXiv:2603.25723. https://arxiv.org/abs/2603.25723

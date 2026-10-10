@@ -223,4 +223,4 @@ What should be asked next is what AI brings to this situation. When the cost of 
 
 ---
 
-[1] Tan, W. S., Wagner, M., & Treude, C. (2023). "Detecting outdated code element references in software repository documentation". *Empirical Software Engineering*. https://doi.org/10.1007/s10664-023-10331-1
+[1] Tan, W. S., Wagner, M., & Treude, C. (2023). "Detecting outdated code element references in software repository documentation". *Empirical Software Engineering*. https://doi.org/10.1007/s10664-023-10397-6
