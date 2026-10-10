@@ -364,4 +364,4 @@ ISE is a way of thinking that places this synchronization at the center of devel
 
 [8] E. M. Altmann and J. G. Trafton, "Memory for goals: an activation-based model", *Cognitive Science*, 2002. https://www.sciencedirect.com/science/article/pii/S0364021301000581
 
-[9] A. Babar, M. A. Babar, and P. Lago, "Towards a reduction in architectural knowledge vaporization during agile global software development", *Information and Software Technology*, 2019. https://www.sciencedirect.com/science/article/abs/pii/S0950584919300898
+[9] G. Borrego, A. L. Morán, R. R. Palacio, A. Vizcaíno, and F. García, "Towards a reduction in architectural knowledge vaporization during agile global software development", *Information and Software Technology*, 2019. https://www.sciencedirect.com/science/article/abs/pii/S0950584919300898
