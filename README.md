@@ -1,5 +1,7 @@
 # ISE Methodology
 
+![Overview of the ISE concept](images/ise_concept_overview.png)
+
 This repository collects the author's thoughts on software development in the AI era, with a focus on **Intent-Synchronized Engineering (ISE)** and the **Lane Model**. As AI has made some familiar ideas and experiences less applicable in practice, it has prompted a closer look at both these new challenges and longstanding cracks in software development. ISE is the author's own attempt to rethink them together and describe what they have led to.
 
 ISE explores how to keep intent aligned with the artifacts and software that express it. The Lane Model describes development as directed flows between states such as intent, specifications, code, and observed facts. Together, they offer a way to think about development work, including how people and AI can take part in it.
