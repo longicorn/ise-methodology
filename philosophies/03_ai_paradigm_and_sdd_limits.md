@@ -36,6 +36,14 @@ AI is strong at writing, arranging, and converting. However, judgments such as w
 
 In other words, while implementation speed has increased due to AI, the difficulty of defining, verifying, and maintaining intent has not disappeared.
 
+### More Code Generation Does Not Translate Directly into More Releases
+
+An increase in code generation does not necessarily lead to a proportional increase in releases. A 2026 NBER working paper analyzed data from more than 500,000 GitHub developers. It reports that adoption of autonomous coding agents was associated with a cumulative 240% increase in commits, while the increase was 80% for the number of projects and 30% for actual releases. The result suggests that even when the volume of code changes grows, integration, verification, and release may not proceed at the same pace. However, this is an observational matched event study, so it does not establish that AI adoption alone caused the differences [12].
+
+Amdahl's law can also provide a rough estimate of the effect on the entire process. Suppose coding accounts for 20% of development time and only that part becomes ten times faster. Total time would then fall to 82% of its original level (`0.8 + 0.2 / 10 = 0.82`). The amount of work completed in the same period would be about 1.22 times as much, or a 22% increase (`1 / 0.82 ≈ 1.22`). This is a simplified estimate that assumes no additional work in the other stages. If reviewing or integrating generated code takes more time, the overall gain would be smaller.
+
+The effect of AI also varies with the task and tools involved. In an experiment using tools from early 2025, METR found that experienced open-source developers took 19% longer when they could use AI to solve tasks in codebases they knew well. The developers and repositories in the study do not represent software development as a whole, so this result alone cannot estimate AI's effect across the industry [13]. Together, these reports suggest that development productivity should be assessed through outcomes across the process, including integration and verification, rather than code-generation speed alone.
+
 ## 2. Vibe Coding: Development that Leaves Intent to Inference
 
 As code generation by AI became common, the term Vibe Coding spread.
@@ -286,3 +294,7 @@ In the next paper, from this awareness of problems, we proceed to the perspectiv
 [10] Yoonho Lee, et al. "Meta-Harness: End-to-End Optimization of Model Harnesses". arXiv:2603.28052. https://arxiv.org/abs/2603.28052
 
 [11] Linyue Pan, et al. "Natural-Language Agent Harnesses". arXiv:2603.25723. https://arxiv.org/abs/2603.25723
+
+[12] Demirer, M., Musolff, L., & Yang, L. (2026). "Writing Code vs. Shipping Code: Productivity Effects Across Generations of AI Coding Tools". NBER Working Paper 35275. https://www.nber.org/papers/w35275
+
+[13] Becker, J., Rush, N., Barnes, B., & Rein, D. (2025). "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity". METR. https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/
