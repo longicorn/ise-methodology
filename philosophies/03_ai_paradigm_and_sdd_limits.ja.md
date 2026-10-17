@@ -36,6 +36,14 @@ AIは、書くこと、整えること、変換することには強い。しか
 
 つまり、AIによって実装速度は上がったが、意図の定義、検証、維持の難しさは消えていない。
 
+### コード生成の増加はリリースの増加に直結しない
+
+コードを生成する作業が増えても、その増加が同じ割合でリリースに結びつくとは限らない。2026年のNBERワーキングペーパーは、50万人を超えるGitHub開発者のデータを分析し、自律型コーディングエージェントの導入に伴い、コミット数は累積で240%増えた一方、プロジェクト数は80%、実際のリリース数は30%の増加にとどまったと報告している。コードの変更量が増えても、統合、検証、リリースに至る工程が同じ速さで進むとは限らないことを示す結果である。ただし、これはマッチド・イベントスタディによる観察結果であり、AI導入だけが差を生んだと確定するものではない[12]。
+
+工程全体への効果は、アムダールの法則でも概算できる。開発時間の20%をコーディングが占め、その部分だけが10倍速くなると仮定すると、全体の所要時間は元の82%となる（`0.8 + 0.2 / 10 = 0.82`）。このとき、同じ期間に進められる仕事量は `1 / 0.82 ≈ 1.22` 倍、約22%増える計算である。これはコーディング以外の工程に追加作業が生じない場合の単純な見積もりであり、生成物の確認や統合に時間が増えれば、全体の効果はさらに小さくなる。
+
+一方、AIの効果は作業やツールの条件によって異なる。METRが2025年前半のツールを使って行った実験では、経験豊富なオープンソース開発者が自分のよく知るコードベースで課題を解く際、AIを使える条件で完了時間が19%長くなった。ただし、対象となった開発者やリポジトリはソフトウェア開発全体を代表するものではなく、この結果だけから開発全体への効果を推定することはできない[13]。これらの報告は、コード生成の速度だけで開発全体の生産性を判断せず、統合や検証を含む工程の成果を観測する必要性を示している。
+
 ## 2. Vibe Coding: 意図を推論に委ねる開発
 
 AIによるコード生成が一般化する中で、Vibe Codingという言葉が広まった。
@@ -286,3 +294,7 @@ AI-DLCやAI-SDLCは、AIエージェントをライフサイクル全体で統�
 [10] Yoonho Lee, et al. "Meta-Harness: End-to-End Optimization of Model Harnesses". arXiv:2603.28052. https://arxiv.org/abs/2603.28052
 
 [11] Linyue Pan, et al. "Natural-Language Agent Harnesses". arXiv:2603.25723. https://arxiv.org/abs/2603.25723
+
+[12] Demirer, M., Musolff, L., & Yang, L. (2026). "Writing Code vs. Shipping Code: Productivity Effects Across Generations of AI Coding Tools". NBER Working Paper 35275. https://www.nber.org/papers/w35275
+
+[13] Becker, J., Rush, N., Barnes, B., & Rein, D. (2025). "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity". METR. https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/
