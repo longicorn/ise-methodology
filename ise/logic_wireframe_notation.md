@@ -2,7 +2,7 @@
 
 This document presents the architectural specification and foundational definitions for **Logic Wireframe Notation (LWN)**, positioned between human intent and code (implementation) within the **ISE (Intent Synchronized Engineering)** framework.
 
-Just as specific languages such as Z, TLA+, and Alloy exist under the umbrella category of "Formal Specification Languages," LWN is a general term for a **logic abstraction meta-model that tolerates intentional imprecision (roughness/slack) to maximize human comprehension between intent and implementation**. Rather than locking itself into a specific programming language syntax or degrading into unstructured natural language documentation (free-form Markdown notes), LWN defines **universal logic abstractions (primitives and workflow patterns) stripped of accidental implementation details**.
+LWN encompasses a **shared logic abstraction model (meta-model) and a family of notations that express it**. The model tolerates intentional imprecision to support human understanding between intent and implementation, and defines logic abstractions (primitives and workflow patterns) without implementation details. The notations express that model through different concrete syntaxes, enabling structured descriptions without being tied to a particular programming language.
 
 This document serves as the core specification defining LWN's meta-model and semantic foundations. Detailed concrete syntax rules, formal semantics, and automated tooling are subject to progressive extension in subsequent phases.
 
@@ -27,7 +27,7 @@ By performing **reverse translation from source code to LWN (Code → LWN)**:
 - **Essential Complexity (Design Complexity)**: Organic growth in business flows, state transitions, and dependency graphs.
 - **Accidental Complexity (Implementation Complexity)**: Language-specific boilerplate, library idiosyncrasies, and sub-optimal coding styles.
 
-These two dimensions can be objectively separated and evaluated. Comparing LWN representations across historical commits provides a clear diagnostic signal: "Is the architecture itself degrading, or is it merely an implementation detail?"
+This may provide a way to consider these two dimensions separately. By comparing LWN representations across commits, we aim to examine design complexity and implementation complexity independently.
 
 ---
 
@@ -144,6 +144,8 @@ Extracted from [Workflow Patterns](http://www.workflowpatterns.com/), distribute
 
 In LWN, system architecture is not forced into a single, monolithic diagram. Instead, the structural building blocks (Tasks, Streams, Resources) are viewed through an **Optical Model** composed of **Zoom (Distance/Fidelity)** and **Lenses (Purpose-Driven Concern Filtering)**.
 
+A concern omitted from a view is unspecified in that view; its omission does not mean that it is absent or unnecessary. When needed, teams record whether a concern is not yet considered, intentionally omitted, or judged unnecessary after consideration. For example, the absence of a retry in an Overview does not imply that no retry exists.
+
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
 │                   LWN Core Model (Task, Stream, Resource, Guarantee)   │
@@ -254,7 +256,7 @@ By borrowing the formal perspectives of computer science (Petri Nets, Enterprise
 
 ## 5. Concrete Syntax and Projections
 
-Because LWN is an abstract meta-model composed of **Building Blocks × Lenses**, it is not bound to any single file format or programming syntax. Multiple concrete syntaxes and projections are supported depending on team workflows.
+LWN's shared model is not bound to a single notation. It can be expressed through multiple **concrete syntaxes** suited to different purposes and audiences, and projected into visual representations.
 
 ### 5.1 Concrete Syntax Variations
 1. **Ruby-Style DSL (Reference Syntax)**:
