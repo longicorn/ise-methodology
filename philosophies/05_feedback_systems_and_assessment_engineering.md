@@ -2,7 +2,7 @@
 
 > Note: The problem identification, key concepts, and final decisions in this paper are by the author (human). On the other hand, AI assistance was received for sentence structure, organization of expressions, and draft generation. Responsibility for the final content lies with the author.
 
-In the previous paper (04), we defined the core concept of Intent-Synchronized Engineering (ISE): the "continuous synchronization of intent and artifacts."
+In the previous paper (04), we defined the core concept of Intent-Synchronizing Engineering (ISE): the "continuous synchronization of intent and artifacts."
 
 Starting from Intent, artifacts such as Doc and Code are woven together. However, no matter how clearly intent is defined and bidirectional synchronization is pursued, artifacts in real-world system development inevitably fluctuate, introduce noise, and tend to drift away from intent.
 
@@ -210,4 +210,4 @@ The foundational criterion for software development to qualify as true Engineeri
 
 By liberating review from subjective gatekeeping and reconstructing it as a multi-perspective feedback control system grounded in established research,
 
-**Intent-Synchronized Engineering (ISE) transcends open-loop generation into a complete closed-loop discipline—one that perpetually tunes artifacts to human intent across a volatile and changing world.**
+**Intent-Synchronizing Engineering (ISE) transcends open-loop generation into a complete closed-loop discipline—one that perpetually tunes artifacts to human intent across a volatile and changing world.**

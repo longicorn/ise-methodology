@@ -5,7 +5,7 @@
 > - [3つのフレームワークの全体像（Environment ⇄ Intent ⇄ Reality）](../overview.ja.md)
 > - [ISEの歴史と未完の課題](../philosophies/01_history_and_unending_challenges.ja.md)
 > - [ドキュメントドリフトとソフトウェア考古学](../philosophies/02_document_drift_and_software_archaeology.ja.md)
-> - [Intent Synchronized Engineering (ISE) 概論](../philosophies/04_intent_synchronized_engineering.ja.md)
+> - [Intent-Synchronizing Engineering (ISE) 概論](../philosophies/04_intent_synchronized_engineering.ja.md)
 
 ---
 

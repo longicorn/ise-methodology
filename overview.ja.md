@@ -59,7 +59,7 @@
 
 境界は重なり合う部分もありますが、局所的な施策の結果からIntentの誤りを判断する役割はIGE側に寄り、Lean BML Loop全体の統制はODF側に寄る傾向にあります。
 
-### 1. ISE（Intent Synchronized Engineering）：開発者のための工学
+### 1. ISE（Intent-Synchronizing Engineering）：開発者のための工学
 ISEはIntentとRealityの領域を担当します。ソフトウェア開発者が担ってきた仕事をAIで支援し、その働きを助けるための工学体系です。開発者を排除するための仕組みではありません。
 
 - **Forward Sync（前方向）**  

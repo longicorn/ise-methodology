@@ -84,7 +84,7 @@ While ISE mainly deals with synchronization on the implementation side, IGE deal
 
 ## ISE
 
-Stands for Intent-Synchronized Engineering.
+Stands for Intent-Synchronizing Engineering.
 
 It is a term proposed by the author in these papers and is not an existing standardized development methodology or a widely agreed-upon industry term.
 

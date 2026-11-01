@@ -2,7 +2,7 @@
 
 > Note: The problem identification, key concepts, and final decisions in this repository are by the author (human). On the other hand, AI assistance was received for sentence structure, organization of expressions, and draft generation. Responsibility for the final content lies with the author.
 
-This directory is a collection of documents to organize thoughts on Intent-Synchronized Engineering (ISE).
+This directory is a collection of documents to organize thoughts on Intent-Synchronizing Engineering (ISE).
 
 ISE is a term proposed by the author in these papers and is not an existing standardized development methodology or a widely agreed-upon industry term. At its core is the idea of continuously synchronizing artifacts such as code, tests, specifications, designs, Issues, ADRs, and operation records to a common intent.
 

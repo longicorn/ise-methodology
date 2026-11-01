@@ -2,7 +2,7 @@
 
 > Note: The problem identification, key concepts, and final decisions in this repository are by the author (human). On the other hand, AI assistance was received for sentence structure, organization of expressions, and draft generation. Responsibility for the final content lies with the author.
 
-This directory is a collection of documents that organize the ideas behind ISE (Intent-Synchronized Engineering), IGE (Intent Guidance Engineering), and ODF (Orthogonal Dual-Framework).
+This directory is a collection of documents that organize the ideas behind ISE (Intent-Synchronizing Engineering), IGE (Intent Guidance Engineering), and ODF (Orthogonal Dual-Framework).
 
 ISE, IGE, and ODF are terms proposed by the author in these papers and are not existing standardized development methodologies or widely agreed-upon industry terms.
 
@@ -15,7 +15,7 @@ The documents are intended to be read in the following order:
 1. [History of Software Engineering and the "Unending Challenges" the Field Continues to Face](01_history_and_unending_challenges.md)
 2. [Document Drift and Software Archaeology: A Mosaic of Information That Has Plagued the Field](02_document_drift_and_software_archaeology.md)
 3. [The Advent of AI, Vibe Coding, and the Limits of SDD/IDD](03_ai_paradigm_and_sdd_limits.md)
-4. [Intent-Synchronized Engineering: Engineering Centered on Synchronization of Intent](04_intent_synchronized_engineering.md)
+4. [Intent-Synchronizing Engineering: Engineering Centered on Synchronization of Intent](04_intent_synchronized_engineering.md)
 5. [Review as Engineering Feedback: From Subjective Inspection to Multi-Perspective Assessment Systems](05_feedback_systems_and_assessment_engineering.md)
 6. [Redesigning Human Roles and Responsibilities in the AI Era](06_roles_and_responsibilities_in_ai_era.md)
 

@@ -63,7 +63,7 @@ However, the boundaries between the three frameworks are not fixed. Where respon
 
 Although the boundaries can blur, there is a tendency for the role of judging whether an intent was wrong, based on the results of a local initiative, to lean toward IGE, and for the governance of the whole Lean BML Loop to lean toward ODF.
 
-### 1. ISE (Intent Synchronized Engineering): Engineering for Developers
+### 1. ISE (Intent-Synchronizing Engineering): Engineering for Developers
 - **Scope:** `Intent ⇄ Reality`
 - **Objective:** Augment software developers using AI. **It does not eliminate developers; it empowers them**.
 - **Forward Sync:** Externalizing intent through documents and other artifacts, then deterministically implementing the adopted intent in code and tests. Because artifacts and implementation can drift, ISE continuously checks and resynchronizes them.
