@@ -1,6 +1,6 @@
 # ISE Logic Wireframe Notation (LWN)
 
-This document presents the architectural specification and foundational definitions for **Logic Wireframe Notation (LWN)**, positioned between human intent and code (implementation) within the **ISE (Intent Synchronized Engineering)** framework.
+This document presents the architectural specification and foundational definitions for **Logic Wireframe Notation (LWN)**, positioned between human intent and code (implementation) within the **ISE (Intent-Synchronizing Engineering)** framework.
 
 LWN encompasses a **shared logic abstraction model (meta-model) and a family of notations that express it**. The model tolerates intentional imprecision to support human understanding between intent and implementation, and defines logic abstractions (primitives and workflow patterns) without implementation details. The notations express that model through different concrete syntaxes, enabling structured descriptions without being tied to a particular programming language.
 

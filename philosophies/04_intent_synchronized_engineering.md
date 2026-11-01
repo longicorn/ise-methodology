@@ -1,4 +1,4 @@
-# Intent-Synchronized Engineering: Engineering Centered on Synchronization of Intent
+# Intent-Synchronizing Engineering: Engineering Centered on Synchronization of Intent
 
 > Note: The problem identification, key concepts, and final decisions in this repository are by the author (human). On the other hand, AI assistance was received for sentence structure, organization of expressions, and draft generation. Responsibility for the final content lies with the author.
 
@@ -14,9 +14,9 @@ In thinking about this series of problems, there is one smallest yet most import
 
 That is, **synchronization of intent is important**.
 
-In this paper, centered on this discovery, we propose a way of thinking in development that the author calls Intent-Synchronized Engineering (ISE).
+In this paper, centered on this discovery, we propose a way of thinking in development that the author calls Intent-Synchronizing Engineering (ISE).
 
-Note that Intent-Synchronized Engineering / ISE is a designation defined by the author for use in this paper and is not an existing standardized development methodology or a widely agreed-upon industry term. Nor does it point to a specific tool or implementation. Implementation is just implementation, and the center of what is handled in this paper is the way of thinking of "synchronizing intent and artifacts."
+Note that Intent-Synchronizing Engineering / ISE is a designation defined by the author for use in this paper and is not an existing standardized development methodology or a widely agreed-upon industry term. Nor does it point to a specific tool or implementation. Implementation is just implementation, and the center of what is handled in this paper is the way of thinking of "synchronizing intent and artifacts."
 
 ## 1. Discovery: What is Important is "Synchronization of Intent"
 
@@ -42,7 +42,7 @@ What is important is whether the group of artifacts continues to be synchronized
 
 ## 2. Definition of ISE
 
-Intent-Synchronized Engineering (ISE) is a way of thinking in engineering that places continuous synchronization of intent and artifacts at the center.
+Intent-Synchronizing Engineering (ISE) is a way of thinking in engineering that places continuous synchronization of intent and artifacts at the center.
 
 More shortly, ISE can be defined as follows:
 

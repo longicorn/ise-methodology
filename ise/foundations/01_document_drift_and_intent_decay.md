@@ -2,7 +2,7 @@
 
 > Note: The problem awareness, key concepts, and final judgments in this document are the author's (a human's). AI assistance was used for structuring, refining the wording, and generating drafts. The author is responsible for the final content.
 
-This document is a theoretical supplement to Intent-Synchronized Engineering (ISE).
+This document is a theoretical supplement to Intent-Synchronizing Engineering (ISE).
 
 It relates to the idea of "intent synchronization" proposed in `04_intent_synchronized_engineering.md`, and supplements, from a more fundamental viewpoint, the background of that idea: document drift, software archaeology, the mosaic of information, and the limits of development methods in the AI era.
 

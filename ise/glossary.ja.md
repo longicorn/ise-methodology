@@ -86,7 +86,7 @@ ISEが主に実装側の同期を扱うのに対し、IGEは上流の曖昧さ�
 
 ## ISE
 
-Intent-Synchronized Engineeringの略。日本語では、意図同期型エンジニアリング。
+Intent-Synchronizing Engineeringの略。日本語では、意図同期型エンジニアリング。
 
 筆者が本稿群で提唱する呼称であり、既存の標準化された開発手法や広く合意された業界用語ではない。
 

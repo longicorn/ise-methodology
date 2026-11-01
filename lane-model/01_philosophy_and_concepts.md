@@ -5,7 +5,7 @@
 > - [Overview of the Three Frameworks (Environment ⇄ Intent ⇄ Reality)](../overview.md)
 > - [History and Unending Challenges of ISE](../philosophies/01_history_and_unending_challenges.md)
 > - [Document Drift and Software Archaeology](../philosophies/02_document_drift_and_software_archaeology.md)
-> - [Introduction to Intent Synchronized Engineering (ISE)](../philosophies/04_intent_synchronized_engineering.md)
+> - [Introduction to Intent-Synchronizing Engineering (ISE)](../philosophies/04_intent_synchronized_engineering.md)
 
 ---
 

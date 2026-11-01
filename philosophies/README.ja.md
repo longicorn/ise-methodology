@@ -2,7 +2,7 @@
 
 > Note: 本リポジトリの問題意識、主要な概念、最終判断は筆者（人間）によるものです。一方で、文章の構成、表現の整理、下書きの生成にはAIの支援を受けています。最終的な内容の責任は筆者にあります。
 
-このディレクトリは、ISE（Intent-Synchronized Engineering）、IGE（Intent Guidance Engineering）、ODF（Orthogonal Dual-Framework）の背景にある考え方を整理する文書群である。
+このディレクトリは、ISE（Intent-Synchronizing Engineering）、IGE（Intent Guidance Engineering）、ODF（Orthogonal Dual-Framework）の背景にある考え方を整理する文書群である。
 
 ISE、IGE、ODFは、筆者が本稿群で提唱する呼称であり、既存の標準化された開発手法や広く合意された業界用語ではない。
 
@@ -15,7 +15,7 @@ ISE、IGE、ODFは、筆者が本稿群で提唱する呼称であり、既存�
 1. [ソフトウェアエンジニアリングの歴史と、現場が抱え続ける「終わらない課題」](01_history_and_unending_challenges.ja.md)
 2. [ドキュメント・ドリフトとソフトウェア考古学：現場を苦しめてきた情報のモザイク](02_document_drift_and_software_archaeology.ja.md)
 3. [AIの登場とVibe Coding、SDD/IDDの限界](03_ai_paradigm_and_sdd_limits.ja.md)
-4. [Intent-Synchronized Engineering：意図の同期を中心に置くエンジニアリング](04_intent_synchronized_engineering.ja.md)
+4. [Intent-Synchronizing Engineering：意図の同期を中心に置くエンジニアリング](04_intent_synchronized_engineering.ja.md)
 5. [工学的フィードバックとしてのレビュー：主観的点検から多面的評価系へ](05_feedback_systems_and_assessment_engineering.ja.md)
 6. [AI時代における人間の役割と責任の再設計](06_roles_and_responsibilities_in_ai_era.ja.md)
 
