@@ -1,7 +1,9 @@
 # Lane Model: Concepts and Fundamental Structure
 
 > This document defines the philosophy, design concepts, and fundamental structure of the **Lane Model**, a core concept applied across the three-layer architecture (Environment ⇄ Intent ⇄ Reality) and all three frameworks (ODF / IGE / ISE).  
-> For related foundational concepts, please refer to:
+> For related foundational concepts and further details on the Lane Model, please refer to:
+> - [Transformation and Information Change in Lanes](02_transformation_and_information_change.md)
+> - [State Evaluation at Gates and Application to Requests, Requirements, and Specifications](03_gate_and_requirements_flow.md)
 > - [Overview of the Three Frameworks (Environment ⇄ Intent ⇄ Reality)](../overview.md)
 > - [History and Unending Challenges of ISE](../philosophies/01_history_and_unending_challenges.md)
 > - [Document Drift and Software Archaeology](../philosophies/02_document_drift_and_software_archaeology.md)
@@ -74,7 +76,8 @@ Two overarching directions govern the macro flow of development:
 ### 3.2 Node (Vertex: State, Artifact, or Waypoint)
 Represents a waypoint, artifact, or state of knowledge within the synchronization process.
 
-- Primarily encompasses `Intent`, `Spec`, `Code`, and intermediate knowledge states.
+- Primarily encompasses `Intent`, `Spec`, `Code`, request information, requirements, and intermediate knowledge states.
+- In addition to its content and `revision`, a Node can hold multiple `State` entries—such as agreement, review, verification, hold, or inference—along with their supporting evidence and rationale (who made the judgment, on which revision, and why).
 - The specific kinds and granularity of nodes depend on the domain (web applications, embedded systems, infrastructure, etc.) and individual projects; therefore, **the Lane Model itself does not mandate a fixed set of nodes**.
 - Implementations (such as Nagi) are expected to provide reasonable default nodes while allowing teams to easily define and extend project-specific intermediate artifacts.
 
@@ -86,14 +89,14 @@ A directed connection between nodes, representing the **active lane (transformat
 - Each lane has an origin, a destination, and an explicit direction.
 
 ### 3.4 Gate (Passage and Decision Point)
-A Gate is a passage or decision point placed along a Lane or at a connection between Nodes. It handles decisions such as allowing passage, holding, or sending work back, based on the result of a Lane's transformation or the connection to the next Node. Gate is a general concept in the Lane Model and does not refer to a particular tool or evaluation method.
+In a broad sense, a Gate refers to any point where selection, interpretation, or judgment occurs as information passes along a Lane or between Nodes. Gate is a general concept in the Lane Model and has two primary aspects:
 
-- A Gate is not always mandatory and can be bypassed depending on the situation.
-- Reviewing information and making decisions at a Gate may involve selecting, omitting, or reinterpreting information. A Gate can therefore affect what is carried between Nodes as well as control the connection.
-- Gates are not limited to explicit mechanisms in tools. When a person expresses Intent in a Document, they also make decisions about which aspects of the intent to select, how to put them into words, and how to convey them to a reader. These decisions can produce differences between the thoughts in their mind and the document's expression.
-- Nodes change over time. Even the same person can be viewed as distinct Nodes at different points in time: yesterday's self and today's self. When a Document written yesterday feels different on rereading today, that difference may reflect both the states of the Nodes at those times and changes in interpretation or information during the process of connecting them.
+- **Naturally Occurring Gates (in cognition and verbalization)**: Whenever a person expresses an internal Intent in words or a Document, or reads and interprets someone else's Document, judgments naturally intervene regarding which aspects to select, what to omit, and how to interpret them. Although no explicit rule (`Policy`) is defined here, passing through this process inevitably selects, omits, and reinterprets information, creating differences between the thoughts in one's head and the resulting expression.
+- **Explicit Gates (evaluation mechanisms in processes and tools)**: Gates with explicitly defined evaluation criteria in development processes or tools. An explicit Gate evaluates the target Node's `State` (such as agreement, review, or verification), the transition `Context` (such as prototyping vs. production, or risk level), and the applicable `Policy` to decide among passage (`PASS`), conditional passage with unresolved items recorded (`CONDITIONAL`), or holding/remanding work (`BLOCK`). Here, the Gate's progression decision and the Node's own State (such as whether it has been agreed upon) are maintained as distinct pieces of information.
 
-Gates can be placed both at boundaries between frameworks and within each framework. Their placement, the decisions they handle, and whether bypass is allowed are determined by the purpose of the connection.
+Furthermore, Nodes change over time. Even the same person can be viewed as distinct Nodes at different points in time: yesterday's self and today's self. When a Document written yesterday feels different on rereading today, that difference reflects both the states of the Nodes at those times and changes in interpretation or information during the process of connecting them.
+
+Explicit Gates can be placed both at boundaries between frameworks and within each framework. Their placement, the decisions they handle, and whether conditional progression or bypass is allowed are determined by the purpose of the connection. For information changes across transformations, see [Transformation and Information Change in Lanes](02_transformation_and_information_change.md); for the explicit Gate evaluation mechanism and its application to requests, requirements, and specifications, see [State Evaluation at Gates and Application to Requests, Requirements, and Specifications](03_gate_and_requirements_flow.md).
 
 ### 3.5 Route (Path)
 A sequence of nodes and lanes selected to achieve a specific development objective.  
