@@ -1,6 +1,6 @@
 # State Evaluation at Gates and Application to Requests, Requirements, and Specifications
 
-> This document applies the principles defined in [Lane Model: Concepts and Fundamental Structure](01_philosophy_and_concepts.md) and [Transformation and Information Change in Lanes](02_transformation_and_information_change.md) to practical development flows in an accessible way. It explains the role of a **Gate** in the Lane Model using the metaphor of a border checkpoint, and uses the distinction and back-and-forth flow among "requests, requirements, and specifications" as a concrete example.
+> This document applies the principles defined in [Lane Model: Concepts and Fundamental Structure](01_philosophy_and_concepts.md) and [Transformation and Information Change in Lanes](02_transformation_and_information_change.md) to practical development flows in an accessible way. It explains the role of an explicit **Gate** in the Lane Model using the metaphor of a border checkpoint, and uses the distinction and remand flow among "requests, requirements, and specifications" as a concrete example.
 
 ---
 
@@ -8,20 +8,25 @@
 
 As described in [Transformation and Information Change in Lanes](02_transformation_and_information_change.md), whenever people put thoughts into words or turn requirements into specifications and code (traversing a Lane), information is inevitably selected, omitted, and interpreted. Keeping development synchronized therefore requires making it possible to distinguish between what has been agreed upon as fact and what remains a tentative inference or an open question.
 
-To translate this principle into everyday development work, this document examines the mechanism of **Gates** placed between Lanes and Nodes.
+In the Lane Model, a **Gate** in the broad sense refers to any point where selection, interpretation, or judgment occurs as information passes through, and can be divided into two kinds:
+
+- **Naturally Occurring Gates**: Judgments that operate naturally when people put internal thoughts into words or text, or when they read and interpret someone else's text. Although no written rule (`Policy`) exists here, unconscious selection and interpretation of information inevitably take place.
+- **Explicit Gates**: Mechanisms in development processes or tools that codify the criteria for advancing to the next activity. They evaluate progression based on the target Node's `State`, the immediate purpose and situation (`Context`), and evaluation rules (`Policy`).
+
+This document focuses primarily on how the latter—**Explicit Gates**—operate (while the former, naturally occurring Gates, also come into play during the verbalization of requests discussed in Section 4).
 
 The main points are as follows:
 
-- A Gate is not a fixed wall that uniformly blocks or allows passage; **it is a mechanism that judges whether work may proceed to the next Lane according to the immediate purpose and situation (Context)**.
+- An explicit Gate is not a fixed wall that uniformly blocks or allows passage; **it is a mechanism that judges whether work may proceed to the next Lane according to the immediate purpose and situation (Context)**.
 - A Gate judging that "work may proceed" is separate from the artifact (Node) itself being "complete or agreed upon." Conditional progression—such as moving ahead with a prototype before final agreement—can also be handled.
 - Using this mechanism makes it possible to explain the often-confused distinction among **"requests," "requirements," and "specifications"** visually—in terms of whose information converges where and which Lane comes next—rather than relying solely on verbal definitions.
-- Even after reaching agreement and moving on to writing specifications, agreement does not guarantee that the content is correct. If issues surface while detailing the specification, ISE's **Reverse (reverse synchronization / remand)** allows work to return to the previous Lane so the requirement can be revised and re-agreed.
+- Even after reaching agreement and moving on to writing specifications, agreement does not guarantee that the content is correct. If issues surface while detailing the specification, **remand** allows work to return to the previous Lane so the requirement can be revised and re-agreed.
 
 ---
 
-## 2. Basic Elements of a Gate
+## 2. Basic Elements of an Explicit Gate
 
-To organize how a Gate makes decisions, the participating elements are defined as follows:
+To organize how an explicit Gate makes decisions, the participating elements are defined as follows:
 
 | Element | Role |
 | --- | --- |
@@ -70,7 +75,7 @@ This is an illustrative example and does not mandate a specific format. What mat
 
 ## 3. Gates Through the Border Metaphor: Strictness Is Not Fixed
 
-In [Lane Model: Concepts and Fundamental Structure](01_philosophy_and_concepts.md), development flows were compared to driving along roads toward a destination. Extending that metaphor, **the closest everyday image of a Gate is a border checkpoint (immigration and customs)**. While not identical to a formal engineering definition in every detail, thinking of a border checkpoint is the easiest way to grasp how a Gate behaves.
+In [Lane Model: Concepts and Fundamental Structure](01_philosophy_and_concepts.md), development flows were compared to driving along roads toward a destination. Extending that metaphor, **the closest everyday image of an explicit Gate is a border checkpoint (immigration and customs)**. While not identical to a formal engineering definition in every detail, thinking of a border checkpoint is the easiest way to grasp how a Gate behaves.
 
 Considering how real borders operate reveals four key characteristics of Gates in the Lane Model:
 
@@ -95,9 +100,9 @@ flowchart TD
     D -->|BLOCK| X["Remand or hold"]
 ```
 
-### 3.1 Example of a Gate Policy
+### 3.1 Example of a Gate Policy and Precedence When Multiple Rules Match
 
-Switching rules at the same Gate according to the purpose (Context) can be represented in YAML as follows:
+Switching rules at the same Gate according to purpose and risk (Context) can be represented in YAML as follows:
 
 ```yaml
 gate:
@@ -119,9 +124,13 @@ gate:
           on_failure: block
 ```
 
-A Gate does not carry a permanent "strict" or "loose" label from the outset; **its strictness at any moment is determined by what it checks and the purpose (Context) for which passage is sought**.
+In this example, multiple rules can match the Context simultaneously—for instance, when work is a prototype (`purpose == 'prototype'`) that also carries high risk (`risk == 'critical'`, such as a prototype touching production data or billing systems).
 
-The "bypass" of a Gate mentioned in [Transformation and Information Change in Lanes](02_transformation_and_information_change.md) can also be handled not by blindly ignoring inspection, but by recording open issues as a `CONDITIONAL` passage for prototyping so that unverified items do not slip into production unnoticed later.
+As a foundational principle in such cases, **all rules matching the Context are evaluated, and the strictest resulting outcome takes precedence**. That is, if any matching rule fails a check configured with `block`, progression is blocked overall (`BLOCK`); if there are no `block` failures but one or more `warn` failures, conditional progression with unresolved items recorded (`CONDITIONAL`) is returned; and if all matching checks pass, passage (`PASS`) is granted.
+
+Thus, a Gate does not carry a permanent "strict" or "loose" label from the outset; **its strictness at any moment is determined by the combination of what it checks and the Context for which passage is sought**.
+
+The "bypass" of an explicit Gate mentioned in [Transformation and Information Change in Lanes](02_transformation_and_information_change.md) can also be handled not by blindly ignoring inspection, but by recording open issues as a `CONDITIONAL` passage for prototyping so that unverified items do not slip into production unnoticed later.
 
 ---
 
@@ -135,7 +144,7 @@ Because the party originating requests varies by situation—a customer in contr
 
 In software development, "requests" and "requirements" are often conflated when discussing how work should proceed and how responsibilities should be divided, leading to frequent debates over how much each side should define.
 
-As a starting point, requests reside in the heads of the requesting side, and **putting the requests in one's own head into complete, unambiguous text (externalization) is inherently very difficult**. This has long been pointed out in Requirements Engineering. People find it hard to explain unspoken assumptions about everyday work they take for granted; wishes often conflict with one another, and stakeholders frequently do not realize what they truly need until they see something concrete. Moreover, judging whether something is technically feasible, whether it conflicts with existing systems, and whether it fits cost and schedule constraints requires the specialized knowledge of the development side.
+As a starting point, requests reside in the heads of the requesting side, and **putting the requests in one's own head into complete, unambiguous text (externalization) is inherently very difficult**. Here, the "naturally occurring Gate" described in Section 1 is at work: omissions and biases inevitably arise the moment internal thoughts are put into words. This has long been pointed out in Requirements Engineering. People find it hard to explain unspoken assumptions about everyday work they take for granted; wishes often conflict with one another, and stakeholders frequently do not realize what they truly need until they see something concrete. Moreover, judging whether something is technically feasible, whether it conflicts with existing systems, and whether it fits cost and schedule constraints requires the specialized knowledge of the development side.
 
 In these discussions, it is often noted that "requests and requirements are two different things." Yet when explained in words alone, the explanation tends to stop at brief rephrasings such as *"a request is what is wanted, and a requirement is what is agreed upon,"* making it surprisingly difficult to convey clearly how both sides actually interact to form a requirement and how work then advances to specifications.
 
@@ -156,6 +165,8 @@ Stage 1 is the stage in which the **Requesting Side** on the left and the **Deve
 - From the development side on the right come technical feasibility judgments, system constraints, trade-off analyses, and alternative proposals (*"It can be realized if approached this way"*).
 - Information from left and right meets at the central Requirement Node, and once two-way alignment settles on *"we will build this scope under this approach,"* an `approved` State and its rationale are recorded on the Requirement Node.
 
+In strict Requirements Engineering terminology, a draft before agreement is a "candidate requirement" and after agreement is an "agreed requirement." Rather than splitting these into two different Node types before and after agreement, this model treats them as **the same "Requirement Node" whose State transitions from `pending` (candidate requirement) to `approved` (agreed requirement)**. Doing so allows the history of alignment and any subsequent revisions to be tracked continuously on a single Node.
+
 Looking at this convergence diagram makes it immediately clear why a "request" emerging from someone's head does not unilaterally become a "requirement" on its own, and why neither the requesting side nor the development side can complete a requirement in isolation.
 
 #### Stage 2: Switching Lanes to Summarize Specifications from Requirements
@@ -166,17 +177,17 @@ flowchart LR
     G -->|"Summarize specification\n(Specification Lane)"| S["Specification Node\n(Specification Document)"]
 ```
 
-Once agreement is reached on the Requirement Node in Stage 1 (or conditionally for prototyping), work passes through the Gate, switches Lanes, and enters the **Specification Lane**. Based on the Requirement Node, this Lane summarizes concrete screens, interfaces, data structures, and detailed behaviors to create a **Specification Node (specification document)**.
+Once agreement is reached on the Requirement Node in Stage 1 (or conditionally for prototyping), work passes through the explicit Gate, switches Lanes, and enters the **Specification Lane**. Based on the Requirement Node, this Lane summarizes concrete screens, interfaces, data structures, and detailed behaviors to create a **Specification Node (specification document)**.
 
-However, if contradictions or problems arise while summarizing the specification at this stage, work can return to the previous Lane (the Requirement Node in Stage 1) to revise the requirement and re-agree. This is possible because ISE and the Lane Model recognize reverse synchronization (Reverse) alongside forward progression (Forward), as described in Section 4.4.
+However, if contradictions or problems arise while summarizing the specification at this stage, work can be **remanded** to the previous Lane (the Requirement Node in Stage 1) to revise the requirement and re-agree. This is possible because ISE and the Lane Model are not one-way top-down pipelines; they also recognize reverse paths that feed facts and problems discovered downstream back upstream, as described in Section 4.4.
 
 ### 4.3 Proceeding to Prototyping Before Final Agreement Is Handled Naturally at the Gate
 
-In real-world development, verbal alignment alone is often not enough to form a concrete picture, leading to situations where *"we haven't reached final agreement on the requirements yet, but we want to draft a specification or build a prototype to see it in action."*
+In real-world development, verbal alignment alone is often not enough to form a concrete picture, leading to situations where *"we haven't reached final agreement on the requirements yet (they are still candidate requirements), but we want to draft a specification or build a prototype to see it in action."*
 
 ```mermaid
 flowchart TD
-    Q["Requirement Node\nrevision 3\nAgreement: pending\nTechnical review: passed"] --> G{"Requirement → Specification Gate"}
+    Q["Requirement Node\nrevision 3\nAgreement: pending (candidate)\nTechnical review: passed"] --> G{"Requirement → Specification Gate"}
     X["Context: Prototype / Exploration"] --> G
     G -->|"CONDITIONAL"| S["Proceed to draft spec / prototype\nRecord pending agreement"]
     Q --> G2{"Production Confirmation Gate"}
@@ -184,31 +195,40 @@ flowchart TD
     G2 -->|"BLOCK"| H["Obtain agreement and verification, then re-evaluate"]
 ```
 
-If "only what has been agreed upon is a requirement" were treated as a rigid rule, teams would be forced into either *"we cannot even prototype because it isn't agreed yet,"* or *"we have to pretend it is already agreed just to move forward."*
+If "a Node cannot be treated as a Requirement Node until agreement is complete" were enforced as a rigid rule, teams would be forced into either *"we cannot even prototype because it isn't agreed yet,"* or *"we have to pretend it is already agreed just to move forward."*
 
-In the Lane Model, the Requirement Node's agreement State remains `pending` (unagreed), while the Gate judges that *"because the current Context is prototyping (`prototype`), conditional progression (`CONDITIONAL`) is permitted while keeping pending agreement on record."* In terms of the border metaphor, this is like permitting entry for a short-term site visit without granting permanent residency or a work permit. This allows the everyday engineering practice of "prototyping first to verify" to be represented naturally.
+In the Lane Model, the Requirement Node's agreement State remains `pending` (candidate requirement), while the Gate judges that *"because the current Context is prototyping (`prototype`), conditional progression (`CONDITIONAL`) is permitted while keeping pending agreement on record."* In terms of the border metaphor, this is like permitting entry for a short-term site visit without granting permanent residency or a work permit. This allows the everyday engineering practice of "prototyping first to verify" to be represented naturally.
 
-### 4.4 Agreement Does Not Guarantee Correctness: Discovering Issues During Specification and Returning via Reverse
+### 4.4 Agreement Does Not Guarantee Correctness: Discovering Issues During Specification and Remanding
 
 Conversely, even when both sides thoroughly discuss and agree (`approved`) on a Requirement Node in Stage 1 and pass the Gate into Stage 2 specification work, that requirement is not guaranteed to produce a good result as-is.
 
 Because requirements represent high-level agreement, it is commonplace when summarizing detailed specifications or writing code to discover that *"Requirement A and Requirement B conflict under specific conditions,"* or *"this performance target cannot be met with the current architecture."* Likewise, seeing a working prototype often makes the requesting side realize, *"What we actually wanted was something else."*
 
-In such cases, because ISE includes Reverse (reverse synchronization), returning to the previous Lane to revise the requirement can be expressed directly.
+In such cases, work returns to the Requirement Node in Stage 1 via **remand**, returning the discovered problem upstream for re-examination.
 
 ```mermaid
 flowchart LR
     Q3["Requirement Node (rev 3)\nAgreement: approved"] -->|"Gate: PASS"| SL["Specification Lane"]
     SL --> SP["Specification Work / Specification Node\nDiscover contradiction or feasibility issue"]
-    SP -->|"Reverse / Remand\n(Feed back discovered facts and constraints)"| Q4["Requirement Node (rev 4)\nAgreement: pending (awaiting re-agreement)"]
+    SP -->|"Remand\n(Feed back discovered facts and constraints)"| Q4["Requirement Node (rev 4)\nAgreement: pending (awaiting re-agreement)"]
 ```
 
 1. Based on the agreed Requirement Node (revision 3), work passes the Gate and enters the Specification Lane.
 2. While summarizing the specification, a contradiction in the requirements or a technical issue is discovered.
-3. Carrying the discovered facts and constraints, work returns via the Reverse Lane (remand) to Stage 1, revising the Requirement Node to revision 4.
+3. Carrying the discovered facts and constraints, work is **remanded** to Stage 1, revising the Requirement Node to revision 4.
 4. Because the content has changed to revision 4, the prior approval State on revision 3 no longer automatically applies, and the requesting and development sides re-align and re-agree with the reasons found during the specification stage.
 
-Because prior agreement is treated not as "an immutable final decision," but as "agreement based on the information visible at revision 3," the real-world development cycle—returning to the previous Lane when problems surface during specification, revising the requirement, and re-agreeing—can be represented naturally.
+Because prior agreement is treated not as "an immutable final decision," but as "agreement based on the information visible at revision 3," the real-world development cycle—remanding to the previous Lane when problems surface during specification, revising the requirement, and re-agreeing—can be represented naturally.
+
+#### Distinguishing Between "Remand" and "Reverse"
+
+Here, two kinds of upstream information flow are distinguished: **Remand** and **Reverse**.
+
+- **Remand**: Discovering a contradiction or technical constraint while creating specifications or implementations (or during Gate evaluation), and returning that explicit reason upstream to revise and re-examine the upstream Node. The evidence for the discovered problem or constraint itself is clear.
+- **Reverse**: Reconstructing, recovering, or updating unwritten specifications (Pre-Specs) or lost requirements and intent from already existing code or running systems. Because code shows observable behavior but often does not directly preserve the original rationale (*"why it was built that way"*), Reverse carries an uncertain `inferred` State.
+
+While both traverse a path from downstream to upstream, **the certainty of their information differs**. Returning to requirements after finding a problem during specification work is a "remand," and is managed separately from "Reverse," which excavates specifications and requirements from existing code.
 
 ### 4.5 Relationship to Requirements Engineering
 
@@ -219,17 +239,18 @@ The flow organized in Section 4 does not oppose established Requirements Enginee
 - **Intersection of the problem world and the machine (Zave & Jackson)**
   Pamela Zave and Michael Jackson showed that requirements and specifications stand at the intersection between the "problem world" (the requesting side's operations and environment) and the "machine" (the software built by the development side). Neither side's knowledge alone suffices; the structure in which both converge on the Requirement Node aligns with this insight.
 - **Back-and-forth between requirements and specification/design (Twin Peaks model)**
-  Bashar Nuseibeh's Twin Peaks model shows that requirements and architectural/specification design are not decided in a one-way top-down pass; instead, constraints and contradictions found while detailing designs and specifications feed back to refine requirements iteratively. Discovering an issue while summarizing specifications in Stage 2 and returning to the Requirement Node via Reverse to re-agree is this exact back-and-forth movement.
+  Bashar Nuseibeh's Twin Peaks model shows that requirements and architectural/specification design are not decided in a one-way top-down pass; instead, constraints and contradictions found while detailing designs and specifications feed back to refine requirements iteratively. Discovering an issue while summarizing specifications in Stage 2 and remanding to the Requirement Node to re-agree is this exact back-and-forth movement.
 
 ---
 
-## 5. Common Application Across Forward, Reverse, and Verification
+## 5. Common Application Across Forward, Remand, Reverse, and Verification
 
 This mechanism of States and Gates applies in the same way across all development flows handled by ISE, not just the flow from requests to specifications.
 
 | Aspect | Role of States and Gates |
 | --- | --- |
 | **Forward (forward work)** | Manage drafting, stakeholder agreement, technical review, and open questions as States, and use Gates to decide whether to proceed to creating the next Node (specifications or code). |
+| **Remand (upstream feedback)** | Update upstream Nodes based on contradictions or technical constraints discovered during specification or implementation, and perform re-agreement and Gate re-evaluation on the new revision. |
 | **Reverse (reverse extraction and reconstruction)** | Record provisional specifications (Pre-Specs) read from existing code or behavior with an `inferred` State, and use Gates to decide whether they may be used directly for design decisions or require human confirmation and agreement. |
 | **Consistency checks** | Inspect mismatches among related Nodes, unresolved items (`outstanding`) left by conditional progression, and prior agreements that have become outdated due to Node edits. |
 | **CI, testing, and release judgment** | Record passing tests and security checks as States on Code Nodes and inspect them strictly at merge or production release Gates. |
@@ -266,15 +287,15 @@ gate_decision:
 
 ## 7. Summary
 
-A Gate in the Lane Model is defined as follows:
+In the Lane Model, a Gate in the broad sense is any point where selection, interpretation, or judgment occurs as information passes through; among these, an **Explicit Gate** whose evaluation criteria are codified in development processes or tools is defined as follows:
 
-> **A Gate is a mechanism that evaluates a Node's State and the transition Context according to an applicable Policy to determine whether and under what conditions the Node may be used or transformed in the next Lane.**
+> **An explicit Gate is a mechanism that evaluates a Node's State and the transition Context according to an applicable Policy to determine whether and under what conditions the Node may be used or transformed in the next Lane.**
 
 This perspective clarifies the following points:
 
-- Comparing a Gate to **border inspection** makes it intuitive why strictness changes depending on location and purpose (prototyping vs. production), and why "proceeding conditionally" is distinct from "reaching final agreement."
-- The difference between requests and requirements can be shown visually—not merely as a rephrasing of words, but as **a structure in which requests from the requesting side and analysis and proposals from the development side converge from left and right to form a Requirement Node**.
-- Even when switching Lanes from an agreed requirement to summarize specifications, agreement does not guarantee correctness; if problems surface, ISE's Reverse flow naturally represents the real-world development cycle of returning to the previous Lane, revising the requirement, and re-agreeing.
+- Comparing an explicit Gate to **border inspection** makes it intuitive why strictness changes depending on location and purpose (prototyping vs. production), why the strictest outcome takes precedence when multiple rules match, and why "proceeding conditionally" is distinct from "reaching final agreement."
+- The difference between requests and requirements can be shown visually—not merely as a rephrasing of words, but as **a structure in which requests from the requesting side and analysis and proposals from the development side converge from left and right to form a Requirement Node**. Moreover, "candidate requirements" before agreement and "agreed requirements" after agreement can be handled consistently as different States of the same Requirement Node.
+- Even when switching Lanes from an agreed requirement to summarize specifications, agreement does not guarantee correctness; if problems surface, **remand** naturally represents the real-world development cycle of returning to the previous Lane, revising the requirement, and re-agreeing. Furthermore, "remand" based on clear evidence can be distinguished from "Reverse" involving inference (`inferred`) from existing code according to the certainty of the information.
 - Diverse kinds of evidence—human agreement, peer review, AI inference, and automated CI tests—can be handled within a single common framework of Node States and Gate inspections.
 
 ---
