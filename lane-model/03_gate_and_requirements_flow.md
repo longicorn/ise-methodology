@@ -13,7 +13,7 @@ In the Lane Model, a **Gate** in the broad sense refers to any point where selec
 - **Naturally Occurring Gates**: Judgments that operate naturally when people put internal thoughts into words or text, or when they read and interpret someone else's text. Although no written rule (`Policy`) exists here, unconscious selection and interpretation of information inevitably take place.
 - **Explicit Gates**: Mechanisms in development processes or tools that codify the criteria for advancing to the next activity. They evaluate progression based on the target Node's `State`, the immediate purpose and situation (`Context`), and evaluation rules (`Policy`).
 
-This document focuses primarily on how the latter—**Explicit Gates**—operate (while the former, naturally occurring Gates, also come into play during the verbalization of requests discussed in Section 4).
+This document focuses primarily on how the latter—**Explicit Gates**—operate (while the former, naturally occurring Gates, also come into play during the verbalization of wishes discussed in Section 4).
 
 The main points are as follows:
 
@@ -140,11 +140,13 @@ Using this framework of Nodes, Lanes, and Gates makes it possible to explain the
 
 Because the party originating requests varies by situation—a customer in contract development, a product manager (PM) or business unit in in-house product development, or an operational department in internal systems—this document refers to them collectively as the **Requesting Side**.
 
-### 4.1 The Difficulty of Putting "Requests" into Words, and Debates Over Requests vs. Requirements
+### 4.1 The Difficulty of Putting Wishes into Words, and Debates Over Requests vs. Requirements
 
 In software development, "requests" and "requirements" are often conflated when discussing how work should proceed and how responsibilities should be divided, leading to frequent debates over how much each side should define.
 
-As a starting point, requests reside in the heads of the requesting side, and **putting the requests in one's own head into complete, unambiguous text (externalization) is inherently very difficult**. Here, the "naturally occurring Gate" described in Section 1 is at work: omissions and biases inevitably arise the moment internal thoughts are put into words. This has long been pointed out in Requirements Engineering. People find it hard to explain unspoken assumptions about everyday work they take for granted; wishes often conflict with one another, and stakeholders frequently do not realize what they truly need until they see something concrete. Moreover, judging whether something is technically feasible, whether it conflicts with existing systems, and whether it fits cost and schedule constraints requires the specialized knowledge of the development side.
+The starting point is the requesting side's wishes, concerns, and goals. Some have not yet been put into words; others have already been expressed. In this model, the information the requesting side communicates about those wishes to the Requirement Node is called a **request**. This is a convention used by the model, not the only definition used in Requirements Engineering.
+
+**Putting unspoken wishes into words without omissions is difficult**, and a communicated request may not fully capture the original wish. The "naturally occurring Gate" described in Section 1 is at work here: externalization involves omissions and bias. People may struggle to explain assumptions they take for granted, hold conflicting wishes, or discover what they need only after seeing something concrete. Assessing technical feasibility, compatibility with existing systems, cost, and schedule also requires the development side's expertise.
 
 In these discussions, it is often noted that "requests and requirements are two different things." Yet when explained in words alone, the explanation tends to stop at brief rephrasings such as *"a request is what is wanted, and a requirement is what is agreed upon,"* making it surprisingly difficult to convey clearly how both sides actually interact to form a requirement and how work then advances to specifications.
 
@@ -156,18 +158,18 @@ This distinction between requests and requirements—and the subsequent flow to 
 
 ```mermaid
 flowchart LR
-    R["Requesting Side\n(Customer, PM, etc.)"] <-->|"Requests & confirmation"| Q["Requirement Node\n(Alignment & Agreement)"] <-->|"Analysis, proposals, constraints"| D["Development Side"]
+    R["Requesting Side\n(Customer, PM, etc.)\nHolds wishes and concerns"] <-->|"Requests & confirmation"| Q["Requirement Node\n(Alignment & Agreement)"] <-->|"Analysis, proposals, constraints"| D["Development Side"]
 ```
 
 Stage 1 is the stage in which the **Requesting Side** on the left and the **Development Side** on the right communicate from both sides to build and agree upon the central **Requirement Node** together:
 
-- From the requesting side on the left come "requests"—pain points and goals they want to achieve. Because these do not emerge from their heads as complete text in a single pass, they are drawn out through repeated dialogue and confirmation.
+- The requesting side communicates its wishes and concerns as "requests." Because a request may not fully express the underlying wish, repeated dialogue and confirmation deepen understanding and allow it to be revised.
 - From the development side on the right come technical feasibility judgments, system constraints, trade-off analyses, and alternative proposals (*"It can be realized if approached this way"*).
 - Information from left and right meets at the central Requirement Node, and once two-way alignment settles on *"we will build this scope under this approach,"* an `approved` State and its rationale are recorded on the Requirement Node.
 
-In strict Requirements Engineering terminology, a draft before agreement is a "candidate requirement" and after agreement is an "agreed requirement." Rather than splitting these into two different Node types before and after agreement, this model treats them as **the same "Requirement Node" whose State transitions from `pending` (candidate requirement) to `approved` (agreed requirement)**. Doing so allows the history of alignment and any subsequent revisions to be tracked continuously on a single Node.
+In this model, a draft before agreement is called a "candidate requirement" and one after agreement an "agreed requirement." Rather than splitting these into two different Node types, the model treats them as **the same "Requirement Node" whose State transitions from `pending` (candidate requirement) to `approved` (agreed requirement)**. This allows the history of alignment and subsequent revisions to be tracked on a single Node.
 
-Looking at this convergence diagram makes it immediately clear why a "request" emerging from someone's head does not unilaterally become a "requirement" on its own, and why neither the requesting side nor the development side can complete a requirement in isolation.
+The diagram shows how both sides contribute their knowledge to form a requirement, rather than a communicated request becoming a requirement through a one-way handoff.
 
 #### Stage 2: Switching Lanes to Summarize Specifications from Requirements
 
@@ -234,8 +236,8 @@ While both traverse a path from downstream to upstream, **the certainty of their
 
 The flow organized in Section 4 does not oppose established Requirements Engineering; rather, it re-explains the knowledge accumulated in that field in an accessible way using the diagrams and mechanisms of the Lane Model:
 
-- **Difficulty of externalizing requests, and elicitation, analysis, and negotiation (Brooks, Christel & Kang, ISO/IEC/IEEE 29148, REBOK)**
-  As Fred Brooks noted in arguing that the hardest part of building software is deciding what to build, and as Michael Christel and Kyo Kang organized regarding tacit knowledge and communication challenges in requirements elicitation, the difficulty of drawing out and verbalizing what is in people's heads is the starting point of Requirements Engineering. Furthermore, ISO/IEC/IEEE 29148 and the Requirements Engineering Body of Knowledge (REBOK) formulate system and software requirements by analyzing technical constraints and trade-offs and reaching agreement on elicited requests. The Stage 1 diagram—in which the requesting side and development side converge from both sides to build and agree on the Requirement Node—represents this process.
+- **Difficulty of externalizing wishes, and elicitation, analysis, and negotiation (Brooks, Christel & Kang, ISO/IEC/IEEE 29148, REBOK, IPA)**
+  Fred Brooks described deciding what to build as a central difficulty of software development, while Michael Christel and Kyo Kang examined tacit knowledge and communication challenges in requirements elicitation. Drawing out and expressing people's wishes is an important challenge in Requirements Engineering. ISO/IEC/IEEE 29148, the Requirements Engineering Body of Knowledge (REBOK), and IPA's *Requirements Management Handbook for the AI Era* also address analyzing elicited information and developing system and software requirements. The Stage 1 diagram represents these activities in the model's own terms.
 - **Intersection of the problem world and the machine (Zave & Jackson)**
   Pamela Zave and Michael Jackson showed that requirements and specifications stand at the intersection between the "problem world" (the requesting side's operations and environment) and the "machine" (the software built by the development side). Neither side's knowledge alone suffices; the structure in which both converge on the Requirement Node aligns with this insight.
 - **Back-and-forth between requirements and specification/design (Twin Peaks model)**
@@ -309,3 +311,4 @@ This perspective clarifies the following points:
 5. Pamela Zave and Michael Jackson, “Four Dark Corners of Requirements Engineering,” *ACM Transactions on Software Engineering and Methodology (TOSEM)*, 6(1), 1–30, 1997. [DOI](https://doi.org/10.1145/237432.237434)
 6. Michael Jackson, *Problem Frames: Analysing and Structuring Software Development Problems*, Addison-Wesley, 2001.
 7. Bashar Nuseibeh, “Weaving Together Requirements and Architectures,” *Computer*, 34(3), 115–117, 2001. [DOI](https://doi.org/10.1109/2.910904)
+8. Information-technology Promotion Agency, Japan (IPA), *Requirements Management Handbook for the AI Era* (『AI時代の要求管理ハンドブック』), [URL](https://www.ipa.go.jp/digital/kaihatsu/youkyu-kanri.html)
