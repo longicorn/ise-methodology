@@ -16,6 +16,7 @@ ISE固有の文書として、以下を用意しています。
 
 - [ドキュメント・ドリフトと意図の劣化：なぜ意図は同期されなければならないのか](foundations/01_document_drift_and_intent_decay.ja.md)（`philosophies/04` の補論）
 - [用語集](glossary.ja.md)
+- [ISEにおけるReverse](reverse/README.ja.md)（初期草案）
 
 ## 各文書の位置づけ
 

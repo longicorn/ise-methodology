@@ -120,6 +120,12 @@ An overall structure for connecting IGE and ISE without mixing them, with a limi
 
 By orthogonally separating requirement exploration, value judgment, and product judgment from implementation-side intent synchronization, it avoids entanglement of contexts.
 
+## PreSpec
+
+A provisional specification (also written as `Pre-Spec` in some documents).
+
+A shared working surface that reconciles Mosaic information and code analysis, informed by foundational domain knowledge. Rather than a settled specification, it preserves provenance while distinguishing observed facts, inferences, stakeholder views, agreements, and unknowns; as specific scopes are reviewed and agreed with stakeholders, they can transition into official specifications.
+
 ## Provenance
 
 The source of information.
