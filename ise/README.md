@@ -16,6 +16,7 @@ The following documents are specific to ISE:
 
 - [Document Drift and Intent Decay: Why Intent Must Be Synchronized](foundations/01_document_drift_and_intent_decay.md) (a supplement to `philosophies/04`)
 - [Glossary](glossary.md)
+- [Reverse in ISE](reverse/README.md) (initial drafts)
 
 ## Positioning of Each Document
 
