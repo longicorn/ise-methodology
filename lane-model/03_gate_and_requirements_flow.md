@@ -257,6 +257,8 @@ This mechanism of States and Gates applies in the same way across all developmen
 | **Consistency checks** | Inspect mismatches among related Nodes, unresolved items (`outstanding`) left by conditional progression, and prior agreements that have become outdated due to Node edits. |
 | **CI, testing, and release judgment** | Record passing tests and security checks as States on Code Nodes and inspect them strictly at merge or production release Gates. |
 
+Gates can also inspect the information boundary between Nodes beyond formal agreements and test results. For example, if a specification Node only holds content that can be semantically reconstructed from the implementation Node without guesswork (a mere paraphrase of implementation), it can be remanded for lacking decision-making context; conversely, when implementation thresholds or branches change, the Gate checks consistency against the rationale and external constraints retained by the specification (see [Information Boundary, Duplication, Gates, and Reverse](../document_engineering/04_information_boundary_and_gates.md)).
+
 ---
 
 ## 6. Updating Revisions and Re-evaluation
