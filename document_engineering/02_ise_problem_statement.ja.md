@@ -82,7 +82,7 @@ Reality Document は、実際にどうなっているかを表す。
 
 Knowledge Document は、Reality や人間由来の情報を整理し、理解可能な形に再構成したものである。
 
-analyze lane における gather、mosaic、synthesize、elevate は、この領域と強く関係する。
+analyze モード（mode）における gather、mosaic、synthesize、elevate は、この領域と強く関係する。
 
 Knowledge Document は、単なる事実一覧でも、正式な仕様でもない。事実、背景、仮説、確度、出所を整理し、判断可能な状態へ近づけるための中間 artifact である。
 
@@ -124,6 +124,8 @@ Pre To-Be は、ISE と IGE の境界にある重要な受け皿である。
 
 Reality から何かが見えても、それをすぐ正式な Intent にしてはいけない。Pre To-Be として保持し、必要に応じて IGE や人間の判断へ渡す。
 
+なお、Reverse Sync で観測事実と推定・不明点をまとめて作る暫定仕様の作業場を **PreSpec（Pre-Spec）** と呼ぶ。PreSpec も Pre To-Be も、そのままでは正式なドキュメント（採用済み To-Be）にはできない不完全な中間状態であり、PreSpec が現状理解の足場であるのに対し、Pre To-Be はそこから浮かび上がった意図候補・変更候補を受け止める段階に位置づく。
+
 ### To-Be
 
 To-Be は、正式に採用された Intent である。
@@ -156,11 +158,9 @@ Reverse Sync で得られるものは、主に次のいずれかである。
 
 ISE Document Engineering では、Reverse Sync の結果に provenance、confidence、昇格状態を持たせる必要がある。
 
-## lane-model とドキュメント
+## 作業モード（mode）とドキュメント
 
-Nagi の lane-model は、ドキュメント体系を考える上で重要である。
-
-lane は工程順序ではなく、change vector の違いを表す。
+ドキュメント体系を考える上では、作業を工程順序ではなく **作業モード（mode）** として捉えることが重要である。ここでの `mode` は操作単位としての作業の方向（change vector）を表し、[Lane Model](../lane-model/01_philosophy_and_concepts.ja.md) における Node 間の変換辺（Lane）を文脈ごとに束ねた入口に対応する。
 
 - spec
   - Intent を明示化し Reality に接続する
@@ -168,18 +168,16 @@ lane は工程順序ではなく、change vector の違いを表す。
   - Reality を変更し Intent に近づける
 - analyze
   - Reality を Knowledge として再構成する
-- cure
-  - problem を repair に変換する
 
-この見方では、ドキュメントは spec lane だけのものではない。
+この見方では、ドキュメントは spec モードだけのものではない。
 
-spec lane には Intent を表す文書がある。analyze lane には As-Is や Pre To-Be を表す文書がある。cure lane には health、triage、remedy に関する文書がある。code lane にも、局所的な実装判断や AI への意図伝達を支える文書がありうる。
+spec モードには Intent を表す文書がある。analyze モードには As-Is や PreSpec、Pre To-Be を表す文書がある。code モードにも、局所的な実装判断や AI への意図伝達を支える文書がありうる。また、健全性評価やトリアージ（health / triage）に関する記録は **Gate** の評価・差し戻し判断に結びつき、修復作業（remedy）は差し戻しを受けた spec や code モードの再同期として扱われる。
 
-つまり、ドキュメント分類は `lane / scope / artifact` の三つ組で考えるのが自然である。
+つまり、ドキュメント分類は `mode / scope / artifact` の三つ組で考えるのが自然である。
 
 ```text
-lane  = 何をするか
-scope = どこを対象にするか
+mode     = 何をするか（作業モード）
+scope    = どこを対象にするか
 artifact = その scope の中でどの成果物や観点を扱うか
 ```
 
@@ -203,7 +201,7 @@ AI に渡す context surface としても機能する。
 
 つまり、ファイル名やディレクトリ構造は単なる整理ではない。
 
-それらは AI が対象を解決するための操作面であり、Nagi の target surface の一部である。
+それらは AI が対象を解決するための操作面（target surface）の一部である。
 
 ## SSoT は絶対真理ではない（ISE は SSoT を前提としない）
 
@@ -244,4 +242,4 @@ ISE における採用済み Intent（Living Spec）は、次の性質を持つ�
 - ドキュメントは human-readable であると同時に agent-readable であるべきである
 - Eventual Consistency を前提に、一時的な Drift を表現できる構造にする
 
-ISE Document Engineering は、この原則をもとに、Nagi の document model、lane-model、artifact namespace、resolver、Reverse Sync、consultant support interface へ接続されるべきである。
+ISE Document Engineering は、この原則をもとに、具体的な実装やツールの document model、作業モード（mode）、artifact namespace、resolver、Reverse Sync、consultant support interface へ接続されるべきである。

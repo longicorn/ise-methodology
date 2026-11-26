@@ -13,6 +13,8 @@ ISEは、意図と、それを表す成果物やソフトウェアとの整合�
 ## ドキュメント
 
 - [ISEの概要](ise/README.ja.md)
+- [ISEにおけるReverse（既存システムからの理解と同期）](ise/reverse/README.ja.md)
+- [Document Engineering（同期を前提とした文書体系）](document_engineering/02_ise_problem_statement.ja.md)（[既存文書モデル](document_engineering/01_existing_document_models.ja.md) / [実践知](document_engineering/03_practice_feedback.ja.md) / [情報の境界とGate](document_engineering/04_information_boundary_and_gates.ja.md)）
 - [Lane Model：概念と基本構造](lane-model/01_philosophy_and_concepts.ja.md)
 - [全体像：Environment ⇄ Intent ⇄ Reality](overview.ja.md)
 - [ISEの背景と関連する考察](philosophies/README.ja.md)

@@ -82,7 +82,7 @@ However, a Reality Document is not Intent. Just because something is implemented
 
 A Knowledge Document organizes information derived from Reality or humans and reconstructs it into an understandable form.
 
-In the analyze lane, gather, mosaic, synthesize, and elevate are strongly related to this area.
+In the analyze mode, gather, mosaic, synthesize, and elevate are strongly related to this area.
 
 A Knowledge Document is neither a mere list of facts nor an official specification. It is an intermediate artifact for organizing facts, background, hypotheses, confidence, and provenance, bringing them closer to a decidable state.
 
@@ -124,6 +124,8 @@ Pre To-Be is an important staging area on the boundary between ISE and IGE.
 
 Even when something becomes visible from Reality, it must not immediately be made official Intent. It is held as Pre To-Be and passed to IGE or human judgment as needed.
 
+Note that the staging workspace for provisional specifications built by reconciling observed facts, inferences, and open questions in Reverse Sync is called **PreSpec (Pre-Spec)**. Both PreSpec and Pre To-Be are incomplete intermediate states that cannot yet be treated as official documents (adopted To-Be): while PreSpec serves as scaffolding for understanding the current state, Pre To-Be holds the intent and change candidates that emerge from it.
+
 ### To-Be
 
 To-Be is officially adopted Intent.
@@ -156,11 +158,9 @@ If these are mixed directly into specifications, Reality ends up being promoted 
 
 In ISE Document Engineering, Reverse Sync results need to carry provenance, confidence, and promotion state.
 
-## lane-model and Documentation
+## Operation Modes (`mode`) and Documentation
 
-Nagi's lane-model is important when considering a documentation system.
-
-Lanes represent differences in change vectors, not phase order.
+When considering a documentation system, it is important to view work not as a phase order, but as **operation modes (`mode`)**. Here, `mode` represents the direction of work (change vector) as an operational unit, corresponding to an entry point that bundles transformation edges (Lanes) between Nodes in the [Lane Model](../lane-model/01_philosophy_and_concepts.md) by context.
 
 - spec
   - Makes Intent explicit and connects it to Reality
@@ -168,17 +168,15 @@ Lanes represent differences in change vectors, not phase order.
   - Changes Reality to bring it closer to Intent
 - analyze
   - Reconstructs Reality as Knowledge
-- cure
-  - Converts problems into repairs
 
-In this view, documentation does not belong only to the spec lane.
+In this view, documentation does not belong only to the spec mode.
 
-In the spec lane, there are documents representing Intent. In the analyze lane, there are documents representing As-Is and Pre To-Be. In the cure lane, there are documents concerning health, triage, and remedy. Even in the code lane, there can be documents supporting local implementation decisions and communicating intent to AI.
+In the spec mode, there are documents representing Intent. In the analyze mode, there are documents representing As-Is, PreSpec, and Pre To-Be. Even in the code mode, there can be documents supporting local implementation decisions and communicating intent to AI. Furthermore, records concerning health evaluation and triage are tied to **Gate** evaluation and send-back decisions, while repair work (remedy) is handled as re-synchronization of the spec or code mode triggered by a Gate send-back.
 
-In other words, it is natural to think of document classification as the triple `lane / scope / artifact`.
+In other words, it is natural to think of document classification as the triple `mode / scope / artifact`.
 
 ```text
-lane     = what to do
+mode     = what to do (operation mode)
 scope    = what target area it covers
 artifact = which deliverable or perspective within that scope is handled
 ```
@@ -203,7 +201,7 @@ From this perspective, documents need the following properties:
 
 In short, file names and directory structures are not mere tidying up.
 
-They are operational surfaces for AI to resolve targets, and part of Nagi's target surface.
+They are part of the operational target surface for AI to resolve targets.
 
 ## SSoT Is Not Absolute Truth (ISE Does Not Assume SSoT)
 
@@ -244,4 +242,4 @@ From this proposition, the following design principles follow:
 - Documentation should be agent-readable as well as human-readable
 - Under Eventual Consistency, structure documents so temporary Drift can be expressed
 
-Based on these principles, ISE Document Engineering should connect to Nagi's document model, lane-model, artifact namespace, resolver, Reverse Sync, and consultant support interface.
+Based on these principles, ISE Document Engineering should connect to the document model, operation modes (`mode`), artifact namespace, resolver, Reverse Sync, and consultant support interface of concrete implementations and tools.

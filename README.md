@@ -13,6 +13,8 @@ The repository also contains early explorations of **Intent Guidance Engineering
 ## Documents
 
 - [ISE overview](ise/README.md)
+- [Reverse in ISE (understanding and syncing existing systems)](ise/reverse/README.md)
+- [Document Engineering (synchronization-oriented documentation)](document_engineering/02_ise_problem_statement.md) ([existing models](document_engineering/01_existing_document_models.md) / [practice feedback](document_engineering/03_practice_feedback.md) / [information boundaries and Gates](document_engineering/04_information_boundary_and_gates.md))
 - [Lane Model: concepts and fundamental structure](lane-model/01_philosophy_and_concepts.md)
 - [Overall framework: Environment ⇄ Intent ⇄ Reality](overview.md)
 - [ISE background and related essays](philosophies/README.md)

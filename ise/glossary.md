@@ -30,12 +30,6 @@ The state as it was originally intended.
 
 This includes why that decision was adopted, which alternatives were discarded, and which constraints were prioritized. If it is not explicitly stated in artifacts, it is difficult to completely reconstruct it later.
 
-## Cure
-
-A perspective of maintenance and healing in ISE.
-
-It refers to activities that intervene in differences, debt, dangerous spots, complexity, lack of testing, boundary violations, and design degradation to restore the health of code and artifacts.
-
 ## Drift
 
 Discrepancies between artifacts.
@@ -55,6 +49,10 @@ Intent / Spec -> Code / Test / Reality
 ```
 
 It is compatible with conventional forward development, but real-world development requires more than just Forward Sync.
+
+## Gate
+
+In the Lane Model (the conceptual layer capturing synchronization and transformation for ISE and related frameworks), a mechanism that evaluates a Node's state (such as health, drift, test results, and agreement status) and decides whether to proceed to the next Lane, proceed conditionally, or send back for re-synchronization.
 
 ## Harness Engineering
 
@@ -124,7 +122,7 @@ By orthogonally separating requirement exploration, value judgment, and product 
 
 A provisional specification (also written as `Pre-Spec` in some documents).
 
-A shared working surface that reconciles Mosaic information and code analysis, informed by foundational domain knowledge. Rather than a settled specification, it preserves provenance while distinguishing observed facts, inferences, stakeholder views, agreements, and unknowns; as specific scopes are reviewed and agreed with stakeholders, they can transition into official specifications.
+A shared working surface that reconciles Mosaic information and code analysis, informed by foundational domain knowledge. Rather than a settled specification, it preserves provenance while distinguishing observed facts, inferences, stakeholder views, agreements, and unknowns; as specific scopes are reviewed and agreed with stakeholders, they can transition into official specifications. Note that the staging area for holding intent and change candidates ("what should change going forward") that emerge from As-Is or PreSpec is called **Pre To-Be** (both are incomplete intermediate states that cannot yet be treated as official specifications or adopted Intent).
 
 ## Provenance
 
