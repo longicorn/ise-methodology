@@ -59,7 +59,7 @@ Here, we show that the problem in the AI era is shifting from "code generation" 
 
 ISE is defined as an implementation-side framework for continuously synchronizing Intent and Reality through multiple artifacts.
 
-Here, we organize the handling of SSoT as a settlement of negotiation rather than absolute truth, handling not only forward but also backward synchronization, not fixing the main creator as either human or AI, management of cognitive load, Intent Recovery, and the reason why IGE/ODF is necessary.
+Here, we organize why ISE does not presuppose a static SSoT (since all elements evolve independently) and instead treats Living Spec as a settlement of negotiation, handling not only forward but also backward synchronization, not fixing the main creator as either human or AI, management of cognitive load, Intent Recovery, and the reason why IGE/ODF is necessary.
 
 ### 05: Review as Engineering Feedback
 

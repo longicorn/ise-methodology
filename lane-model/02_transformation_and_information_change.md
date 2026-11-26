@@ -41,6 +41,8 @@ When a transformation makes a consequential choice, the resulting artifact shoul
 
 The goal is not to eliminate every difference between nodes. Different nodes serve different purposes. The goal is to understand which differences are intentional, which are consequences of transformation, and which indicate drift or a mistaken interpretation.
 
+From this perspective, duplication between artifacts is judged not by surface similarity of text, but by semantic reconstructibility of information. One role of a specification is to preserve information lost in translation to implementation that is needed for future decisions—such as external constraints, change triggers, and contractual boundaries (see [Information Boundary and Reconstructibility](../document_engineering/04_information_boundary_and_gates.md)).
+
 ## 4. Time, divergence, and reconstruction
 
 Nodes do not remain still between transformations; they change over time. This applies not only to objective artifacts like code or specifications, but also to human beings, who are continuously evolving Nodes themselves.
@@ -62,7 +64,7 @@ Frequent feedback has an operating cost: people must review work, clarify decisi
 
 When specifications and decision records are missing, code is only one remaining node in a graph whose other nodes may have changed or disappeared. It records implementation choices and observable behavior, but usually does not uniquely identify the original intent. Reverse work can produce a useful provisional specification, yet confidence falls when evidence is sparse and time has allowed more independent changes to accumulate.
 
-This explains why reverse engineering an undocumented system is difficult even when the code is available. The challenge is not only understanding what the code does. It is distinguishing current behavior from intended behavior and recovering the decisions and constraints that are no longer represented.
+This explains why reverse engineering an undocumented system is difficult even when the code is available. The challenge is not only understanding what the code does. It is distinguishing current behavior from intended behavior and recovering the decisions and constraints that are no longer represented. While AI can now regenerate plausible-looking specifications from code, such plausible guesses based on general knowledge (plausibly guessable) must be distinguished from reconstruction uniquely grounded in evidence within the code.
 
 ## 5. Connection to existing research
 

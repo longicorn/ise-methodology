@@ -78,19 +78,19 @@ For example, for an authentication function, security personnel prioritize safet
 
 None of these alone is correct and others wrong. Intent is inherently multiple and often competes.
 
-Therefore, SSoT in ISE is not "the truth that exists only one in the world."
+Therefore, because specifications, code, operational reality, and humans all continue to change independently over time, ISE does not presuppose a static SSoT.
 
-It is the settlement of negotiation about which intent to adopt at the moment.
+If anything corresponds to SSoT, it is not "the truth that exists only one in the world," but the settlement of negotiation about which intent to adopt at the moment.
 
 ```text
-SSoT = A snapshot of the intent adopted at the moment
+Living Spec (the SSoT-like snapshot) = A snapshot of the intent adopted at the moment
 ```
 
 This understanding is important.
 
 Because if specifications or design documents are absolutized, it becomes easy to ignore new facts found during implementation or reality returned from operation. On the other hand, if code alone is absolutized, past reasons for judgment or discarded options disappear.
 
-In ISE, SSoT is treated not as a fixed stone tablet but as a Living Spec updated through negotiation.
+In ISE, rather than presupposing a fixed SSoT, we center on a Living Spec continuously updated through negotiation.
 
 ## 4. Synchronization is Not Only Forward
 

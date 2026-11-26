@@ -110,7 +110,7 @@ It is important but not an ideal state. What can be reconstructed is mainly "As-
 
 ## Living Spec
 
-A specification that is not a fixed document but is constantly updated by reactions from Reality. In ISE, SSoT is treated not as a fixed stone tablet but as a Living Spec updated through negotiation.
+A specification that is not a fixed document but is constantly updated by reactions from Reality. Because all elements continue to change independently over time, ISE does not presuppose a static SSoT; instead, it centers on a Living Spec continuously updated through negotiation.
 
 ## ODF
 
@@ -158,7 +158,7 @@ A concept or toolset for proceeding with development centered on specifications.
 
 Stands for Single Source of Truth.
 
-Generally translated as "the only truth." In ISE, SSoT is treated not as absolute truth but as a snapshot of the intent adopted at the moment, namely, the settlement of negotiation.
+Generally translated as "the only truth." Because specifications, code, reality, and humans all continue to change independently over time, ISE does not presuppose a static SSoT. Even when the term is used, it refers not to absolute truth, but to a snapshot of the intent adopted at the moment—namely, the settlement of negotiation.
 
 ## Vibe Coding
 
