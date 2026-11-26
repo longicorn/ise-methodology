@@ -75,7 +75,7 @@ system、feature、implement、analyze という分類はわかりやすいが�
 
 また、implement は小規模開発の便利な運用形態ではあるが、ISE の本質的な分類というより、ある利用モードに近い。
 
-この経験から、Nagi では layer ではなく lane として捉える方が自然になった。
+この経験から、階層（layer）ではなく作業モード（mode）として捉える方が自然になった。
 
 ### SSoT と言うだけでは情報の種類を分けきれない
 
@@ -104,15 +104,15 @@ ISE では、すべての要素が独立して変化し続けるため静的な 
 
 コードから得られるのは主に As-Is である。As-Intended は、部分的に推測できるとしても不完全である。
 
-この経験は、Nagi の analyze lane における gather、mosaic、synthesize、elevate の分離につながる。
+この経験は、analyze モード（mode）における gather、mosaic、synthesize、elevate の分離につながる。
 
 ### 文書名と配置は操作性に直結する
 
 goose-sdd では、`00_product_background.md` や `01_requirement.md` のように、順序付きのファイル名を使っていた。
 
-これは人間には読みやすい。一方で、Nagi のように lane / scope / artifact で対象を解決する場合、ファイル名や配置は単なる見た目ではなく、resolver が解釈する target surface になる。
+これは人間には読みやすい。一方で、`mode / scope / artifact` のように対象を解決する場合、ファイル名や配置は単なる見た目ではなく、resolver が解釈する target surface になる。
 
-このため、Nagi では文書名を「人間に自然」かつ「AI と CLI が解決可能」な形に再設計する必要が出てきた。
+このため、文書名を「人間に自然」かつ「AI と CLI が解決可能」な形に再設計する必要が出てきた。
 
 ## Nagi の位置づけ
 
@@ -128,13 +128,13 @@ Nagi は、ISE Document Engineering を鍛える実験場でもある。
 
 ## Nagi で見えてきたこと
 
-### layer ではなく lane が自然
+### layer ではなく作業モード（mode）が自然
 
 goose-sdd の system / feature / implement / analyze は、ある程度 layer 的に見える。
 
-しかし Nagi では、作業を上下関係や工程順序ではなく、lane として捉える方が自然になった。
+しかし実践を通じて、作業を上下関係や工程順序ではなく、**作業モード（mode）** として捉える方が自然になった（なお、ここでの `mode` は操作単位としての作業モードであり、[Lane Model](../lane-model/01_philosophy_and_concepts.ja.md) における Node 間の変換辺である Lane を束ねた入口に対応する）。
 
-lane は、対象をどう変化させるかの方向を表す。
+mode は、対象をどう変化させるかの方向を表す。
 
 - spec
   - Intent を明示化する
@@ -142,16 +142,16 @@ lane は、対象をどう変化させるかの方向を表す。
   - Reality を変更する
 - analyze
   - Reality を Knowledge として再構成する
-- cure
-  - problem を repair に変換する
 
-この見方により、ドキュメントも lane ごとの artifact として整理できる。
+なお、健全性の評価や問題のトリアージ、差し戻し判断は **Gate** の責務として位置づけられ、修復作業自体は差し戻しを受けた `spec` や `code` モードの再同期として行われる。
 
-### analyze lane は文書体系の中心に近い
+この見方により、ドキュメントも mode ごとの artifact として整理できる。
 
-Nagi の analyze lane は、ISE Document Engineering にとって特に重要である。
+### analyze モードは文書体系の中心に近い
 
-analyze は単なるコード解析ではない。Reality から Knowledge を作り、必要に応じて Pre To-Be を生む lane である。
+analyze モードは、ISE Document Engineering にとって特に重要である。
+
+analyze は単なるコード解析ではない。Reality から Knowledge を作り、必要に応じて PreSpec や Pre To-Be を生む mode である。
 
 そのため、次の区別が必要になる。
 
@@ -186,31 +186,31 @@ Pre To-Be は、この中間状態を受け止めるための領域である。
 
 将来的に IGE / ODF が成熟すれば、Pre To-Be は IGE へ渡す payload にもなりうる。
 
-### consultant / assistant は lane ではないが文書と深く関係する
+### consultant / assistant は直接の作業モードではないが文書と深く関係する
 
-Nagi では、相談、設計会話、レビュー補助、理解支援の機能が必要になる。
+実装や運用の中では、相談、設計会話、レビュー補助、理解支援の機能が必要になる。
 
-これは synchronization を直接前進させる lane ではないため、spec、code、analyze、cure と同列には置かない方がよい。
+これは synchronization を直接前進させる作業モードではないため、spec、code、analyze と同列には置かない方がよい。
 
 一方で、consultant / assistant は文書体系と強く関係する。
 
 なぜなら、相談機能は適切な文書を読み、圧縮し、人間が判断しやすい形で提示する必要があるからである。
 
-つまり、consultant / assistant は direct change lane ではないが、document access pattern を設計する上では重要な support interface である。
+つまり、consultant / assistant は direct change mode ではないが、document access pattern を設計する上では重要な support interface である。
 
 ### artifact namespace と resolver が必要
 
-Nagi では、target surface として `lane / scope / artifact` を考える。
+ツールの操作面（target surface）としては、`mode / scope / artifact` を考える。
 
 ```text
-nagi <lane> <scope>[:artifact]
+<tool> <mode> <scope>[:artifact]
 ```
 
-この形にすると、artifact は全 lane 共通の名前ではなく、lane ごとの名前空間を持つ方が自然である。
+この形にすると、artifact は全 mode 共通の名前ではなく、mode ごとの名前空間を持つ方が自然である。
 
-たとえば `design` という語があっても、spec lane の design と analyze lane の design-like reconstruction は同じ意味ではない。
+たとえば `design` という語があっても、spec モードの design と analyze モードの design-like reconstruction は同じ意味ではない。
 
-そのため、artifact は lane ごとに解釈されるべきであり、必要に応じて namespace や resolver によって解決先を補助する必要がある。
+そのため、artifact は mode ごとに解釈されるべきであり、必要に応じて namespace や resolver によって解決先を補助する必要がある。
 
 これは ISE Document Engineering にとって重要である。
 
@@ -273,7 +273,7 @@ ISE Document Engineering は、次のフィードバックループで育てる�
 今後、ISE Document Engineering としてさらに整理すべき論点は次の通りである。
 
 - artifact の標準分類
-- lane ごとの document namespace
+- mode ごとの document namespace
 - scope と実ファイルパスの対応
 - 採用済み Intent（Living Spec）への昇格ルール
 - Pre To-Be の保存形式
@@ -295,7 +295,7 @@ goose-sdd は、Living Spec、Forward Sync、Reverse Sync、Negotiation Loop の
 
 同時に、system / feature / implement / analyze の固定分類や、SSoT という単純な見方には限界があることも見えた。
 
-Nagi は、その知見を lane-model、target surface、artifact namespace、analyze lane、Pre To-Be へ再構成しようとしている。
+Nagi は、その知見を mode（作業モード）、target surface、artifact namespace、analyze モード、Pre To-Be へ再構成しようとしている。
 
 ISE Document Engineering は、この実践知を吸い上げ、既存ドキュメント実践と ISE の同期モデルをつなぐ分野として位置づけられる。
 

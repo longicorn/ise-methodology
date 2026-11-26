@@ -114,7 +114,7 @@ In ISE, quality models become important in the following ways:
 
 - Embedding quality constraints into requirements and rules
 - Defining perspectives for verification
-- Judging unhealthy states in the cure lane
+- Evaluating unhealthy states at Gates
 - Using them for triage prioritization
 - Evaluating whether Reality has deviated from Intent
 
@@ -191,6 +191,6 @@ What ISE needs is a documentation system capable of handling the synchronization
 
 To achieve that, while referencing existing document perspectives, we need to reconstruct around the following question:
 
-> Which of Intent / Reality / Knowledge / Decision does that document hold, which lane does it belong to, and as which artifact in which scope does it bear which synchronization responsibility?
+> Which of Intent / Reality / Knowledge / Decision does that document hold, which mode does it belong to, and as which artifact in which scope does it bear which synchronization responsibility?
 
 This question serves as the starting point for ISE Document Engineering.

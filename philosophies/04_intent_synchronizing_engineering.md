@@ -294,13 +294,13 @@ Facts obtained from code, expectations obtained from tests, reality obtained fro
 
 In ISE, it is necessary not just to summarize information but to distinguish where information came from, how much it can be trusted, and whether it has been checked against current Reality.
 
-### Maintenance as Cure
+### Maintenance and Gate-Driven Re-synchronization
 
 Synchronization is not just aligning documentation and code.
 
 It also includes intervening in differences, debt, dangerous spots, complexity, lack of testing, boundary violations, and design degradation.
 
-Confirm health of code, refactor as necessary, restore design, supplement tests, and repay debt. Such maintenance activities are also an important part of synchronizing intent and Reality.
+Confirm health of code, evaluate state at Gates, refactor as necessary, restore design, supplement tests, and repay debt. Such maintenance and re-synchronization activities are also an important part of synchronizing intent and Reality.
 
 ## 7. Intent is Born even during Implementation
 

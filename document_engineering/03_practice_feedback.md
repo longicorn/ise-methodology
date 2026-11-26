@@ -75,7 +75,7 @@ For example, it becomes ambiguous whether analyze is a layer alongside system an
 
 Also, while implement is a convenient operational form for small-scale development, it is closer to a usage mode than an essential classification of ISE.
 
-From this experience, it became more natural in Nagi to view these not as layers, but as lanes.
+From this experience, it became more natural to view these not as layers, but as operation modes (`mode`).
 
 ### Calling Something SSoT Alone Cannot Separate Information Types
 
@@ -104,15 +104,15 @@ However, it is dangerous to go so far as to claim "this was originally intended 
 
 What is obtained from code is primarily As-Is. As-Intended, even if partially inferable, is incomplete.
 
-This experience leads to the separation of gather, mosaic, synthesize, and elevate in Nagi's analyze lane.
+This experience leads to the separation of gather, mosaic, synthesize, and elevate in the analyze mode.
 
 ### Document Names and Placement Directly Affect Operability
 
 In goose-sdd, ordered file names such as `00_product_background.md` and `01_requirement.md` were used.
 
-This is easy for humans to read. On the other hand, when resolving targets by `lane / scope / artifact` as in Nagi, file names and placement are not mere appearance, but the target surface interpreted by the resolver.
+This is easy for humans to read. On the other hand, when resolving targets by `mode / scope / artifact`, file names and placement are not mere appearance, but the target surface interpreted by the resolver.
 
-For this reason, in Nagi, it became necessary to redesign document names into a form that is both "natural to humans" and "resolvable by AI and CLI."
+For this reason, it became necessary to redesign document names into a form that is both "natural to humans" and "resolvable by AI and CLI."
 
 ## Positioning of Nagi
 
@@ -128,13 +128,13 @@ Nagi is also a testing ground for honing ISE Document Engineering.
 
 ## What Has Become Clear in Nagi
 
-### Lanes Are More Natural Than Layers
+### Operation Modes (`mode`) Are More Natural Than Layers
 
 goose-sdd's system / feature / implement / analyze look somewhat layer-like.
 
-In Nagi, however, it became more natural to view work not as hierarchical relationships or phase order, but as lanes.
+In practice, however, it became more natural to view work not as hierarchical relationships or phase order, but as **operation modes (`mode`)** (note that `mode` here refers to an operational unit of work, corresponding to an entry point that bundles transformation edges—Lanes—between Nodes in the [Lane Model](../lane-model/01_philosophy_and_concepts.md)).
 
-A lane represents the direction of how a target is changed:
+A mode represents the direction of how a target is changed:
 
 - spec
   - Makes Intent explicit
@@ -142,16 +142,16 @@ A lane represents the direction of how a target is changed:
   - Changes Reality
 - analyze
   - Reconstructs Reality as Knowledge
-- cure
-  - Converts problems into repairs
 
-Through this view, documentation can also be organized as artifacts per lane.
+Note that health evaluation, issue triage, and send-back decisions are positioned as responsibilities of **Gates**, while repair work itself is performed as re-synchronization of the `spec` or `code` mode triggered by a Gate send-back.
 
-### The analyze Lane Is Close to the Center of the Documentation System
+Through this view, documentation can also be organized as artifacts per mode.
 
-Nagi's analyze lane is particularly important for ISE Document Engineering.
+### The analyze Mode Is Close to the Center of the Documentation System
 
-analyze is not mere code analysis. It is the lane that creates Knowledge from Reality and produces Pre To-Be as needed.
+The analyze mode is particularly important for ISE Document Engineering.
+
+analyze is not mere code analysis. It is the mode that creates Knowledge from Reality and produces PreSpec or Pre To-Be as needed.
 
 Therefore, the following distinctions are necessary:
 
@@ -186,31 +186,31 @@ Information such as the following goes here:
 
 In the future, as IGE / ODF mature, Pre To-Be can also serve as the payload passed to IGE.
 
-### consultant / assistant Is Not a Lane, but Deeply Relates to Documentation
+### consultant / assistant Is Not an Operation Mode, but Deeply Relates to Documentation
 
-In Nagi, functions for consultation, design conversation, review assistance, and comprehension support are needed.
+In practice, functions for consultation, design conversation, review assistance, and comprehension support are needed.
 
-Because this is not a lane that directly advances synchronization, it is better not to place it on the same level as spec, code, analyze, and cure.
+Because this is not an operation mode that directly advances synchronization, it is better not to place it on the same level as spec, code, and analyze.
 
 On the other hand, consultant / assistant is strongly related to the documentation system.
 
 This is because consultation functions need to read appropriate documents, compress them, and present them in a form easy for humans to judge.
 
-In other words, while consultant / assistant is not a direct change lane, it is an important support interface when designing document access patterns.
+In other words, while consultant / assistant is not a direct change mode, it is an important support interface when designing document access patterns.
 
 ### artifact namespace and resolver Are Needed
 
-In Nagi, `lane / scope / artifact` is considered as the target surface.
+As the tool's target surface, `mode / scope / artifact` is considered.
 
 ```text
-nagi <lane> <scope>[:artifact]
+<tool> <mode> <scope>[:artifact]
 ```
 
-With this form, it is more natural for artifacts to have per-lane namespaces rather than names shared across all lanes.
+With this form, it is more natural for artifacts to have per-mode namespaces rather than names shared across all modes.
 
-For example, even with the word `design`, design in the spec lane and design-like reconstruction in the analyze lane do not mean the same thing.
+For example, even with the word `design`, design in the spec mode and design-like reconstruction in the analyze mode do not mean the same thing.
 
-Therefore, artifacts should be interpreted per lane, and resolution targets need to be assisted by namespaces and resolvers as needed.
+Therefore, artifacts should be interpreted per mode, and resolution targets need to be assisted by namespaces and resolvers as needed.
 
 This is important for ISE Document Engineering.
 
@@ -273,7 +273,7 @@ Not only Forward Sync from theory to implementation, but also Reverse Sync from 
 Topics to organize further as ISE Document Engineering going forward are:
 
 - Standard classification of artifacts
-- Document namespaces per lane
+- Document namespaces per mode
 - Mapping between scope and actual file paths
 - Promotion rules to adopted Intent (Living Spec)
 - Storage format for Pre To-Be
@@ -295,7 +295,7 @@ goose-sdd demonstrated the effectiveness of Living Spec, Forward Sync, Reverse S
 
 At the same time, it also revealed the limitations of fixed classifications like system / feature / implement / analyze and a simplistic view of SSoT.
 
-Nagi is attempting to reconstruct those insights into the lane-model, target surface, artifact namespace, analyze lane, and Pre To-Be.
+Nagi is attempting to reconstruct those insights into operation modes (`mode`), target surface, artifact namespace, the analyze mode, and Pre To-Be.
 
 ISE Document Engineering is positioned as the field that absorbs these practical insights and connects existing documentation practices with ISE's synchronization model.
 

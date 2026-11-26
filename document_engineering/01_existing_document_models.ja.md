@@ -114,7 +114,7 @@ ISE では、品質モデルは次のような形で重要になる。
 
 - requirement や rule に品質制約を埋め込む
 - verification の観点を定義する
-- cure lane で unhealthy state を判断する
+- Gate で健全性（unhealthy state）を評価する
 - triage の優先度判断に使う
 - Reality が Intent から逸脱しているかを評価する
 
@@ -191,6 +191,6 @@ ISE が必要とするのは、Intent と Reality の同期状態を扱える文
 
 そのためには、既存の文書観を参照しながらも、次の問いを中心に再構成する必要がある。
 
-> そのドキュメントは、Intent / Reality / Knowledge / Decision のどれを保持し、どの lane に属し、どの scope のどの artifact として、どの同期責務を担うのか。
+> そのドキュメントは、Intent / Reality / Knowledge / Decision のどれを保持し、どの作業モード（mode）に属し、どの scope のどの artifact として、どの同期責務を担うのか。
 
 この問いが、ISE Document Engineering の出発点になる。
