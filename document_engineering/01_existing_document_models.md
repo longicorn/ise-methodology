@@ -1,196 +1,196 @@
-# 既存のドキュメント観の整理
+# Organizing Existing Document Perspectives
 
-## 目的
+## Purpose
 
-この文書は、ISE Document Engineering を考えるための前提として、既存のソフトウェア工学・システム工学・要求工学・アーキテクチャ記述・品質モデルにおいて、ドキュメントがどのように扱われてきたかを整理する。
+This document organizes how documentation has been treated in existing software engineering, systems engineering, requirements engineering, architecture description, and quality models as a premise for considering ISE Document Engineering.
 
-ここでの目的は、既存の標準や実践を否定することではない。むしろ、それらが何を強く扱い、何を前提とし、どこに限界があるかを明確にすることである。
+The goal here is not to reject existing standards or practices. Rather, it is to clarify what they handle strongly, what they assume, and where their limits lie.
 
-ISE は既存のドキュメント実践を無視しない。ただし、AI 支援開発、Reverse Sync、Intent と Reality の継続同期、lane-model を前提にすると、既存の文書観をそのまま採用するだけでは足りない。
+ISE does not ignore existing documentation practices. However, given AI-assisted development, Reverse Sync, continuous synchronization between Intent and Reality, and the lane-model, adopting existing document perspectives as-is is not enough.
 
-そのため、まずは既存の文書観を、ISE から見た比較対象として整理する。
+Therefore, we first organize existing document perspectives as a baseline for comparison from the standpoint of ISE.
 
-## 既存の文書観の中心
+## Core of Existing Document Perspectives
 
-従来のソフトウェア開発やシステム開発におけるドキュメントは、多くの場合、次のような役割を持ってきた。
+In traditional software and systems development, documentation has typically served the following roles:
 
-- 要求を明確にする
-- 設計を説明する
-- 実装や検証の前提を共有する
-- ステークホルダー間の合意を記録する
-- 保守や引き継ぎのために知識を残す
-- 品質、制約、リスク、責務を管理する
-- 監査や説明責任を支える
+- Clarifying requirements
+- Explaining designs
+- Sharing assumptions for implementation and verification
+- Recording agreements among stakeholders
+- Preserving knowledge for maintenance and handover
+- Managing quality, constraints, risks, and responsibilities
+- Supporting auditing and accountability
 
-これらは重要であり、ISE でも不要になるわけではない。
+These are important and do not become unnecessary in ISE.
 
-ただし、従来の文書観はしばしば「工程の成果物」としてドキュメントを捉える。要求工程では要求仕様書、設計工程では設計書、検証工程ではテスト仕様書、運用工程では運用文書、という形である。
+However, traditional document perspectives often view documentation as a "phase deliverable." In the requirements phase it is a requirements specification, in the design phase a design document, in the verification phase a test specification, and in the operations phase an operations manual.
 
-この見方は、人間中心の開発プロセスでは自然である。工程が比較的明確に分かれ、成果物を段階的にレビューし、合意しながら進む前提では、ドキュメントは工程の境界面として機能する。
+This view is natural in human-centered development processes. Under the assumption that phases are relatively well-separated and work proceeds through staged reviews and agreements of deliverables, documentation functions as an interface between phases.
 
-しかし、ISE ではドキュメントを工程成果物としてだけでは見ない。ドキュメントは Intent と Reality の同期状態を支える artifact であり、Forward Sync と Reverse Sync の両方で操作される対象である。
+In ISE, however, documentation is not viewed solely as a phase deliverable. A document is an artifact that supports the synchronization state between Intent and Reality, and an object operated on by both Forward Sync and Reverse Sync.
 
-## ライフサイクル標準における文書
+## Documents in Lifecycle Standards
 
-ISO/IEC/IEEE 12207 や ISO/IEC/IEEE 15288 のようなライフサイクル標準は、ソフトウェアやシステムのライフサイクル全体におけるプロセス、活動、成果物、責務を整理する。
+Lifecycle standards such as ISO/IEC/IEEE 12207 and ISO/IEC/IEEE 15288 organize processes, activities, deliverables, and responsibilities across the entire lifecycle of software or systems.
 
-この種の標準において、ドキュメントは主に次のような役割を持つ。
+In this type of standard, documentation primarily serves the following roles:
 
-- プロセスの入力と出力を明確にする
-- 活動の結果を記録する
-- 合意、承認、検証の対象を与える
-- ライフサイクル全体で追跡可能性を支える
-- 組織的な管理、監査、保守を可能にする
+- Clarifying process inputs and outputs
+- Recording the results of activities
+- Providing objects for agreement, approval, and verification
+- Supporting traceability across the entire lifecycle
+- Enabling organizational management, auditing, and maintenance
 
-この観点は、開発を一連の管理可能な活動として扱う上で強い。
+This perspective is strong for treating development as a series of manageable activities.
 
-一方で、ISE から見ると、ライフサイクル標準は「文書が工程上どこに現れるか」を整理する力は強いが、「文書が Intent と Reality の同期においてどのような状態を持つか」を中心には置いていない。
+On the other hand, from ISE's perspective, while lifecycle standards are strong at organizing "where documents appear in the process," they do not center on "what state a document holds in the synchronization between Intent and Reality."
 
-特に次の点は、ISE 側で追加的に考える必要がある。
+In particular, the following points need to be considered additionally on the ISE side:
 
-- 実装が文書より先行したとき、文書をどう扱うか
-- コードから復元された As-Is を、採用済み Intent とどう区別するか
-- 一時的な Drift を、異常ではなく同期過程としてどう表現するか
-- AI が生成・更新した文書の provenance や confidence をどう扱うか
-- 人間が採用判断を下す前の Pre To-Be をどこに置くか
+- How to handle a document when implementation precedes documentation
+- How to distinguish As-Is recovered from code from adopted Intent
+- How to represent temporary Drift not as an anomaly, but as part of the synchronization process
+- How to handle the provenance and confidence of documents generated or updated by AI
+- Where to place Pre To-Be before a human makes an adoption decision
 
-ライフサイクル標準は土台として重要だが、ISE の同期モデルそのものを定義するものではない。
+Lifecycle standards are important as a foundation, but they do not define ISE's synchronization model itself.
 
-## 要求工学における文書
+## Documents in Requirements Engineering
 
-ISO/IEC/IEEE 29148 に代表される要求工学の文脈では、ドキュメントは要求を定義し、分析し、合意し、検証可能にするための中心的 artifact である。
+In the context of requirements engineering, represented by ISO/IEC/IEEE 29148, documentation is the central artifact for defining, analyzing, agreeing on, and making requirements verifiable.
 
-要求文書は、一般に次のような目的を持つ。
+Requirements documents generally have the following purposes:
 
-- ステークホルダーのニーズを明確化する
-- システムが満たすべき条件を定義する
-- 曖昧な期待を検証可能な表現へ近づける
-- 要求間の矛盾や不足を発見する
-- 設計、実装、テストへの入力を与える
-- トレーサビリティを支える
+- Clarifying stakeholder needs
+- Defining conditions the system must satisfy
+- Bringing ambiguous expectations closer to verifiable expressions
+- Detecting contradictions and omissions among requirements
+- Providing inputs for design, implementation, and testing
+- Supporting traceability
 
-これは IGE と特に近い領域である。曖昧な要求を実装可能な What へ落とすという意味では、要求工学は IGE の重要な参照元になる。
+This is an area particularly close to IGE. In terms of translating ambiguous requirements into implementable What, requirements engineering serves as an important reference for IGE.
 
-ただし、ISE Document Engineering では要求文書をそのまま中心に置くのではなく、要求が Intent のどの段階にあるかを区別する必要がある。
+However, in ISE Document Engineering, rather than placing requirements documents directly at the center, it is necessary to distinguish which stage of Intent a requirement is in:
 
-- まだ曖昧なニーズ
-- 整理中の要求候補
-- 実装可能な What
-- 採用済み Intent
-- 実装後に見つかった要求の不足
-- Reality から逆向きに得られた Intent candidate
+- Still-ambiguous needs
+- Requirement candidates under organization
+- Implementable What
+- Adopted Intent
+- Missing requirements discovered after implementation
+- Intent candidates obtained in reverse from Reality
 
-従来の要求文書では、これらが同じ文書内で混ざりやすい。ISE では、特に Reverse Sync によって得られたものを正式な要求と混同しないことが重要になる。
+In traditional requirements documents, these tend to be mixed together within the same document. In ISE, it is especially important not to confuse things obtained through Reverse Sync with official requirements.
 
-コードから観測された事実は、要求そのものではない。コードから推測された意図も、まだ採用済み Intent ではない。そこには人間または責任主体による昇格判断が必要である。
+Facts observed from code are not requirements themselves. Intent inferred from code is not yet adopted Intent either. Promotion judgment by a human or accountable entity is required there.
 
-## アーキテクチャ記述における文書
+## Documents in Architecture Description
 
-ISO/IEC/IEEE 42010 に代表されるアーキテクチャ記述の考え方では、システムのアーキテクチャを、ステークホルダー、関心事、ビュー、ビューポイントなどを通じて説明する。
+In architecture description thinking, represented by ISO/IEC/IEEE 42010, a system's architecture is explained through stakeholders, concerns, views, viewpoints, and the like.
 
-この領域におけるドキュメントは、単なる構造図ではない。システムの重要な構造的判断を、関心事ごとに理解可能にするための表現である。
+Documentation in this area is not merely a structural diagram. It is a representation for making a system's key structural decisions understandable per concern.
 
-主な役割は次の通りである。
+Its main roles are:
 
-- システムの構造的意図を説明する
-- 関心事ごとに異なる見え方を提供する
-- 重要な設計判断の理由を残す
-- 複数のステークホルダー間で理解を共有する
-- 実装や変更の判断基準を与える
+- Explaining the structural intent of the system
+- Providing different views per concern
+- Preserving the rationale behind key design decisions
+- Sharing understanding among multiple stakeholders
+- Providing decision criteria for implementation and change
 
-これは ISE にとっても重要である。特に architecture は、Intent と Reality の間にある高水準の構造的制約を担う。
+This is also important for ISE. In particular, architecture bears high-level structural constraints between Intent and Reality.
 
-ただし、ISE ではアーキテクチャ文書も静的な説明資料ではない。Reality が変わればアーキテクチャ記述も Drift しうる。逆に、アーキテクチャ文書が更新されれば、コード側がそれに同期する必要がある。
+However, in ISE, architecture documents are not static explanatory materials either. If Reality changes, architecture descriptions can also drift. Conversely, if an architecture document is updated, the code side needs to synchronize with it.
 
-また、AI 支援開発では局所実装が速く進み、アーキテクチャ上の境界を小さく破る変更が蓄積しやすい。そのため、アーキテクチャ文書は単なる説明ではなく、Drift 検出と再同期のための制約面として設計される必要がある。
+Furthermore, in AI-assisted development, local implementation proceeds rapidly, making it easy for changes that subtly break architectural boundaries to accumulate. Therefore, architecture documents need to be designed not merely as explanations, but as constraint surfaces for Drift detection and re-synchronization.
 
-## 品質モデルにおける文書
+## Documents in Quality Models
 
-ISO/IEC 25010 のような品質モデルは、システムやソフトウェアの品質を、機能適合性、性能効率性、互換性、使用性、信頼性、セキュリティ、保守性、移植性などの観点で整理する。
+Quality models such as ISO/IEC 25010 organize software and system quality along perspectives such as functional suitability, performance efficiency, compatibility, usability, reliability, security, maintainability, and portability.
 
-この種のモデルは、ドキュメントに対して直接的なテンプレートを与えるというより、何を品質として扱うべきかの語彙を与える。
+Rather than providing direct templates for documents, this kind of model provides a vocabulary for what should be treated as quality.
 
-ISE では、品質モデルは次のような形で重要になる。
+In ISE, quality models become important in the following ways:
 
-- requirement や rule に品質制約を埋め込む
-- verification の観点を定義する
-- cure lane で unhealthy state を判断する
-- triage の優先度判断に使う
-- Reality が Intent から逸脱しているかを評価する
+- Embedding quality constraints into requirements and rules
+- Defining perspectives for verification
+- Judging unhealthy states in the cure lane
+- Using them for triage prioritization
+- Evaluating whether Reality has deviated from Intent
 
-ただし、品質モデルもそれだけでは同期モデルにはならない。品質属性を定義しても、それがどの文書に保持され、どの Reality に接続され、どの検証で確認され、Drift したときにどう再同期するかは別途設計が必要である。
+However, a quality model alone does not become a synchronization model. Even if quality attributes are defined, separate design is needed for which document holds them, which Reality they connect to, which verification checks them, and how to re-synchronize when they drift.
 
-## ADR と Decision Record
+## ADR and Decision Records
 
-Architecture Decision Record、あるいはより一般的な Decision Record は、なぜその選択をしたのかを記録する実践である。
+Architecture Decision Records, or Decision Records more generally, are a practice of recording why a particular choice was made.
 
-これは ISE に非常に近い問題意識を持つ。コードには How が残りやすいが、Why や Why not は失われやすい。ADR はその欠落を補う。
+This shares a problem awareness very close to ISE. Code tends to retain the How, whereas the Why and Why not are easily lost. ADRs compensate for that omission.
 
-ADR が扱う典型的な情報は次の通りである。
+Typical information handled by an ADR includes:
 
-- 背景
-- 問題
-- 採用した選択
-- 代替案
-- トレードオフ
-- 結果
-- 影響
+- Context
+- Problem
+- Chosen option
+- Alternatives
+- Trade-offs
+- Consequences
+- Impact
 
-ISE では decision は一級の document artifact として扱うべきである。
+In ISE, decisions should be treated as first-class document artifacts.
 
-ただし、ADR は通常、局所的な判断記録として運用されることが多い。ISE ではそれに加えて、decision がどの Intent に接続され、どの Reality を制約し、どの Drift を検出する助けになるかを考える必要がある。
+However, ADRs are usually operated as local decision records. In ISE, in addition to that, it is necessary to consider which Intent a decision connects to, which Reality it constrains, and which Drift it helps detect.
 
-つまり ISE における decision は、単なる判断メモではなく、同期構造の一部である。
+In other words, a decision in ISE is not merely a decision memo, but part of the synchronization structure.
 
-## Docs-as-Code と Living Documentation
+## Docs-as-Code and Living Documentation
 
-Docs-as-Code は、ドキュメントをコードと同じようにバージョン管理し、レビューし、自動化し、継続的に更新する考え方である。
+Docs-as-Code is the approach of version-controlling, reviewing, automating, and continuously updating documentation just like code.
 
-Living Documentation は、ドキュメントを一度作って放置するものではなく、システムとともに更新される生きた情報資産として扱う。
+Living Documentation treats documentation not as something written once and abandoned, but as a living information asset updated alongside the system.
 
-これらは ISE と非常に相性がよい。
+These are highly compatible with ISE.
 
-ISE では、ドキュメントは常に Reality と同期されるべきであり、古くなった文書はむしろ危険である。Docs-as-Code や Living Documentation は、この点で ISE の実装基盤になりうる。
+In ISE, documentation should always be synchronized with Reality, and outdated documents are actually dangerous. Docs-as-Code and Living Documentation can serve as the implementation foundation for ISE in this respect.
 
-ただし、それだけでは不十分である。
+However, they alone are not sufficient.
 
-Docs-as-Code は、ドキュメントをどう管理するかには強いが、どの情報をどの同期責務で分けるかまでは決めない。Living Documentation は、文書を更新し続ける思想を提供するが、Intent / Reality / Knowledge / Decision の区別や、Reverse Sync による昇格ルールまでは定義しない。
+Docs-as-Code is strong on how to manage documents, but it does not decide which information should be separated by which synchronization responsibility. Living Documentation provides the philosophy of keeping documents updated, but it does not define the distinction between Intent / Reality / Knowledge / Decision or the promotion rules for Reverse Sync.
 
-ISE Document Engineering は、これらの実践を前提にしつつ、その上に同期モデルを置く必要がある。
+ISE Document Engineering needs to assume these practices and place a synchronization model on top of them.
 
-## SDD と Spec-Driven Development
+## SDD and Spec-Driven Development
 
-Spec-Driven Development は、仕様を実装の中心に置く開発方式である。
+Spec-Driven Development is a development approach that places specifications at the center of implementation.
 
-AI 支援開発では、仕様の品質が出力の品質に強く影響するため、SDD 的な発想は重要性を増している。曖昧な指示でコードを書かせるよりも、明確な仕様を与えて実装させる方が制御しやすい。
+In AI-assisted development, because the quality of specifications strongly affects the quality of output, SDD-style thinking is growing in importance. Giving a clear specification for implementation is easier to control than having AI write code from ambiguous instructions.
 
-goose-sdd は、この考え方を実践するための初期実装だった。`docs/sdd/` を Living Spec として扱い、Forward Sync と Reverse Sync の両方を試した。
+goose-sdd was an initial implementation for practicing this idea. It treated `docs/sdd/` as a Living Spec and experimented with both Forward Sync and Reverse Sync.
 
-ただし、ISE から見ると、SDD だけでは足りない。
+However, from ISE's perspective, SDD alone is not enough.
 
-SDD は主に `spec -> code` の順方向に強い。一方、ISE では `code -> analysis -> knowledge -> intent candidate -> adopted intent` の逆方向も重要になる。
+SDD is primarily strong in the forward direction of `spec -> code`. On the other hand, in ISE, the reverse direction of `code -> analysis -> knowledge -> intent candidate -> adopted intent` is also important.
 
-また、仕様といっても、その中には要求、設計、制約、判断、未確定事項、棄却案、検証方針などが含まれる。これらをすべて spec という一語に押し込むと、同期責務が曖昧になる。
+Moreover, even when calling something a specification, it contains requirements, designs, constraints, decisions, unresolved issues, rejected options, verification policies, and more. Cramming all of these into the single word "spec" makes synchronization responsibilities ambiguous.
 
-## 既存ドキュメント観のまとめ
+## Summary of Existing Document Perspectives
 
-既存の標準や実践は、それぞれ重要な力を持っている。
+Existing standards and practices each have important strengths:
 
-- ライフサイクル標準は、活動と成果物の管理に強い
-- 要求工学は、曖昧なニーズを検証可能な What に近づけることに強い
-- アーキテクチャ記述は、構造的判断と関心事の整理に強い
-- 品質モデルは、品質属性と評価観点の語彙を与える
-- ADR は、判断理由と代替案を残すことに強い
-- Docs-as-Code は、文書を運用可能な資産として扱うことに強い
-- Living Documentation は、文書を更新し続ける思想を与える
-- SDD は、仕様を実装の中心に置く実践として有効である
+- Lifecycle standards are strong in managing activities and deliverables
+- Requirements engineering is strong in bringing ambiguous needs closer to verifiable What
+- Architecture description is strong in organizing structural decisions and concerns
+- Quality models provide a vocabulary of quality attributes and evaluation perspectives
+- ADRs are strong in preserving decision rationale and alternatives
+- Docs-as-Code is strong in treating documents as operable assets
+- Living Documentation provides the philosophy of keeping documents updated
+- SDD is effective as a practice for placing specifications at the center of implementation
 
-しかし、ISE が必要とするのは、これらを単に並べた文書体系ではない。
+However, what ISE needs is not a documentation system that merely lines these up side by side.
 
-ISE が必要とするのは、Intent と Reality の同期状態を扱える文書体系である。
+What ISE needs is a documentation system capable of handling the synchronization state between Intent and Reality.
 
-そのためには、既存の文書観を参照しながらも、次の問いを中心に再構成する必要がある。
+To achieve that, while referencing existing document perspectives, we need to reconstruct around the following question:
 
-> そのドキュメントは、Intent / Reality / Knowledge / Decision のどれを保持し、どの lane に属し、どの scope のどの artifact として、どの同期責務を担うのか。
+> Which of Intent / Reality / Knowledge / Decision does that document hold, which lane does it belong to, and as which artifact in which scope does it bear which synchronization responsibility?
 
-この問いが、ISE Document Engineering の出発点になる。
+This question serves as the starting point for ISE Document Engineering.
