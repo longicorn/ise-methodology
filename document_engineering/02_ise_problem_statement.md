@@ -1,116 +1,116 @@
-# ISE Document Engineering の問題提起
+# Problem Statement for ISE Document Engineering
 
-## 目的
+## Purpose
 
-この文書は、既存のドキュメント実践を踏まえた上で、ISE として何を問題にし、どのような文書体系を考えるべきかを整理する。
+Building on existing documentation practices, this document organizes what ISE treats as problems and what kind of documentation system should be considered.
 
-ISE Document Engineering の中心は、単に「よい設計書を書く方法」ではない。
+The core of ISE Document Engineering is not simply "how to write good design documents."
 
-中心にある問いは次である。
+The central question is:
 
-> ISE におけるドキュメントは、Intent と Reality の同期状態を、人間と AI の両方が操作可能にするための artifact であるべきではないか。
+> Shouldn't documentation in ISE be an artifact that makes the synchronization state between Intent and Reality operable by both humans and AI?
 
-この立場では、ドキュメントは工程の副産物ではなく、同期、交渉、昇格、検証、再構成を支える操作対象である。
+From this standpoint, documentation is not a byproduct of phases, but an operational object that supports synchronization, negotiation, promotion, verification, and reconstruction.
 
-## ISE におけるドキュメントの再定義
+## Redefining Documentation in ISE
 
-ISE では、開発の本質を固定的な工程順序ではなく、Intent と Reality の継続的な同期として捉える。
+ISE views the essence of development not as a fixed sequence of phases, but as continuous synchronization between Intent and Reality.
 
 - Intent
-  - システムをどうあるべきと考えるか
+  - How the system is considered to be / ought to be
 - Reality
-  - 実際のコード、テスト、設定、動作、運用状態
+  - Actual code, tests, configurations, behavior, and operational state
 - Synchronization
-  - Intent と Reality のズレを検出し、交渉し、再び整合させること
+  - Detecting discrepancies between Intent and Reality, negotiating them, and bringing them back into alignment
 
-この前提に立つと、ドキュメントは「説明資料」では足りない。
+Standing on this premise, documentation as "explanatory material" is not enough.
 
-ドキュメントは、Intent を外部化し、Reality を観測し、両者の差分を扱い、人間が判断した結果を残すための artifact である。
+Documentation is an artifact for externalizing Intent, observing Reality, handling the diff between the two, and preserving the results of human judgment.
 
-したがって、ISE におけるドキュメントは次の性質を持つべきである。
+Accordingly, documentation in ISE should have the following properties:
 
-- Intent を保持する
-- Reality を観測可能にする
-- Drift を検出可能にする
-- 判断と合意を記録する
-- Reverse Sync の結果を受け止める
-- AI に渡す context surface として機能する
-- 人間が採用判断を下せる形で情報を分離する
-- Eventual Consistency を前提に一時的な不整合を扱える
+- Holds Intent
+- Makes Reality observable
+- Makes Drift detectable
+- Records decisions and agreements
+- Receives the results of Reverse Sync
+- Functions as a context surface passed to AI
+- Separates information in a form that allows humans to make adoption decisions
+- Can handle temporary inconsistency under Eventual Consistency
 
-## 工程成果物から同期 artifact へ
+## From Phase Deliverables to Synchronization Artifacts
 
-従来の文書体系では、要求書、設計書、テスト仕様書、運用手順書のように、工程や用途ごとに文書が分かれることが多い。
+In traditional documentation systems, documents are often divided by phase or purpose, such as requirements documents, design documents, test specifications, and operations manuals.
 
-ISE では、この分け方を完全には捨てない。しかし一次分類としては不十分である。
+ISE does not completely discard this division. However, it is insufficient as a primary classification.
 
-なぜなら、ISE で重要なのは「どの工程で作られた文書か」ではなく、「同期構造の中で何を担っているか」だからである。
+This is because what matters in ISE is not "in which phase a document was created," but "what role it bears within the synchronization structure."
 
-たとえば同じ design という名前の文書でも、次のように意味が異なる。
+For example, even documents all named "design" have different meanings as follows:
 
-- これから実装するための To-Be design
-- 実装後に Reality から復元された As-Is design
-- 現実と意図の差分を示す drift analysis
-- 採用前の design candidate
-- 人間が決定した adopted design
+- A To-Be design for upcoming implementation
+- An As-Is design recovered from Reality after implementation
+- A drift analysis showing the diff between reality and intent
+- A design candidate prior to adoption
+- An adopted design decided by humans
 
-これらを同じ設計書として扱うと、文書はすぐに曖昧になる。
+If these are treated as the same "design document," the documentation quickly becomes ambiguous.
 
-ISE Document Engineering では、文書を工程成果物ではなく、同期状態を持つ artifact として扱う必要がある。
+In ISE Document Engineering, documents need to be treated not as phase deliverables, but as artifacts with synchronization states.
 
-## Intent / Reality / Knowledge / Decision の分離
+## Separating Intent / Reality / Knowledge / Decision
 
-ISE における文書体系では、少なくとも次の四種類を混ぜないことが重要である。
+In an ISE documentation system, it is important not to mix at least the following four types:
 
 ### Intent Document
 
-Intent Document は、どうあるべきかを表す。
+An Intent Document represents how things ought to be.
 
-ここには要求、設計意図、制約、品質方針、採用済み判断などが含まれる。
+This includes requirements, design intent, constraints, quality policies, adopted decisions, and the like.
 
-重要なのは、Intent Document は単なる希望や推測ではなく、その時点で採用された意図を表すことである。未確定の案やコードから推測された意図候補は、ここに直接混ぜるべきではない。
+What matters is that an Intent Document represents the intent adopted at that point in time, not mere wishes or conjectures. Unconfirmed proposals or intent candidates inferred from code should not be mixed directly into it.
 
 ### Reality Document
 
-Reality Document は、実際にどうなっているかを表す。
+A Reality Document represents how things actually are.
 
-これはコード、テスト、設定、運用状態、実際の振る舞いなどに基づく。Reality Document の価値は、主観的な理想ではなく、観測された事実に接地している点にある。
+This is based on code, tests, configurations, operational state, actual behavior, and so on. The value of a Reality Document lies in being grounded in observed facts rather than subjective ideals.
 
-ただし、Reality Document は Intent ではない。実装されているから正しい、とは限らない。
+However, a Reality Document is not Intent. Just because something is implemented does not mean it is right.
 
 ### Knowledge Document
 
-Knowledge Document は、Reality や人間由来の情報を整理し、理解可能な形に再構成したものである。
+A Knowledge Document organizes information derived from Reality or humans and reconstructs it into an understandable form.
 
-analyze lane における gather、mosaic、synthesize、elevate は、この領域と強く関係する。
+In the analyze lane, gather, mosaic, synthesize, and elevate are strongly related to this area.
 
-Knowledge Document は、単なる事実一覧でも、正式な仕様でもない。事実、背景、仮説、確度、出所を整理し、判断可能な状態へ近づけるための中間 artifact である。
+A Knowledge Document is neither a mere list of facts nor an official specification. It is an intermediate artifact for organizing facts, background, hypotheses, confidence, and provenance, bringing them closer to a decidable state.
 
 ### Decision Document
 
-Decision Document は、なぜその選択をしたのかを表す。
+A Decision Document represents why a particular choice was made.
 
-ここには採用理由、棄却案、トレードオフ、リスクの引受け、判断主体、判断時点などが含まれる。
+This includes rationale for adoption, rejected alternatives, trade-offs, risk acceptance, decision owner, and decision point in time.
 
-コードには How が残りやすい。テストには What が残りやすい。しかし Why や Why not は残りにくい。Decision Document は、この失われやすい情報を同期構造の中に戻すために必要である。
+Code tends to retain the How. Tests tend to retain the What. However, Why and Why not are hard to retain. A Decision Document is necessary to bring this easily lost information back into the synchronization structure.
 
-## As-Is / Pre To-Be / To-Be の分離
+## Separating As-Is / Pre To-Be / To-Be
 
-ISE Document Engineering で特に重要なのは、As-Is、Pre To-Be、To-Be を分けることである。
+What is particularly important in ISE Document Engineering is separating As-Is, Pre To-Be, and To-Be.
 
 ### As-Is
 
-As-Is は、現実の再構成である。
+As-Is is a reconstruction of reality.
 
-コードや設定、テスト、実行結果などから観測できる事実を中心に、現在のシステムがどうなっているかを整理する。
+Focusing on facts observable from code, configurations, tests, execution results, and the like, it organizes how the current system actually works.
 
-As-Is は重要だが、それ自体は正しさを意味しない。As-Is は Reality の記述であって、採用済み Intent ではない。
+As-Is is important, but by itself it does not mean correctness. As-Is is a description of Reality, not adopted Intent.
 
 ### Pre To-Be
 
-Pre To-Be は、Reality や人間由来の断片情報から導かれた改善候補、意図候補、問題提起である。
+Pre To-Be consists of improvement candidates, intent candidates, and problem statements derived from Reality or human-derived fragments.
 
-ここには次のようなものが含まれる。
+This includes items such as:
 
 - pain point
 - drift signal
@@ -120,29 +120,29 @@ Pre To-Be は、Reality や人間由来の断片情報から導かれた改善�
 - confidence
 - provenance
 
-Pre To-Be は、ISE と IGE の境界にある重要な受け皿である。
+Pre To-Be is an important staging area on the boundary between ISE and IGE.
 
-Reality から何かが見えても、それをすぐ正式な Intent にしてはいけない。Pre To-Be として保持し、必要に応じて IGE や人間の判断へ渡す。
+Even when something becomes visible from Reality, it must not immediately be made official Intent. It is held as Pre To-Be and passed to IGE or human judgment as needed.
 
 ### To-Be
 
-To-Be は、正式に採用された Intent である。
+To-Be is officially adopted Intent.
 
-To-Be になるには、単に AI がそう推測しただけでは足りない。人間または責任主体による採用判断が必要である。
+To become To-Be, mere AI inference is not enough. Adoption judgment by a human or accountable entity is required.
 
-ISE において Living Spec と呼べるものは、静的な単一の SSoT を前提にするのではなく、この採用済み To-Be を中心に構成されるべきである。
+What can be called a Living Spec in ISE should not assume a static single SSoT, but rather be structured around this adopted To-Be.
 
-## Reverse Sync が文書体系に要求するもの
+## What Reverse Sync Demands of the Documentation System
 
-Reverse Sync は、Reality から Intent 側へ情報を戻す動きである。
+Reverse Sync is the movement of returning information from Reality toward the Intent side.
 
-これは ISE の重要な特徴だが、同時に危険もある。
+This is an important characteristic of ISE, but it also carries danger.
 
-コードからは As-Is を復元できる。しかし As-Intended を完全に復元することはできない。実装されている構造から、なぜそうしたのか、何を捨てたのか、どのリスクを飲んだのかを完全に知ることはできない。
+From code, As-Is can be recovered. However, As-Intended cannot be completely recovered. From implemented structure alone, it is impossible to know completely why things were done that way, what was discarded, or which risks were accepted.
 
-そのため Reverse Sync の結果は、採用済み Intent と区別する必要がある。
+Therefore, the results of Reverse Sync must be distinguished from adopted Intent.
 
-Reverse Sync で得られるものは、主に次のいずれかである。
+What is obtained through Reverse Sync is mainly one of the following:
 
 - code-backed fact
 - observed behavior
@@ -152,96 +152,96 @@ Reverse Sync で得られるものは、主に次のいずれかである。
 - pain point
 - undocumented decision candidate
 
-これらをそのまま仕様に混ぜると、Reality がいつの間にか Intent に昇格してしまう。
+If these are mixed directly into specifications, Reality ends up being promoted to Intent unnoticed.
 
-ISE Document Engineering では、Reverse Sync の結果に provenance、confidence、昇格状態を持たせる必要がある。
+In ISE Document Engineering, Reverse Sync results need to carry provenance, confidence, and promotion state.
 
-## lane-model とドキュメント
+## lane-model and Documentation
 
-Nagi の lane-model は、ドキュメント体系を考える上で重要である。
+Nagi's lane-model is important when considering a documentation system.
 
-lane は工程順序ではなく、change vector の違いを表す。
+Lanes represent differences in change vectors, not phase order.
 
 - spec
-  - Intent を明示化し Reality に接続する
+  - Makes Intent explicit and connects it to Reality
 - code
-  - Reality を変更し Intent に近づける
+  - Changes Reality to bring it closer to Intent
 - analyze
-  - Reality を Knowledge として再構成する
+  - Reconstructs Reality as Knowledge
 - cure
-  - problem を repair に変換する
+  - Converts problems into repairs
 
-この見方では、ドキュメントは spec lane だけのものではない。
+In this view, documentation does not belong only to the spec lane.
 
-spec lane には Intent を表す文書がある。analyze lane には As-Is や Pre To-Be を表す文書がある。cure lane には health、triage、remedy に関する文書がある。code lane にも、局所的な実装判断や AI への意図伝達を支える文書がありうる。
+In the spec lane, there are documents representing Intent. In the analyze lane, there are documents representing As-Is and Pre To-Be. In the cure lane, there are documents concerning health, triage, and remedy. Even in the code lane, there can be documents supporting local implementation decisions and communicating intent to AI.
 
-つまり、ドキュメント分類は `lane / scope / artifact` の三つ組で考えるのが自然である。
+In other words, it is natural to think of document classification as the triple `lane / scope / artifact`.
 
 ```text
-lane  = 何をするか
-scope = どこを対象にするか
-artifact = その scope の中でどの成果物や観点を扱うか
+lane     = what to do
+scope    = what target area it covers
+artifact = which deliverable or perspective within that scope is handled
 ```
 
-この構造により、従来の system / feature / implement / analyze のような固定分類よりも、ISE の同期モデルに近い整理ができる。
+Through this structure, organization closer to ISE's synchronization model becomes possible than with fixed classifications like system / feature / implement / analyze.
 
-## AI context surface としてのドキュメント
+## Documentation as an AI Context Surface
 
-AI 支援開発では、ドキュメントは人間が読むためだけのものではない。
+In AI-assisted development, documentation is not only for humans to read.
 
-AI に渡す context surface としても機能する。
+It also functions as a context surface passed to AI.
 
-この観点では、文書には次の性質が必要になる。
+From this perspective, documents need the following properties:
 
-- AI が必要な範囲だけを読める
-- artifact の意味が文脈から解決できる
-- scope が論理的に指定できる
-- 古い情報と採用済み情報を区別できる
-- 推測、事実、判断を混ぜない
-- どの文書を優先すべきかが決まっている
-- 人間が AI の出力を検証できる
+- AI can read only the necessary range
+- The meaning of an artifact can be resolved from context
+- Scope can be specified logically
+- Old information and adopted information can be distinguished
+- Speculation, facts, and decisions are not mixed
+- It is determined which document should take priority
+- Humans can verify AI output
 
-つまり、ファイル名やディレクトリ構造は単なる整理ではない。
+In short, file names and directory structures are not mere tidying up.
 
-それらは AI が対象を解決するための操作面であり、Nagi の target surface の一部である。
+They are operational surfaces for AI to resolve targets, and part of Nagi's target surface.
 
-## SSoT は絶対真理ではない（ISE は SSoT を前提としない）
+## SSoT Is Not Absolute Truth (ISE Does Not Assume SSoT)
 
-ISE は、静的な単一の SSoT（Single Source of Truth）を前提としない。仕様、コード、運用上の現実、そして関わる人間を含め、すべての Node が時間とともに独立して変化し続けるためである。
+ISE does not assume a static single SSoT (Single Source of Truth). This is because every Node—including specifications, code, operational reality, and the humans involved—continues to change independently over time.
 
-あえて SSoT に相当するものを位置づけるとしても、それは唯一絶対の真実ではなく、その時点で交渉が決着した採用済み Intent のスナップショット（Living Spec）である。
+Even if something equivalent to an SSoT is positioned deliberately, it is not a sole absolute truth, but a snapshot of adopted Intent where negotiation has settled at that point in time (Living Spec).
 
-この理解は重要である。
+This understanding is important.
 
-どこかに唯一絶対の SSoT があるとみなすと、Reality からの反証や実装中に見つかった新しい意図を受け止めにくくなる。一方で、採用済み Intent を単なるメモにしてしまうと、実装や検証を制約できなくなる。
+If we treat something somewhere as the sole absolute SSoT, it becomes difficult to accept counter-evidence from Reality or new intent discovered during implementation. On the other hand, if adopted Intent is treated as a mere memo, it becomes unable to constrain implementation and verification.
 
-ISE における採用済み Intent（Living Spec）は、次の性質を持つべきである。
+Adopted Intent (Living Spec) in ISE should have the following properties:
 
-- 採用済み Intent を表す
-- Reality と同期される
-- Drift によって更新対象になりうる
-- 変更には判断と記録が必要である
-- 未採用の候補とは区別される
+- Represents adopted Intent
+- Is synchronized with Reality
+- Can become an update target due to Drift
+- Requires judgment and recording for changes
+- Is distinguished from unadopted candidates
 
-このため、採用済み Intent の周囲には、候補、観測、差分、判断、棄却案を置くための文書構造が必要になる。
+For this reason, around adopted Intent, a document structure is needed for placing candidates, observations, diffs, decisions, and rejected options.
 
-## ISE Document Engineering の中心命題
+## Central Proposition of ISE Document Engineering
 
-以上を踏まえると、ISE Document Engineering の中心命題は次のように置ける。
+Based on the above, the central proposition of ISE Document Engineering can be stated as follows:
 
-> ISE におけるドキュメントは、工程成果物ではなく、Intent / Reality / Knowledge / Decision を同期・交渉・昇格させるための操作可能な artifact である。
+> Documentation in ISE is not a phase deliverable, but an operable artifact for synchronizing, negotiating, and promoting Intent / Reality / Knowledge / Decision.
 
-この命題から、次の設計原則が導かれる。
+From this proposition, the following design principles follow:
 
-- 文書は工程順ではなく同期責務で分類する
-- Intent と Reality と Knowledge と Decision を混ぜない
-- As-Is と To-Be を混ぜない
-- Pre To-Be を正式な Intent と混ぜない
-- Reverse Sync の結果には provenance と confidence を持たせる
-- 人間の採用判断を通ったものだけを Living Spec（採用済み Intent）に昇格する
-- 棄却案、未確定事項、制約、判断理由を一級の記録対象にする
-- ファイル名とディレクトリ構造は AI の解決可能性を考慮して設計する
-- ドキュメントは human-readable であると同時に agent-readable であるべきである
-- Eventual Consistency を前提に、一時的な Drift を表現できる構造にする
+- Classify documents by synchronization responsibility rather than phase order
+- Do not mix Intent, Reality, Knowledge, and Decision
+- Do not mix As-Is and To-Be
+- Do not mix Pre To-Be with official Intent
+- Give Reverse Sync results provenance and confidence
+- Promote to Living Spec (adopted Intent) only what has passed human adoption judgment
+- Treat rejected options, unresolved issues, constraints, and decision rationale as first-class recording targets
+- Design file names and directory structures with AI resolvability in mind
+- Documentation should be agent-readable as well as human-readable
+- Under Eventual Consistency, structure documents so temporary Drift can be expressed
 
-ISE Document Engineering は、この原則をもとに、Nagi の document model、lane-model、artifact namespace、resolver、Reverse Sync、consultant support interface へ接続されるべきである。
+Based on these principles, ISE Document Engineering should connect to Nagi's document model, lane-model, artifact namespace, resolver, Reverse Sync, and consultant support interface.

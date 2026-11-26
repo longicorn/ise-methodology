@@ -1,90 +1,90 @@
-# 情報の境界と復元可能性に基づく重複・Gate・Reverse の設計
+# Information Boundary, Duplication, Gates, and Reverse Design Based on Reconstructibility
 
-## 目的
+## Purpose
 
-`Spec as Code` や `Code as Spec`、あるいは「ドキュメントとコードのどちらが SSoT（Single Source of Truth）か」という議論は、AI 支援開発の普及後も繰り返されている。
+Discussions such as `Spec as Code` vs. `Code as Spec`, or "which is the SSoT (Single Source of Truth), documentation or code?", continue to recur even after the widespread adoption of AI-assisted development.
 
-ISE では、すべての Node が時間とともに独立して変化し続けることを前提とするため、静的な単一の SSoT を巡る二項対立自体に意味がないと捉えている（[02_ise_problem_statement.md](02_ise_problem_statement.md) 参照）。一方で、ドキュメントとコードの間で同じ情報が重複し、片方が陳腐化する問題は実務上確かに存在する。
+Because ISE assumes that every Node continues to change independently over time, it views the binary opposition over a static single SSoT as meaningless in itself (see [02_ise_problem_statement.md](02_ise_problem_statement.md)). On the other hand, the practical problem where the same information is duplicated between documentation and code and one side becomes stale certainly exists.
 
-ただし、ドキュメントとコードは責任範囲が異なるため、見かけ上の重複がすべて悪というわけではない。本書では、両者の健全な責務境界を定義し、**重複の判定**、**Reverse Sync でのトリアージ**、**Gate での検証**に使える具体的な原則と基準を定める。
-
----
-
-## Spec as Code / Code as Spec と重複の本質
-
-「18歳未満はサービスに登録できない」という仕様を例に考える。
-
-- **実装（Code）が持つもの**：`age >= 18` という、ある時点における具体的な判定式と閾値。
-- **仕様書（Intent / Decision）が持つべきもの**：「サービスの性質と法律上許可される年齢に従う」という依存関係、どの法律や基準に基づくかという根拠、および法改正時に追随すべきという判断基準。
-
-もし仕様書に「18歳未満は登録できない」とだけ書かれていれば、それは実装の単なる日本語訳（情報の重複）に近く、なぜ 18 歳なのか（民法の成年年齢か、飲酒等の別基準か、サービス独自の安全方針か）が失われている。逆に、法律やサービスの性質が変われば年齢も変わりうるという前提が仕様書にあれば、実装の `18` と仕様書の記述は重複ではなく**責務の異なる補完関係**になる。
-
-ここで `Code as Spec` の立場から「コードから仕様書を再生成できるか」を基準にすると、現代の AI 環境特有の罠が見えてくる。AI は `age >= 18` というコードを見て「成人年齢に基づく登録制限」と**それっぽく**仕様を再生成できる。しかしそれは一般的な背景知識による推測（外挿）に過ぎず、「どの法律・方針に依存しているか」という根拠をコードから復元できているわけではない。
+However, because documentation and code have different scopes of responsibility, apparent duplication is not always bad. This document defines a healthy boundary of responsibilities between the two and establishes concrete principles and criteria usable for **judging duplication**, **triaging in Reverse Sync**, and **verifying at Gates**.
 
 ---
 
-## 2つの中心原則
+## Spec as Code / Code as Spec and the Essence of Duplication
 
-以上の考察から、ISE Document Engineering における情報の境界と重複判定は、次の2つの原則に収束する。
+Consider the specification: "Users under 18 years old cannot register for the service."
 
-1. **成果物の重複を判定する基準は、記述内容の類似性ではなく、情報の意味的な復元可能性である。**
-2. **仕様書の役割の一つは、実装への変換によって失われる、将来の判断に必要な情報を保持することである。**
+- **What implementation (Code) holds**: A concrete decision expression and threshold at a given point in time, such as `age >= 18`.
+- **What the specification (Intent / Decision) should hold**: The dependency "follow the age permitted by law and the nature of the service," the rationale of which law or standard it is based on, and the decision criterion that it should track legal amendments.
 
-コードとドキュメントの表現が似ていても、コードから一意に復元できない判断情報が含まれていれば、それは正当な責務分担である。反対に、表現が違っていてもコードから推測なしに復元できることしか書かれていないなら、それは保守コストだけを生む重複である。
+If the specification merely states "Users under 18 cannot register," it is close to a mere natural-language translation of the implementation (information duplication), and why 18 is used (whether it is the civil age of majority, a separate standard such as drinking age, or the service's own safety policy) is lost. Conversely, if the specification states the premise that the age can change if the law or the nature of the service changes, then `18` in the implementation and the description in the specification are not duplication, but a **complementary relationship with different responsibilities**.
+
+Here, if we take the `Code as Spec` standpoint and use "whether the specification can be regenerated from code" as the criterion, a trap specific to modern AI environments becomes visible. Seeing `age >= 18` in code, AI can **plausibly** regenerate a specification like "registration restriction based on the age of majority." However, that is merely an inference (extrapolation) from general background knowledge; it does not mean the rationale of "which law or policy it depends on" has been reconstructed from the code.
 
 ---
 
-## 意味的な復元可能性による3分類モデル
+## Two Core Principles
 
-`Code as Spec` の擬似的な再生成に惑わされないため、実装から仕様方向への情報の復元可能性を次の3つに分類する。
+From the above considerations, the information boundary and duplication judgment in ISE Document Engineering converge on the following two principles:
 
-| 分類 | 定義 | 18歳の例での該当事項 | ドキュメント上の扱い |
+1. **The criterion for judging duplication between artifacts is not surface similarity of descriptions, but semantic reconstructibility of information.**
+2. **One role of a specification is to preserve information lost in translation to implementation that is needed for future decisions.**
+
+Even if the expressions in code and documentation look similar, if the documentation includes decision-making information that cannot be uniquely reconstructed from code, that is a legitimate division of responsibilities. Conversely, even if the expressions differ, if the documentation only states what can be reconstructed from code without guesswork, it is duplication that only incurs maintenance cost.
+
+---
+
+## Three-Class Model by Semantic Reconstructibility
+
+To avoid being misled by the pseudo-regeneration of `Code as Spec`, we classify the reconstructibility of information in the direction from implementation to specification into the following three categories:
+
+| Class | Definition | Example in the Age-18 Case | Handling in Documentation |
 | --- | --- | --- | --- |
-| **1. 可逆**<br>(Reconstructible) | コード内の情報だけから、推測や外部知識なしに一意に復元できる | `age >= 18` という現在の判定式・閾値・分岐条件 | Spec にそのまま書き写すと**悪い重複**（実装の劣化コピー）になりやすい。Analyze lane（As-Is / Reality Document）に任せるか、参照に留める領域 |
-| **2. 擬似可逆**<br>(Plausibly Guessable) | AI や読み手が一般知識で「それっぽく」再生成できるが、コード内の情報だけからは一意に確定できない | `18` → 「成人年齢に基づく制限」というもっともらしい解釈 | **最大の罠**。Reverse Sync でそのまま Intent に昇格させると、事実に基づかない前提が仕様に紛れ込む |
-| **3. 非可逆**<br>(Non-Reconstructible) | 実装への変換によって完全に失われ、コードからは導出できない | 「法律 X の許可年齢に従う」「法改正時は追随する」「案 Y はリスクのため棄却した」という根拠・変更トリガー・判断履歴 | **Intent / Decision Document が最優先で保持すべき固有の責務** |
+| **1. Reconstructible** | Can be uniquely reconstructed from information inside the code alone, without guesswork or external knowledge | The current decision expression, threshold, and branching condition `age >= 18` | Writing it directly into Spec tends to become **bad duplication** (a degraded copy of implementation). An area to leave to the Analyze lane (As-Is / Reality Document) or keep as a reference |
+| **2. Plausibly Guessable** | AI or a reader can regenerate it "plausibly" using general knowledge, but it cannot be uniquely determined from information inside the code alone | `18` → a plausible interpretation like "restriction based on the age of majority" | **The biggest trap**. Promoting it directly to Intent in Reverse Sync mixes ungrounded assumptions into the specification |
+| **3. Non-Reconstructible** | Completely lost in translation to implementation and cannot be derived from code | Rationale, change triggers, and decision history such as "follow the permitted age of Law X," "track legal amendments," or "Option Y was rejected due to risk" | **Intrinsic responsibility that Intent / Decision Documents should preserve with top priority** |
 
-### 「契約」としての意図的な重複の扱い
+### Handling Intentional Duplication as a "Contract"
 
-API インターフェース定義や業務上の不変条件など、コードにも実装されている振る舞いを仕様書にも明記する場合がある。これは一見すると「可逆」な情報の重複に見えるが、実際には異なる。
+There are cases where behavior implemented in code—such as API interface definitions or business invariants—is also explicitly stated in the specification. At first glance, this looks like duplication of "reconstructible" information, but in reality it is different.
 
-コード単体には「たまたま今そのように実装されている」のか「外部との契約として絶対に変えてはならない境界」なのかの区別が存在しない。仕様書が**「この境界は偶然ではなく、変更してはならない契約である」という変更可否の判断情報**を保持している限り、その記述はコードから復元不可能な情報を含んでおり、正当な責務として扱われる。
-
----
-
-## Reverse Sync における判定・トリアージ基準
-
-Reverse Sync（Reality から Intent 候補を抽出・同期するプロセス）では、3分類モデルを用いて抽出結果を以下のようにトリアージする。
-
-1. **可逆情報の分離（逐語訳の抑止）**
-   コードから一意に復元できる制御フローや値の列挙は、Reality Document（`code-backed fact` / `observed behavior`）に留め、Intent Document の候補としてそのまま混ぜない。
-2. **擬似可逆情報の隔離（推測の昇格防止）**
-   AI がコードからそれらしく言語化した「目的」や「背景」は、コード内の証拠から一意に導出できない**擬似可逆**情報とみなす。これらは確定した Intent にせず、`intent candidate` または `undocumented decision candidate` として低い confidence を付与し、**「根拠・外部制約が欠落しているため人間の確認が必要」なスロット**として Negotiation Loop に回す。
-3. **非可逆情報の補完要求**
-   コードから復元できない変更トリガー、依存制約、棄却された選択肢については、推測で埋めず、ステークホルダーへの問いかけや Decision Record の作成を促す。
+Code alone does not distinguish between "it just happens to be implemented that way right now" and "it is a boundary that must never be changed as an external contract." As long as the specification retains the **changeability decision information that "this boundary is not accidental, but a contract that must not be changed,"** that description contains information non-reconstructible from code and is treated as a legitimate responsibility.
 
 ---
 
-## Gate における検証基準
+## Judgment and Triage Criteria in Reverse Sync
 
-Forward / Reverse / 同期の各種 Gate では、この2つの原則を具体的な検査観点として組み込むことができる。
+In Reverse Sync (the process of extracting and synchronizing Intent candidates from Reality), extracted results are triaged as follows using the three-class model:
 
-### 1. Spec Quality Gate（実装の劣化コピー検知）
-
-* **問いかけ**：「この仕様記述は、対応する実装コードを見れば（推測なしで）意味的に復元できる内容だけになっていないか？」
-* **判定**：`Yes` であれば、実装詳細の重複であり、将来の変更判断に必要な情報（依存する外部制約、変更トリガー、契約性、Why）が欠落しているシグナルとして差し戻す。
-
-### 2. Sync / Drift Gate（前提のすり替わり検知）
-
-* **問いかけ**：「実装の数値や分岐が変更されたとき、その変更の妥当性を仕様書が保持する『判断基準』から説明できるか？」
-* **判定**：たとえばコードの `18` が `20` に変更された場合、それが「同じ法律の改正に追随した結果」なのか「準拠する法律やサービス方針自体が切り替わった結果」なのかはコードだけでは復元できない。仕様書側の判断基準（根拠・依存先）が更新されていなければ、意図との乖離（Drift）として検知する。
+1. **Separation of Reconstructible Information (Suppressing Verbatim Translation)**
+   Enumerations of control flow and values that can be uniquely reconstructed from code are kept in Reality Documents (`code-backed fact` / `observed behavior`) and are not mixed directly as Intent Document candidates.
+2. **Quarantine of Plausibly Guessable Information (Preventing Promotion of Speculation)**
+   "Purposes" and "backgrounds" plausibly verbalized by AI from code are treated as **plausibly guessable** information that cannot be uniquely derived from evidence in code. Without making them settled Intent, assign low confidence as `intent candidate` or `undocumented decision candidate`, and route them to the Negotiation Loop as **slots "requiring human confirmation because rationale and external constraints are missing."**
+3. **Requesting Supplementation of Non-Reconstructible Information**
+   For change triggers, dependency constraints, and rejected options that cannot be reconstructed from code, do not fill them with guesswork; prompt inquiries to stakeholders or the creation of Decision Records.
 
 ---
 
-## Lane Model・Reverse との接続
+## Verification Criteria at Gates
 
-本書の原則と分類は、ISE の他の文書群と以下のように接続する。
+In Forward, Reverse, and synchronization Gates, these two principles can be incorporated as concrete inspection perspectives.
 
-* **Lane Model（変換と情報変化）**：[02_transformation_and_information_change.ja.md](../lane-model/02_transformation_and_information_change.ja.md) における「同期は完全な複製を意味しない」「Reverse による復元が難しい理由」に対し、重複判定の基準（意味的な復元可能性）と擬似可逆の罠を与える。
-* **Lane Model（Gate）**：[03_gate_and_requirements_flow.ja.md](../lane-model/03_gate_and_requirements_flow.ja.md) の「Forward・差し戻し・Reverse・検証への共通適用」における Gate 検査観点の一つとして機能する。
-* **ISE Reverse**：[01_why_reverse_is_needed.ja.md](../ise/reverse/01_why_reverse_is_needed.ja.md)（復元と判断の限界）および [02_mosaic_and_reconciliation.ja.md](../ise/reverse/02_mosaic_and_reconciliation.ja.md)（PreSpec から正式な仕様へ）における、事実と推測の分離および人間確認へのトリアージ基準として適用される。
+### 1. Spec Quality Gate (Detecting Degraded Copies of Implementation)
+
+* **Question**: "Does this specification description consist only of content that can be semantically reconstructed (without guesswork) by looking at the corresponding implementation code?"
+* **Judgment**: If `Yes`, it is a duplication of implementation details; remand it as a signal that information needed for future change decisions (dependent external constraints, change triggers, contractuality, Why) is missing.
+
+### 2. Sync / Drift Gate (Detecting Silent Substitution of Premises)
+
+* **Question**: "When a numerical value or branch in the implementation changes, can the validity of that change be explained from the 'decision criteria' held by the specification?"
+* **Judgment**: For example, when `18` in code is changed to `20`, code alone cannot reconstruct whether that is "the result of tracking an amendment to the same law" or "the result of switching the governing law or service policy itself." If the decision criteria (rationale / dependencies) on the specification side have not been updated, detect it as a divergence from intent (Drift).
+
+---
+
+## Connection to Lane Model and Reverse
+
+The principles and classifications in this document connect with other ISE document groups as follows:
+
+* **Lane Model (Transformation and Information Change)**: Provides the criterion for judging duplication (semantic reconstructibility) and the trap of plausibly guessable information for "synchronization does not mean exact replication" and "why reconstruction via Reverse is difficult" in [02_transformation_and_information_change.md](../lane-model/02_transformation_and_information_change.md).
+* **Lane Model (Gate)**: Functions as one of the Gate inspection perspectives in "Common Application to Forward, Remand, Reverse, and Verification" in [03_gate_and_requirements_flow.md](../lane-model/03_gate_and_requirements_flow.md).
+* **ISE Reverse**: Applied as the criterion for separating facts from speculation and triaging for human confirmation in [01_why_reverse_is_needed.md](../ise/reverse/01_why_reverse_is_needed.md) (Limits of Recovery and Judgment) and [02_mosaic_and_reconciliation.md](../ise/reverse/02_mosaic_and_reconciliation.md) (From PreSpec to Official Specification).

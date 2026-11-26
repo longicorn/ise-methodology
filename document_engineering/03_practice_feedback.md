@@ -1,180 +1,180 @@
-# goose-sdd と Nagi からの実践知
+# Practical Insights from goose-sdd and Nagi
 
-## 目的
+## Purpose
 
-この文書は、goose-sdd の実験結果と Nagi の開発・運用から見えてきた知見を、ISE Document Engineering へ吸い上げるための整理である。
+This document organizes the insights gained from the experimental results of goose-sdd and the development and operation of Nagi in order to feed them back into ISE Document Engineering.
 
-ISE Document Engineering は、抽象理論だけでは成立しにくい。
+ISE Document Engineering is difficult to establish through abstract theory alone.
 
-実際に AI にドキュメントを読ませ、書かせ、コードと同期させ、Reverse Sync で Reality から文書を再構成しようとすると、どの情報が混ざりやすいか、どの文書名が解決しづらいか、どの分類が破綻しやすいかが見えてくる。
+When you actually have AI read and write documents, synchronize them with code, and reconstruct documents from Reality via Reverse Sync, you start to see which kinds of information tend to get mixed up, which document names are hard to resolve, and which classifications tend to break down.
 
-goose-sdd と Nagi は、そのための実践的な一次資料である。
+goose-sdd and Nagi are practical primary sources for that purpose.
 
-## goose-sdd の位置づけ
+## Positioning of goose-sdd
 
-goose-sdd は、ISE 以前の実践的な出発点だった。
+goose-sdd was a practical starting point prior to ISE.
 
-中心にあった考え方は、`docs/sdd/` を Living Spec として扱い、ドキュメントとコードの Drift を Forward Sync と Reverse Sync によって管理することである。
+The central idea was to treat `docs/sdd/` as a Living Spec and manage Drift between documents and code through Forward Sync and Reverse Sync.
 
-goose-sdd では、主に次の構造を持っていた。
+goose-sdd mainly had the following structure:
 
 - system
-  - プロダクト全体の背景、概念、アーキテクチャ、ルール、用語
+  - Product-wide background, concepts, architecture, rules, and glossary
 - feature
-  - 個別機能の要求、設計、テスト、実装方針
+  - Requirements, design, tests, and implementation policies for individual features
 - implement
-  - 小規模・高速な実装用の簡易ドキュメント
+  - Lightweight documents for small-scale, rapid implementation
 - analyze
-  - 既存コードから As-Is を逆生成するための文書
+  - Documents for reverse-generating As-Is from existing code
 - tool
-  - 質問や補助操作
+  - Questions and auxiliary operations
 
-この構造は、SDD を実践する上で有効だった。
+This structure was effective for practicing SDD.
 
-特に、仕様を先に明示してコード生成に使う Forward Sync と、既存コードから文書を回復する Reverse Sync の両方を試せたことは重要だった。
+In particular, being able to try both Forward Sync—explicitly writing specifications first and using them for code generation—and Reverse Sync—recovering documents from existing code—was important.
 
-## goose-sdd で有効だったこと
+## What Worked in goose-sdd
 
-goose-sdd から得られた有効な知見は多い。
+Many effective insights were obtained from goose-sdd.
 
-### Living Spec は有効だった
+### Living Spec Was Effective
 
-ドキュメントを一度書いて終わりにするのではなく、コードとともに更新される Living Spec として扱うことは有効だった。
+Rather than writing documents once and finishing, treating them as a Living Spec updated alongside the code was effective.
 
-AI 支援開発では、文書が古いまま残ると、AI が古い前提を強く信じてしまう危険がある。Living Spec として更新し続ける方が、AI と人間の両方にとって安全である。
+In AI-assisted development, if documents remain outdated, there is a danger that AI will strongly trust outdated assumptions. Keeping them updated as a Living Spec is safer for both AI and humans.
 
-### Forward Sync は有効だった
+### Forward Sync Was Effective
 
-仕様や設計を先に書き、それをもとに AI に実装させる流れは有効だった。
+The flow of writing specifications and designs first and having AI implement based on them was effective.
 
-曖昧な依頼から直接コードを書くより、要求、設計、制約、テスト観点を文書化した上で実装する方が、意図の取りこぼしが少ない。
+Documenting requirements, design, constraints, and test perspectives before implementing results in fewer missed intents than writing code directly from ambiguous requests.
 
-### Reverse Sync は有効だった
+### Reverse Sync Was Effective
 
-既存コードから As-Is を整理し、ドキュメントへ戻す流れも有効だった。
+The flow of organizing As-Is from existing code and feeding it back into documentation was also effective.
 
-これは特に、既にコードが存在するプロジェクトや、実装が先行した場面で意味がある。Reality を観測し、文書側へ戻すことで、理解負債を減らせる。
+This is especially meaningful in projects where code already exists or in situations where implementation has preceded documentation. Observing Reality and bringing it back to the document side reduces comprehension debt.
 
-### Negotiation Loop の必要性が見えた
+### The Need for a Negotiation Loop Became Clear
 
-Forward Sync と Reverse Sync を使うと、ドキュメントとコードのどちらが正しいかを単純には決められない場面が出てくる。
+When using Forward Sync and Reverse Sync, situations arise where it cannot be simply decided whether the document or the code is right.
 
-コードが仕様からズレている場合、それはバグかもしれないし、仕様が古いだけかもしれない。ここでは、人間が判断して Intent を更新する必要がある。
+When code diverges from a specification, it may be a bug, or the specification may simply be outdated. Here, a human needs to judge and update Intent.
 
-このことから、Drift、Analyze、Review、Convergence という Negotiation Loop の必要性が見えた。
+From this, the necessity of a Negotiation Loop—Drift, Analyze, Review, Convergence—became clear.
 
-## goose-sdd で見えた限界
+## Limits Observed in goose-sdd
 
-goose-sdd は有効だったが、その構造には限界もあった。
+Although goose-sdd was effective, its structure also showed limitations.
 
-### system / feature / implement / analyze は固定分類として重い
+### system / feature / implement / analyze Are Too Rigid as Fixed Classifications
 
-system、feature、implement、analyze という分類はわかりやすいが、ISE の抽象モデルとしては固定的すぎる。
+Classifications such as system, feature, implement, and analyze are easy to understand, but too rigid as an abstract model for ISE.
 
-たとえば analyze は system や feature と並ぶ階層なのか、それとも Reality を Knowledge に変換する別方向の作業なのかが曖昧になる。
+For example, it becomes ambiguous whether analyze is a layer alongside system and feature, or a different direction of work that converts Reality into Knowledge.
 
-また、implement は小規模開発の便利な運用形態ではあるが、ISE の本質的な分類というより、ある利用モードに近い。
+Also, while implement is a convenient operational form for small-scale development, it is closer to a usage mode than an essential classification of ISE.
 
-この経験から、Nagi では layer ではなく lane として捉える方が自然になった。
+From this experience, it became more natural in Nagi to view these not as layers, but as lanes.
 
-### SSoT と言うだけでは情報の種類を分けきれない
+### Calling Something SSoT Alone Cannot Separate Information Types
 
-`docs/sdd/` を SSoT と呼ぶことは実務上わかりやすかった。
+Calling `docs/sdd/` the SSoT was easy to understand in practice.
 
-しかし、そこに含まれる情報は一種類ではない。
+However, the information contained there is not of a single type:
 
-- 採用済み Intent
-- 現実から復元した As-Is
-- 人間由来のメモ
-- 設計案
-- 未確定事項
-- 判断理由
-- テスト観点
-- 実装メモ
+- Adopted Intent
+- As-Is recovered from reality
+- Human-derived memos
+- Design proposals
+- Unresolved issues
+- Decision rationale
+- Test perspectives
+- Implementation notes
 
-これらを同じ SSoT の中に置くと、何が正式な意図で、何が観測事実で、何が候補なのかが曖昧になる。
+When these are placed in the same SSoT, it becomes ambiguous what is official intent, what is an observed fact, and what is a candidate.
 
-ISE では、すべての要素が独立して変化し続けるため静的な SSoT を前提とせず、「その時点で採用された Intent のスナップショット（Living Spec）」として扱う必要がある。
+In ISE, because all elements continue to change independently, it does not assume a static SSoT; instead, it needs to be treated as a "snapshot of Intent adopted at that point in time (Living Spec)."
 
-### Reverse SDD は As-Is と As-Intended を混同しやすい
+### Reverse SDD Easily Confuses As-Is and As-Intended
 
-コードから文書を逆生成すると、現在の構造はかなり整理できる。
+When reverse-generating documents from code, the current structure can be organized quite well.
 
-しかし、そこから「本来こう意図されていた」とまで言うのは危険である。
+However, it is dangerous to go so far as to claim "this was originally intended to be this way."
 
-コードから得られるのは主に As-Is である。As-Intended は、部分的に推測できるとしても不完全である。
+What is obtained from code is primarily As-Is. As-Intended, even if partially inferable, is incomplete.
 
-この経験は、Nagi の analyze lane における gather、mosaic、synthesize、elevate の分離につながる。
+This experience leads to the separation of gather, mosaic, synthesize, and elevate in Nagi's analyze lane.
 
-### 文書名と配置は操作性に直結する
+### Document Names and Placement Directly Affect Operability
 
-goose-sdd では、`00_product_background.md` や `01_requirement.md` のように、順序付きのファイル名を使っていた。
+In goose-sdd, ordered file names such as `00_product_background.md` and `01_requirement.md` were used.
 
-これは人間には読みやすい。一方で、Nagi のように lane / scope / artifact で対象を解決する場合、ファイル名や配置は単なる見た目ではなく、resolver が解釈する target surface になる。
+This is easy for humans to read. On the other hand, when resolving targets by `lane / scope / artifact` as in Nagi, file names and placement are not mere appearance, but the target surface interpreted by the resolver.
 
-このため、Nagi では文書名を「人間に自然」かつ「AI と CLI が解決可能」な形に再設計する必要が出てきた。
+For this reason, in Nagi, it became necessary to redesign document names into a form that is both "natural to humans" and "resolvable by AI and CLI."
 
-## Nagi の位置づけ
+## Positioning of Nagi
 
-Nagi は、goose-sdd の知見を引き継ぎつつ、ISE の reference implementation に近い位置を目指す実装である。
+Nagi is an implementation that builds on the insights of goose-sdd while aiming for a position close to the reference implementation of ISE.
 
-ただし、Nagi は ISE の単純な従属実装ではない。Nagi の開発を通じて見つかった実践上の問題が、ISE の理論側へ逆流することもある。
+However, Nagi is not a simple subordinate implementation of ISE. Practical problems discovered through Nagi's development also flow back into the theoretical side of ISE.
 
-この関係は重要である。
+This relationship is important.
 
-ISE が理論で、Nagi が実装という一方向ではない。
+It is not a one-way street where ISE is theory and Nagi is implementation.
 
-Nagi は、ISE Document Engineering を鍛える実験場でもある。
+Nagi is also a testing ground for honing ISE Document Engineering.
 
-## Nagi で見えてきたこと
+## What Has Become Clear in Nagi
 
-### layer ではなく lane が自然
+### Lanes Are More Natural Than Layers
 
-goose-sdd の system / feature / implement / analyze は、ある程度 layer 的に見える。
+goose-sdd's system / feature / implement / analyze look somewhat layer-like.
 
-しかし Nagi では、作業を上下関係や工程順序ではなく、lane として捉える方が自然になった。
+In Nagi, however, it became more natural to view work not as hierarchical relationships or phase order, but as lanes.
 
-lane は、対象をどう変化させるかの方向を表す。
+A lane represents the direction of how a target is changed:
 
 - spec
-  - Intent を明示化する
+  - Makes Intent explicit
 - code
-  - Reality を変更する
+  - Changes Reality
 - analyze
-  - Reality を Knowledge として再構成する
+  - Reconstructs Reality as Knowledge
 - cure
-  - problem を repair に変換する
+  - Converts problems into repairs
 
-この見方により、ドキュメントも lane ごとの artifact として整理できる。
+Through this view, documentation can also be organized as artifacts per lane.
 
-### analyze lane は文書体系の中心に近い
+### The analyze Lane Is Close to the Center of the Documentation System
 
-Nagi の analyze lane は、ISE Document Engineering にとって特に重要である。
+Nagi's analyze lane is particularly important for ISE Document Engineering.
 
-analyze は単なるコード解析ではない。Reality から Knowledge を作り、必要に応じて Pre To-Be を生む lane である。
+analyze is not mere code analysis. It is the lane that creates Knowledge from Reality and produces Pre To-Be as needed.
 
-そのため、次の区別が必要になる。
+Therefore, the following distinctions are necessary:
 
 - gather
-  - code-backed facts を集める
+  - Collect code-backed facts
 - mosaic
-  - 人間由来の断片情報や仮説を整理する
+  - Organize human-derived fragments and hypotheses
 - synthesize
-  - gather と mosaic を統合し、理解可能な As-Is にする
+  - Integrate gather and mosaic into an understandable As-Is
 - elevate
-  - より高い確度の Knowledge や To-Be 候補へ接続する
+  - Connect to higher-confidence Knowledge or To-Be candidates
 
-この構造は、Reverse Sync の危険を抑えるためにも必要である。
+This structure is also necessary to contain the dangers of Reverse Sync.
 
-### Pre To-Be の受け皿が必要
+### A Staging Area for Pre To-Be Is Needed
 
-Nagi の開発を通じて、As-Is と To-Be の間に Pre To-Be が必要であることが見えてきた。
+Through Nagi's development, it became clear that Pre To-Be is needed between As-Is and To-Be.
 
-Reality から改善候補や意図候補が見つかることはある。しかし、それはまだ正式な Intent ではない。
+Improvement candidates and intent candidates can be found from Reality. However, they are not yet official Intent.
 
-Pre To-Be は、この中間状態を受け止めるための領域である。
+Pre To-Be is the area for receiving this intermediate state.
 
-ここには、次のような情報が入る。
+Information such as the following goes here:
 
 - pain point
 - drift signal
@@ -184,121 +184,121 @@ Pre To-Be は、この中間状態を受け止めるための領域である。
 - provenance
 - unresolved question
 
-将来的に IGE / ODF が成熟すれば、Pre To-Be は IGE へ渡す payload にもなりうる。
+In the future, as IGE / ODF mature, Pre To-Be can also serve as the payload passed to IGE.
 
-### consultant / assistant は lane ではないが文書と深く関係する
+### consultant / assistant Is Not a Lane, but Deeply Relates to Documentation
 
-Nagi では、相談、設計会話、レビュー補助、理解支援の機能が必要になる。
+In Nagi, functions for consultation, design conversation, review assistance, and comprehension support are needed.
 
-これは synchronization を直接前進させる lane ではないため、spec、code、analyze、cure と同列には置かない方がよい。
+Because this is not a lane that directly advances synchronization, it is better not to place it on the same level as spec, code, analyze, and cure.
 
-一方で、consultant / assistant は文書体系と強く関係する。
+On the other hand, consultant / assistant is strongly related to the documentation system.
 
-なぜなら、相談機能は適切な文書を読み、圧縮し、人間が判断しやすい形で提示する必要があるからである。
+This is because consultation functions need to read appropriate documents, compress them, and present them in a form easy for humans to judge.
 
-つまり、consultant / assistant は direct change lane ではないが、document access pattern を設計する上では重要な support interface である。
+In other words, while consultant / assistant is not a direct change lane, it is an important support interface when designing document access patterns.
 
-### artifact namespace と resolver が必要
+### artifact namespace and resolver Are Needed
 
-Nagi では、target surface として `lane / scope / artifact` を考える。
+In Nagi, `lane / scope / artifact` is considered as the target surface.
 
 ```text
 nagi <lane> <scope>[:artifact]
 ```
 
-この形にすると、artifact は全 lane 共通の名前ではなく、lane ごとの名前空間を持つ方が自然である。
+With this form, it is more natural for artifacts to have per-lane namespaces rather than names shared across all lanes.
 
-たとえば `design` という語があっても、spec lane の design と analyze lane の design-like reconstruction は同じ意味ではない。
+For example, even with the word `design`, design in the spec lane and design-like reconstruction in the analyze lane do not mean the same thing.
 
-そのため、artifact は lane ごとに解釈されるべきであり、必要に応じて namespace や resolver によって解決先を補助する必要がある。
+Therefore, artifacts should be interpreted per lane, and resolution targets need to be assisted by namespaces and resolvers as needed.
 
-これは ISE Document Engineering にとって重要である。
+This is important for ISE Document Engineering.
 
-文書の分類は、単なるディレクトリ整理ではなく、操作可能な target surface の設計だからである。
+Document classification is not mere directory tidying, but the design of an operable target surface.
 
-## Nagi のドキュメントモデルへ戻すべき知見
+## Insights to Feed Back into Nagi's Document Model
 
-goose-sdd と Nagi の経験から、Nagi のドキュメントモデルには次の知見を反映すべきである。
+From the experience of goose-sdd and Nagi, the following insights should be reflected in Nagi's document model.
 
-### 文書は同期責務で分類する
+### Classify Documents by Synchronization Responsibility
 
-文書を「要求書」「設計書」「テスト仕様書」といった名前だけで分類すると、As-Is と To-Be、事実と判断、候補と採用済み Intent が混ざりやすい。
+When documents are classified only by names like "requirements document," "design document," or "test specification," As-Is and To-Be, facts and judgments, and candidates and adopted Intent easily get mixed together.
 
-Nagi では、文書がどの同期責務を担うかを明確にする必要がある。
+In Nagi, it is necessary to make clear which synchronization responsibility a document bears.
 
-### 採用済み Intent と候補を分ける
+### Separate Adopted Intent from Candidates
 
-AI が生成した提案や、Reality から推測された intent candidate は、そのまま正式な Intent ではない。
+Proposals generated by AI or intent candidates inferred from Reality are not official Intent as-is.
 
-採用済み Intent に昇格するには、人間または責任主体の判断が必要である。
+Judgment by a human or accountable entity is required to promote them to adopted Intent.
 
-### Reality 由来の文書には provenance と confidence が必要
+### Reality-Derived Documents Need provenance and confidence
 
-コードや設定から得た事実は比較的強い根拠を持つ。
+Facts obtained from code and configurations have relatively strong grounding.
 
-一方、人間由来の断片情報や、AI による推測は確度が異なる。
+On the other hand, human-derived fragments and AI inferences vary in confidence.
 
-Nagi の文書体系では、情報の出所と確度を表現できる必要がある。
+Nagi's documentation system needs to be able to express the provenance and confidence of information.
 
-### Decision を一級 artifact として扱う
+### Treat Decision as a First-Class Artifact
 
-判断理由、棄却案、トレードオフ、リスクの引受けは、後からコードだけを読んでも復元しにくい。
+Decision rationale, rejected alternatives, trade-offs, and risk acceptance are hard to recover later just by reading code.
 
-Nagi では decision を補助情報ではなく、一級の artifact として扱うべきである。
+In Nagi, decisions should be treated not as auxiliary information, but as first-class artifacts.
 
-### ファイル名は人間と AI の両方に向けて設計する
+### Design File Names for Both Humans and AI
 
-ファイル名や配置は、人間の読みやすさだけで決めるべきではない。
+File names and placement should not be decided by human readability alone.
 
-AI が必要な文書を発見し、scope と artifact を解決し、古い情報と採用済み情報を区別できることが重要である。
+It is important that AI can discover necessary documents, resolve scope and artifact, and distinguish old information from adopted information.
 
-## ISE Document Engineering へのフィードバックループ
+## Feedback Loop for ISE Document Engineering
 
-ISE Document Engineering は、次のフィードバックループで育てるのが自然である。
+It is natural to grow ISE Document Engineering through the following feedback loop:
 
-1. 既存のドキュメント実践を整理する
-2. ISE としての問題提起を立てる
-3. Nagi で仮の文書構造を実装する
-4. 実際の開発運用で壊れる点を観測する
-5. goose-sdd / Nagi の実践知として記録する
-6. ISE Document Engineering の理論へ戻す
-7. Nagi の document model、lane-model、resolver へ再反映する
+1. Organize existing documentation practices
+2. Formulate the problem statement as ISE
+3. Implement a provisional document structure in Nagi
+4. Observe where it breaks in actual development operations
+5. Record it as practical insights from goose-sdd / Nagi
+6. Feed it back into ISE Document Engineering theory
+7. Reflect it again in Nagi's document model, lane-model, and resolver
 
-これは、ISE そのものの考え方と一致している。
+This aligns with the philosophy of ISE itself.
 
-理論から実装へ進む Forward Sync だけでなく、実装から理論へ戻る Reverse Sync が必要である。
+Not only Forward Sync from theory to implementation, but also Reverse Sync from implementation back to theory is necessary.
 
-## 今後まとめるべき論点
+## Topics to Organize Going Forward
 
-今後、ISE Document Engineering としてさらに整理すべき論点は次の通りである。
+Topics to organize further as ISE Document Engineering going forward are:
 
-- artifact の標準分類
-- lane ごとの document namespace
-- scope と実ファイルパスの対応
-- 採用済み Intent（Living Spec）への昇格ルール
-- Pre To-Be の保存形式
-- provenance / confidence の表現
-- decision と ADR の関係
-- human-readable と agent-readable の両立
-- consultant / assistant が読むべき context set
-- Drift を検出するための文書構造
-- Nagi における resolver の設計
-- プロジェクト固有拡張と標準 artifact の境界
+- Standard classification of artifacts
+- Document namespaces per lane
+- Mapping between scope and actual file paths
+- Promotion rules to adopted Intent (Living Spec)
+- Storage format for Pre To-Be
+- Representation of provenance / confidence
+- Relationship between decision and ADR
+- Balancing human-readable and agent-readable
+- Context sets that consultant / assistant should read
+- Document structure for detecting Drift
+- Design of the resolver in Nagi
+- Boundary between project-specific extensions and standard artifacts
 
-これらは一度に決める必要はない。
+These do not all need to be decided at once.
 
-Nagi の実装を進めながら、実際に必要になったものを ISE Document Engineering へ戻し、原則化していくのがよい。
+As Nagi's implementation progresses, it is best to feed back what actually becomes necessary into ISE Document Engineering and turn it into principles.
 
-## まとめ
+## Summary
 
-goose-sdd は、Living Spec、Forward Sync、Reverse Sync、Negotiation Loop の有効性を示した。
+goose-sdd demonstrated the effectiveness of Living Spec, Forward Sync, Reverse Sync, and the Negotiation Loop.
 
-同時に、system / feature / implement / analyze の固定分類や、SSoT という単純な見方には限界があることも見えた。
+At the same time, it also revealed the limitations of fixed classifications like system / feature / implement / analyze and a simplistic view of SSoT.
 
-Nagi は、その知見を lane-model、target surface、artifact namespace、analyze lane、Pre To-Be へ再構成しようとしている。
+Nagi is attempting to reconstruct those insights into the lane-model, target surface, artifact namespace, analyze lane, and Pre To-Be.
 
-ISE Document Engineering は、この実践知を吸い上げ、既存ドキュメント実践と ISE の同期モデルをつなぐ分野として位置づけられる。
+ISE Document Engineering is positioned as the field that absorbs these practical insights and connects existing documentation practices with ISE's synchronization model.
 
-この意味で、goose-sdd と Nagi は単なる実装ではない。
+In this sense, goose-sdd and Nagi are not mere implementations.
 
-ISE Document Engineering を現実に接地させるための観測装置であり、理論を鍛えるための実験場である。
+They are observational instruments for grounding ISE Document Engineering in reality, and testing grounds for honing its theory.
